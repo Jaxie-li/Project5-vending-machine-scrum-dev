@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "username":"testcustomer1",
+        "password": "123456",
+        "user_type": "customer"
+    },
+    {
+        "id": 2,
+        "username":"testcustomer2",
+        "password": "123456",
+        "user_type": "customer"
+    },
+    {
+        "id": 3,
+        "username":"testseller1",
+        "password": "123456",
+        "user_type": "seller"
+    },
+    {
+        "id": 4,
+        "username":"testseller2",
+        "password": "123456",
+        "user_type": "seller"
+    },
+    {
+        "id": 5,
+        "username":"testcashier1",
+        "password": "123456",
+        "user_type": "cashier"
+    },
+    {
+        "id": 6,
+        "username":"testcashier2",
+        "password": "123456",
+        "user_type": "cashier"
+    },
+    {
+        "id": 7,
+        "username":"testadmin1",
+        "password": "123456",
+        "user_type": "admin"
+    },
+    {
+        "id": 8,
+        "username":"testadmin2",
+        "password": "123456",
+        "user_type": "admin"
+    }
+]

@@ -1,17 +1,19 @@
-package vendermachine;
+package vendingmachine;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import vendermachine.controller.AppController;
+import vendingmachine.controller.AppController;
 
+/**
+ * Main Entrance of all the program
+ */
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendermachine/App.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/App.fxml"));
         Parent root = loader.load();
         AppController mainController = loader.getController();
 
