@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @version v1.0
  * @author: Katherine Xu
  * @date: Created in 5/10/2022 1:51 am
- * @description: This is the model for the VenderMachine, the responsibility of this class is to store the data.
+ * @description: This is the model for the VendingMachine, the responsibility of this class is to store the data.
  * Please Store all data in this model
  */
 public class VendingMachineModel {
