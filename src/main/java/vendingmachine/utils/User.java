@@ -1,6 +1,7 @@
 package vendingmachine.utils;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -26,11 +27,27 @@ public class User {
         }
     }
 
+    public static User isValidUser(String userName,String passWord){
+        for(Object o : data){
+            JSONObject each = (JSONObject) o;
+            String realUserName = each.get("username").toString();
+            String realPassWord = each.get("password").toString();
+
+            if(realUserName.equals(userName) && realPassWord.equals(passWord)){
+                return new User(each);
+            }
+        }
+        return null;
+    }
+
     private String userName;
     private String userType;
     private Card savedCard;
 
-    public User(String userName, String userType) {
+    public User(JSONObject data) {
+        /*
+        Parse the JSON into instance
+         */
         this.userName = userName;
         this.userType = userType;
     }

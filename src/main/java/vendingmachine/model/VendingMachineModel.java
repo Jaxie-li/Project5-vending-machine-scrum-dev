@@ -8,7 +8,6 @@ import vendingmachine.utils.Cash;
 import vendingmachine.utils.Product;
 import vendingmachine.utils.User;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,5 +34,29 @@ public class VendingMachineModel {
 
         //Save the Cash instance into cashes
 
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public ArrayList<Cash> getCashes() {
+        return cashes;
+    }
+
+    public void setCashes(ArrayList<Cash> cashes) {
+        this.cashes = cashes;
     }
 }
