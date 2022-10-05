@@ -19,7 +19,7 @@ public class User {
 
     static {
         try {
-            data = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/user.json"));
+            data = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/data/user.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
