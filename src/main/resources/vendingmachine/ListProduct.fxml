@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.ListProductController">
+   <children>
+      <Spinner fx:id="mineralWater" layoutX="151.0" layoutY="78.0" prefHeight="26.0" prefWidth="70.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="42.0" prefHeight="34.0" prefWidth="600.0" text="Lite Snacks Vending Machine" textAlignment="CENTER" />
+      <Label layoutX="21.0" layoutY="81.0" prefHeight="17.0" prefWidth="78.0" text="Mineral Water" />
+      <Label layoutX="107.0" layoutY="82.0" prefHeight="17.0" prefWidth="44.0" text="\$12" />
+      <Button layoutX="470.0" layoutY="360.0" mnemonicParsing="false" text="Check Out" />
+      <Button layoutX="33.0" layoutY="360.0" mnemonicParsing="false" onAction="#cancelTransaction" text="Cancel Transaction" />
+   </children>
+</AnchorPane>
