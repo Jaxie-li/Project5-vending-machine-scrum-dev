@@ -47,7 +47,7 @@ public class AppController{
 
 
     public void listProduct(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/ListProduct.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
         listProductController.init(this);

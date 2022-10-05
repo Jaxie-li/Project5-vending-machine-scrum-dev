@@ -13,7 +13,7 @@ import vendingmachine.controller.AppController;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/App.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         Parent root = loader.load();
         AppController mainController = loader.getController();
 
