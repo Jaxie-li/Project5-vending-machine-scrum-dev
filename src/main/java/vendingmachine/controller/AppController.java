@@ -22,7 +22,7 @@ import java.io.IOException;
  * @description: This is the controller for the App class, and it will take the responsibility of GUI Action & Response
  */
 public class AppController{
-    private VendingMachineModel model = new VendingMachineModel("src/main/resources/vendingmachine/vending_machine_initial_state.json");
+    private VendingMachineModel model = new VendingMachineModel("src/main/resources/vendingmachine/data/vending_machine_initial_state.json");
 
     private Stage stage;
     private Scene scene;
