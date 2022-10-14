@@ -24,13 +24,13 @@ public class VendingMachineModel {
 
     public VendingMachineModel() throws IOException, ParseException {
         // Read all the users from database
-        User.read(User.path);
+        User.setData(User.read(User.path));
 
         // Read all the product from database
-        Product.read(Product.path);
+        Product.setData(Product.read(Product.path));
 
         // Read all the cash from database
-        Cash.read(Cash.path);
+        Cash.setData(Cash.read(Cash.path));
 
         // HISTORY
     }

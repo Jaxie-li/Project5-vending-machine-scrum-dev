@@ -37,7 +37,7 @@ public class Card {
 
     static {
         try {
-            data = (JSONArray)new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/credit_cards.json"));
+            data = (JSONArray)new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/data/credit_cards.json"));
         } catch (ParseException | FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

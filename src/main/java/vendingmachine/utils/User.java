@@ -19,12 +19,21 @@ import vendingmachine.utils.DBModel;
  */
 public class User extends DBModel {
 
+
+    private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/user.json";
     private String userName;
     private String userType;
     private String passWord;
     private Card savedCard;
 
+    public static JSONArray getData() {
+        return data;
+    }
+
+    public static void setData(JSONArray data) {
+        User.data = data;
+    }
 
     public JSONObject serialize() {
         JSONObject user = new JSONObject();
@@ -48,7 +57,7 @@ public class User extends DBModel {
         // if is owner
         if (this.userType.equals("owner")) {
             User u = new User(userName, passWord, userType);
-            User.create(u.serialize(), path);
+            data = User.create(data, u.serialize(), path);
         }
     }
 
@@ -60,7 +69,7 @@ public class User extends DBModel {
                 String realUserName = each.get("username").toString();
 
                 if (realUserName.equals(userName)) {
-                    User.delete(each, path, "username");
+                    data = User.delete(data, each, path, "username");
                     return;
                 }
             }
@@ -84,7 +93,7 @@ public class User extends DBModel {
         User u = new User(userName, passWord, "customer");
 
         // create user in database
-        User.create(u.serialize(), path);
+        data = User.create(data, u.serialize(), path);
 
         // return created user for login
         return u;
@@ -94,14 +103,12 @@ public class User extends DBModel {
         System.out.println(User.data);
         for (Object o : User.data){
             JSONObject each = (JSONObject) o;
-            // Louis: I made some bug here, fixing......
-            System.out.println(each);
-//            String realUserName = each.get("username").toString();
-//            String realPassWord = each.get("password").toString();
-//
-//            if (realUserName.equals(userName) && realPassWord.equals(passWord)) {
-//                return new User(each);
-//            }
+            String realUserName = each.get("username").toString();
+            String realPassWord = each.get("password").toString();
+
+            if (realUserName.equals(userName) && realPassWord.equals(passWord)) {
+                return new User(each);
+            }
         }
         return null;
     }
@@ -113,6 +120,7 @@ public class User extends DBModel {
         this.userName = data.get("username").toString();
         this.userType = data.get("user_type").toString();
         this.passWord = data.get("password").toString();
+        this.savedCard = new Card(data.get("saved_card_account").toString(), data.get("saved_card_number").toString());
     }
 
     public User(String userName, String passWord, String userType) {

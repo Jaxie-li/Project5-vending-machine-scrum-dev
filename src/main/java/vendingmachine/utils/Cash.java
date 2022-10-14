@@ -1,5 +1,6 @@
 package vendingmachine.utils;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import vendingmachine.utils.DBModel;
@@ -13,9 +14,16 @@ import vendingmachine.utils.DBModel;
  */
 public class Cash extends DBModel {
 
+    private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/cash.json";
     private String value;
     private int quantity;
+    public static JSONArray getData() {
+        return data;
+    }
+    public static void setData(JSONArray data) {
+        Cash.data = data;
+    }
 
     public JSONObject serialize() {
         return new JSONObject();

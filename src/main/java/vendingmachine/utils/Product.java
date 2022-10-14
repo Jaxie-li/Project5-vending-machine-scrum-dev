@@ -19,12 +19,21 @@ import vendingmachine.utils.DBModel;
  */
 public class Product extends DBModel {
 
+    private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/product.json";
     private int itemCode;
     private String itemName;
     private double itemPrice;
     private String itemCategory;
     private int itemQuantity;
+
+    public static JSONArray getData() {
+        return data;
+    }
+
+    public static void setData(JSONArray data) {
+        Product.data = data;
+    }
 
     public JSONObject serialize() {
         JSONObject prod = new JSONObject();
