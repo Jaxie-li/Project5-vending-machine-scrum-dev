@@ -21,19 +21,35 @@ import java.util.ArrayList;
  */
 public class VendingMachineModel {
     private User currentUser;
-    private ArrayList<Product> products;
-    private ArrayList<Cash> cashes;
+    private ArrayList<Product> products = new ArrayList<Product>();
+    private ArrayList<Cash> cashes = new ArrayList<Cash>();
 
 
     public VendingMachineModel(String config) throws IOException, ParseException {
+        // read the config file, split the config file into products and cashes sections
         JSONObject data = (JSONObject) new JSONParser().parse(new FileReader(config));
         JSONArray productsJSONArray = (JSONArray) data.get("product");
         JSONArray cashesJSONArray = (JSONArray) data.get("cash");
 
-        //Save the Product instance into products
-
-        //Save the Cash instance into cashes
-
+        // save the Product instance into products
+        for (Object o : productsJSONArray) {
+            JSONObject each = (JSONObject) o;
+            this.products.add(new Product(
+                    Integer.valueOf(each.get("item_code").toString()),
+                    (String) each.get("item_name"),
+                    (double) each.get("item_price"),
+                    (String) each.get("item_category"),
+                    Integer.valueOf(each.get("item_quantity").toString())
+            ));
+        }
+//        // save the Cash instance into cashes
+//        for (Object o : cashesJSONArray) {
+//            JSONObject each = (JSONObject) o;
+//            this.cashes.add(new Cash(
+//                    (double) each.get("value"),
+//                    (int) each.get("quantity")
+//            ));
+//        }
     }
 
     public User getCurrentUser() {

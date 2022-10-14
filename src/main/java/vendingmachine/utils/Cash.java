@@ -7,19 +7,19 @@ package vendingmachine.utils;
  * @description: This is the instance for the cash
  */
 public class Cash {
-    private String value;
+    private double value;
     private int quantity;
 
-    public Cash(String value, int quantity) {
+    public Cash(double value, int quantity) {
         this.value = value;
         this.quantity = quantity;
     }
 
-    public String getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
