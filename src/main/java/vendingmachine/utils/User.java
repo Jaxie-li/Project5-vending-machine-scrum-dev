@@ -7,6 +7,9 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import vendingmachine.utils.DBModel;
 
 /**
  * @version v1.0
@@ -14,42 +17,109 @@ import java.io.IOException;
  * @date: Created in 5/10/2022 2:41 am
  * @description: This is the ultils for the user
  */
-public class User {
-    private static JSONArray data;
 
-    static {
-        try {
-            data = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/data/user.json"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+public class User extends DBModel {
+
+    public static final String path = "src/main/resources/vendingmachine/data/user.json";
+    private String userName;
+    private String userType;
+    private String passWord;
+    private Card savedCard;
+
+
+    public JSONObject serialize() {
+        JSONObject user = new JSONObject();
+        user.put("username", this.userName);
+        user.put("password", this.passWord);
+        user.put("user_type", this.userType);
+
+        if (this.savedCard != null) {
+            user.put("saved_card_account", this.savedCard.getName());
+            user.put("saved_card_number", this.savedCard.getNumber());
+        } else {
+            user.put("saved_card_account", "");
+            user.put("saved_card_number", "");
+        }
+
+        return user;
+    }
+
+    public void create_user(String userName,String passWord, String userType) {
+        // if this is owner
+        // if is owner
+        if (this.userType.equals("owner")) {
+            User u = new User(userName, passWord, userType);
+            User.create(u.serialize(), path);
         }
     }
 
-    public static User isValidUser(String userName,String passWord){
-        for(Object o : data){
+    public void delete_user(String userName) {
+        // if is owner
+        if (this.userType.equals("owner")) {
+            for (Object o : data){
+                JSONObject each = (JSONObject) o;
+                String realUserName = each.get("username").toString();
+
+                if (realUserName.equals(userName)) {
+                    User.delete(each, path, "username");
+                    return;
+                }
+            }
+
+        }
+
+    }
+
+    public static User register(String userName,String passWord) throws RuntimeException {
+
+        for (Object o : data){
             JSONObject each = (JSONObject) o;
             String realUserName = each.get("username").toString();
-            String realPassWord = each.get("password").toString();
 
-            if(realUserName.equals(userName) && realPassWord.equals(passWord)){
-                return new User(each);
+            // if userName exist throw UserNameExistExceotion
+            if (realUserName.equals(userName)) {
+
             }
+        }
+        // construct new user
+        User u = new User(userName, passWord, "customer");
+
+        // create user in database
+        User.create(u.serialize(), path);
+
+        // return created user for login
+        return u;
+    }
+
+    public static User isValidUser(String userName, String passWord){
+        System.out.println(User.data);
+        for (Object o : User.data){
+            JSONObject each = (JSONObject) o;
+            // Louis: I made some bug here, fixing......
+            System.out.println(each);
+//            String realUserName = each.get("username").toString();
+//            String realPassWord = each.get("password").toString();
+//
+//            if (realUserName.equals(userName) && realPassWord.equals(passWord)) {
+//                return new User(each);
+//            }
         }
         return null;
     }
-
-    private String userName;
-    private String userType;
-    private Card savedCard;
 
     public User(JSONObject data) {
         /*
         Parse the JSON into instance
          */
+        this.userName = data.get("username").toString();
+        this.userType = data.get("user_type").toString();
+        this.passWord = data.get("password").toString();
+    }
+
+    public User(String userName, String passWord, String userType) {
         this.userName = userName;
-        this.userType = userType;
+        this.userType = passWord;
+        this.passWord = userType;
     }
 
     public String getUserName() {

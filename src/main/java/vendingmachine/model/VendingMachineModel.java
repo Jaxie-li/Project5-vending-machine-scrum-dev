@@ -21,19 +21,18 @@ import java.util.ArrayList;
  */
 public class VendingMachineModel {
     private User currentUser;
-    private ArrayList<Product> products;
-    private ArrayList<Cash> cashes;
 
+    public VendingMachineModel() throws IOException, ParseException {
+        // Read all the users from database
+        User.read(User.path);
 
-    public VendingMachineModel(String config) throws IOException, ParseException {
-        JSONObject data = (JSONObject) new JSONParser().parse(new FileReader(config));
-        JSONArray productsJSONArray = (JSONArray) data.get("product");
-        JSONArray cashesJSONArray = (JSONArray) data.get("cash");
+        // Read all the product from database
+        Product.read(Product.path);
 
-        //Save the Product instance into products
+        // Read all the cash from database
+        Cash.read(Cash.path);
 
-        //Save the Cash instance into cashes
-
+        // HISTORY
     }
 
     public User getCurrentUser() {
@@ -42,21 +41,5 @@ public class VendingMachineModel {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public ArrayList<Cash> getCashes() {
-        return cashes;
-    }
-
-    public void setCashes(ArrayList<Cash> cashes) {
-        this.cashes = cashes;
     }
 }
