@@ -17,6 +17,7 @@ import java.io.IOException;
  * @description: This is used for card stuff
  */
 public class Card {
+
     private static JSONArray data;
     private String name;
     private String number;
@@ -24,6 +25,14 @@ public class Card {
     public Card(String name, String number) {
         this.name = name;
         this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     static {
