@@ -60,14 +60,14 @@ public class AppController{
     public void signInCheck(){
         User user = User.isValidUser(userName.getText(), passWord.getText());
 
-        if(user != null){
+        if (user != null) {
             this.model.setCurrentUser(user);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUserName()));
             alert.showAndWait();
             userComponent.setVisible(false);
-        }else{
+        } else {
             userName.setText("");
             passWord.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
