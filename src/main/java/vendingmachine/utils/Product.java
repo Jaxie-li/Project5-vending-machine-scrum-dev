@@ -17,6 +17,7 @@ import vendingmachine.utils.DBModel;
  * @date: Created in 5/10/2022 1:45 am
  * @description: This is the Product class which is used to get the data from Product
  */
+@SuppressWarnings("unchecked")
 public class Product extends DBModel {
 
     private static JSONArray data;

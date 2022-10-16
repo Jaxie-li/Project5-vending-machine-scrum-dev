@@ -30,10 +30,10 @@ public class AppController{
     private Parent root;
 
     @FXML
-    private TextField userName;
+    private TextField username;
 
     @FXML
-    private PasswordField passWord;
+    private PasswordField password;
 
     @FXML
     private PasswordFieldSkin skin;
@@ -64,8 +64,8 @@ public class AppController{
     }
 
     public void signInCheck(){
-        passWord.setSkin(new PasswordFieldSkin(passWord));
-        User user = User.isValidUser(userName.getText(), passWord.getText());
+        password.setSkin(new PasswordFieldSkin(password));
+        User user = User.isValidUser(username.getText(), password.getText());
 
 
         if (user != null) {
@@ -76,8 +76,8 @@ public class AppController{
             alert.showAndWait();
             userComponent.setVisible(false);
         } else {
-            userName.setText("");
-            passWord.setText("");
+            username.setText("");
+            password.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Log In Failed!");
             alert.setContentText("Incorrect Username or password");
