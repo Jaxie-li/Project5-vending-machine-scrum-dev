@@ -23,8 +23,6 @@ public class VendingMachineModel {
     private User currentUser;
     private ArrayList<Product> products = new ArrayList<Product>();
     private ArrayList<Cash> cashes = new ArrayList<Cash>();
-
-
     public VendingMachineModel(String config) throws IOException, ParseException {
         // read the config file, split the config file into products and cashes sections
         JSONObject data = (JSONObject) new JSONParser().parse(new FileReader(config));
@@ -50,6 +48,13 @@ public class VendingMachineModel {
 //                    (int) each.get("quantity")
 //            ));
 //        }
+        // Read all the product from database
+        Product.setData(Product.read(Product.path));
+
+        // Read all the cash from database
+        Cash.setData(Cash.read(Cash.path));
+
+        // HISTORY
     }
 
     public User getCurrentUser() {

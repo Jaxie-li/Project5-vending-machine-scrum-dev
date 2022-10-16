@@ -6,6 +6,15 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import vendingmachine.utils.DBModel;
 
 /**
  * @version v1.0
@@ -13,23 +22,33 @@ import java.io.IOException;
  * @date: Created in 5/10/2022 1:45 am
  * @description: This is the Product class which is used to get the data from Product
  */
-public class Product {
+public class Product extends DBModel {
+
+    private static JSONArray data;
+    public static final String path = "src/main/resources/vendingmachine/data/product.json";
     private int itemCode;
     private String itemName;
     private double itemPrice;
     private String itemCategory;
-    private  int itemQuantity;
-//    private static JSONArray productsJsonArray;
-//
-//    static {
-//        try {
-//            productsJsonArray = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/vendingmachine/data/vending_machine_initial_state.json"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    private int itemQuantity;
+
+    public static JSONArray getData() {
+        return data;
+    }
+
+    public static void setData(JSONArray data) {
+        Product.data = data;
+    }
+
+    public JSONObject serialize() {
+        JSONObject prod = new JSONObject();
+        prod.put("item_code", this.itemCode);
+        prod.put("item_name", this.itemName);
+        prod.put("item_price", this.itemPrice);
+        prod.put("item_category", this.itemCategory);
+        prod.put("item_quantity", this.itemQuantity);
+        return prod;
+    }
     public Product(int itemCode, String itemName, double itemPrice, String itemCategory, int itemQuantity) {
         this.itemCode = itemCode;
         this.itemName = itemName;

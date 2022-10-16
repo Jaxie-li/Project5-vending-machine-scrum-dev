@@ -60,7 +60,7 @@ public class AppController{
     public void signInCheck(){
         User user = User.isValidUser(username.getText(),password.getText());
 
-        if(user != null){
+        if (user != null) {
             this.model.setCurrentUser(user);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
