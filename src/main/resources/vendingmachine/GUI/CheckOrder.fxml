@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.OrderController">
+   <children>
+      <Text layoutX="85.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check your order details" wrappingWidth="210.9296875">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TableView layoutX="85.0" layoutY="90.0" prefHeight="204.0" prefWidth="224.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Goods" />
+          <TableColumn prefWidth="75.0" text="Quantity" />
+            <TableColumn prefWidth="75.0" text="Price" />
+        </columns>
+      </TableView>
+      <Text layoutX="354.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total pay:" wrappingWidth="102.99658203125" />
+      <Button layoutX="340.0" layoutY="315.0" mnemonicParsing="false" onAction="#ReturnFrontPage" text="Return" />
+      <Button layoutX="474.0" layoutY="315.0" mnemonicParsing="false" onAction="#SwitchToPay" text="Pay" />
+   </children>
+</AnchorPane>

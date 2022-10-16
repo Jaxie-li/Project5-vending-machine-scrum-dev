@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -33,6 +34,7 @@ public class ListProductController {
     private AnchorPane chips;
     @FXML
     private AnchorPane candies;
+
 //    @FXML
 //    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
 //            marsLabel, mmLabel, bountyLabel, snickersLabel,
@@ -41,14 +43,12 @@ public class ListProductController {
 //    @FXML
 //    private Spinner<Integer> mineralWater;
 
+
     public void cancelTransaction(ActionEvent event) throws IOException {
         System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 29");
         /*
         Below should record this cancel and record it in model
          */
-
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
         loader.setController(appController);
@@ -57,6 +57,17 @@ public class ListProductController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void GenerateOrder(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+        root = loader.load();
+        loader.setController(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}
+
 
     public void init(AppController appController, Parent root) {
         this.appController = appController;
