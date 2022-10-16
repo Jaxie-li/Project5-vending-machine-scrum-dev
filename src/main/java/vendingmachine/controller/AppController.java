@@ -57,7 +57,7 @@ public class AppController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
-        listProductController.init(this, root);
+        listProductController.init(this);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

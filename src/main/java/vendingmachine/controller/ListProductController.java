@@ -58,18 +58,19 @@ public class ListProductController {
         stage.show();
     }
 
-    @FXML
-    public void GenerateOrder(ActionEvent event) throws IOException {
+    public void generateOrder(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
         root = loader.load();
-        loader.setController(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GenerateOrderController generateOrderControl  = loader.getController();
+        generateOrderControl.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();}
+        stage.show();
+    }
 
 
-    public void init(AppController appController, Parent root) {
+    public void init(AppController appController) {
         this.appController = appController;
 
         this.model = appController.getModel();
