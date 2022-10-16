@@ -124,7 +124,7 @@ public class ListProductController {
 //        mineralWater.setValueFactory(valueFactory);
 
     }
-
+    /*
     public void checkOut(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
         root = loader.load();
@@ -133,6 +133,6 @@ public class ListProductController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
 }

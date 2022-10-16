@@ -5,7 +5,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="561.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.ListProductController">
    <children>
-      <Button layoutX="532.0" layoutY="495.0" mnemonicParsing="false" onAction="#checkOut" text="Check Out" />
+      <Button layoutX="532.0" layoutY="495.0" mnemonicParsing="false" onAction="#GenerateOrder" text="Check Out" />
       <Button layoutX="69.0" layoutY="495.0" mnemonicParsing="false" onAction="#cancelTransaction" text="Cancel Transaction" />
       <AnchorPane fx:id="drinks" layoutX="30.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="251.0" prefHeight="200.0" prefWidth="200.0" />
