@@ -56,7 +56,7 @@ public class AppController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
-        listProductController.init(this);
+        listProductController.init(this, root);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -66,6 +66,7 @@ public class AppController{
     public void signInCheck(){
         passWord.setSkin(new PasswordFieldSkin(passWord));
         User user = User.isValidUser(userName.getText(), passWord.getText());
+
 
         if (user != null) {
             this.model.setCurrentUser(user);
