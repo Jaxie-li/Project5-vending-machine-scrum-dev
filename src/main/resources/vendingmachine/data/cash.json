@@ -1,0 +1,46 @@
+[
+  {
+    "value": 100.0,
+    "quantity": 5
+  },
+  {
+    "value": 50.0,
+    "quantity": 5
+  },
+  {
+    "value": 20.0,
+    "quantity": 5
+  },
+  {
+    "value": 10.0,
+    "quantity": 5
+  },
+  {
+    "value": 5.0,
+    "quantity": 5
+  },
+  {
+    "value": 2.0,
+    "quantity": 5
+  },
+  {
+    "value": 1.0,
+    "quantity": 5
+  },
+  {
+    "value": 0.5,
+    "quantity": 5
+  },
+  {
+    "value": 0.2,
+    "quantity": 5
+  },
+  {
+    "value": 0.1,
+    "quantity": 5
+  },
+  {
+    "value": 0.05,
+    "quantity": 5
+  }
+]

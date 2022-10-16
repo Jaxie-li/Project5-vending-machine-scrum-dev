@@ -22,7 +22,7 @@ import java.io.IOException;
  * @description: This is the controller for the App class, and it will take the responsibility of GUI Action & Response
  */
 public class AppController{
-    private VendingMachineModel model = new VendingMachineModel("src/main/resources/vendingmachine/data/vending_machine_initial_state.json");
+    private VendingMachineModel model = new VendingMachineModel();
 
     private Stage stage;
     private Scene scene;
@@ -58,16 +58,16 @@ public class AppController{
     }
 
     public void signInCheck(){
-        User user = User.isValidUser(userName.getText(),passWord.getText());
+        User user = User.isValidUser(userName.getText(), passWord.getText());
 
-        if(user != null){
+        if (user != null) {
             this.model.setCurrentUser(user);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUserName()));
             alert.showAndWait();
             userComponent.setVisible(false);
-        }else{
+        } else {
             userName.setText("");
             passWord.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
