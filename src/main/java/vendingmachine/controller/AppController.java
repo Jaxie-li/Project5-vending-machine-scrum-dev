@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
+import vendingmachine.utils.PasswordFieldSkin;
 import vendingmachine.utils.User;
 
 import java.io.IOException;
@@ -22,26 +23,31 @@ import java.io.IOException;
  * @description: This is the controller for the App class, and it will take the responsibility of GUI Action & Response
  */
 public class AppController{
-    private VendingMachineModel model = new VendingMachineModel("src/main/resources/vendingmachine/data/vending_machine_initial_state.json");
+    private VendingMachineModel model = new VendingMachineModel();
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     @FXML
-    private TextField username;
+    private TextField userName;
 
     @FXML
-    private PasswordField password;
+    private PasswordField passWord;
+
+    @FXML
+    private PasswordFieldSkin skin;
 
     @FXML
     private AnchorPane userComponent;
 
 
 
+//    public void setPassWordSkin() {
+//        passWord.setSkin(new PasswordFieldSkin(passWord));
+//    }
 
     public AppController() throws IOException, ParseException {
-
     }
 
 
@@ -50,7 +56,7 @@ public class AppController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
-        listProductController.init(this,root);
+        listProductController.init(this, root);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -58,7 +64,9 @@ public class AppController{
     }
 
     public void signInCheck(){
-        User user = User.isValidUser(username.getText(),password.getText());
+        passWord.setSkin(new PasswordFieldSkin(passWord));
+        User user = User.isValidUser(userName.getText(), passWord.getText());
+
 
         if (user != null) {
             this.model.setCurrentUser(user);
@@ -67,9 +75,9 @@ public class AppController{
             alert.setContentText(String.format("Welcome %s",user.getUserName()));
             alert.showAndWait();
             userComponent.setVisible(false);
-        }else{
-            username.setText("");
-            password.setText("");
+        } else {
+            userName.setText("");
+            passWord.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Log In Failed!");
             alert.setContentText("Incorrect Username or password");

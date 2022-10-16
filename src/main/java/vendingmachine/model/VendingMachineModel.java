@@ -21,40 +21,28 @@ import java.util.ArrayList;
  */
 public class VendingMachineModel {
     private User currentUser;
-    private ArrayList<Product> products = new ArrayList<Product>();
-    private ArrayList<Cash> cashes = new ArrayList<Cash>();
-    public VendingMachineModel(String config) throws IOException, ParseException {
-        // read the config file, split the config file into products and cashes sections
-        JSONObject data = (JSONObject) new JSONParser().parse(new FileReader(config));
-        JSONArray productsJSONArray = (JSONArray) data.get("product");
-        JSONArray cashesJSONArray = (JSONArray) data.get("cash");
+    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Cash> cashes = new ArrayList<>();
+    public VendingMachineModel() throws IOException, ParseException {
+        // Read all the product from database
+        User.setData(User.read(User.path));
 
-        // save the Product instance into products
-        for (Object o : productsJSONArray) {
-            JSONObject each = (JSONObject) o;
-            this.products.add(new Product(
-                    Integer.valueOf(each.get("item_code").toString()),
-                    (String) each.get("item_name"),
-                    (double) each.get("item_price"),
-                    (String) each.get("item_category"),
-                    Integer.valueOf(each.get("item_quantity").toString())
-            ));
-        }
-//        // save the Cash instance into cashes
-//        for (Object o : cashesJSONArray) {
-//            JSONObject each = (JSONObject) o;
-//            this.cashes.add(new Cash(
-//                    (double) each.get("value"),
-//                    (int) each.get("quantity")
-//            ));
-//        }
         // Read all the product from database
         Product.setData(Product.read(Product.path));
+
+        for (Object o: Product.getData()) {
+            JSONObject each = (JSONObject) o;
+            products.add(new Product(each));
+        }
 
         // Read all the cash from database
         Cash.setData(Cash.read(Cash.path));
 
-        // HISTORY
+        for (Object o: Cash.getData()) {
+            JSONObject each = (JSONObject) o;
+            cashes.add(new Cash(each));
+        }
+
     }
 
     public User getCurrentUser() {

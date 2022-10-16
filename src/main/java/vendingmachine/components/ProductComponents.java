@@ -14,7 +14,7 @@ public class ProductComponents {
     public ProductComponents(Product product, int x, int y) {
 //        System.out.println(String.format("x:%s\ty:%s".formatted(x,y)));
         this.product = product;
-        productLabel.setText(product.toString());
+        productLabel.setText(product.getItemName());
 
         SpinnerValueFactory<Integer> valueFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0,15);
