@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'jacoco'
 }
 
 version '1.0-SNAPSHOT'
@@ -35,6 +36,20 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
+jacocoTestReport {
+    reports {
+        html.required = true
+        csv.required = true
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['vendingmachine/controller/*'])
+        }))
+    }
+}
+
 test {
     useJUnitPlatform()
+    test.finalizedBy jacocoTestReport
 }
