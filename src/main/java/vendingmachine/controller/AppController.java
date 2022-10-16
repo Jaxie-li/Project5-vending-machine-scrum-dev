@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
+import vendingmachine.utils.PasswordFieldSkin;
 import vendingmachine.utils.User;
 
 import java.io.IOException;
@@ -35,13 +36,18 @@ public class AppController{
     private PasswordField passWord;
 
     @FXML
+    private PasswordFieldSkin skin;
+
+    @FXML
     private AnchorPane userComponent;
 
 
 
+//    public void setPassWordSkin() {
+//        passWord.setSkin(new PasswordFieldSkin(passWord));
+//    }
 
     public AppController() throws IOException, ParseException {
-
     }
 
 
@@ -58,6 +64,7 @@ public class AppController{
     }
 
     public void signInCheck(){
+        passWord.setSkin(new PasswordFieldSkin(passWord));
         User user = User.isValidUser(userName.getText(), passWord.getText());
 
         if (user != null) {
