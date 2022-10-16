@@ -18,6 +18,7 @@ public class App extends Application {
         AppController mainController = loader.getController();
 
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.setTitle("Lite Snacks Vending Machine");
         stage.setResizable(false);

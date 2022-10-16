@@ -1,6 +1,11 @@
 package vendingmachine.utils;
 
 import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.FileReader;
+import java.io.IOException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -44,7 +49,6 @@ public class Product extends DBModel {
         prod.put("item_quantity", this.itemQuantity);
         return prod;
     }
-
     public Product(int itemCode, String itemName, double itemPrice, String itemCategory, int itemQuantity) {
         this.itemCode = itemCode;
         this.itemName = itemName;
@@ -83,5 +87,18 @@ public class Product extends DBModel {
 
     public void setItemCategory(String itemCategory) {
         this.itemCategory = itemCategory;
+    }
+
+    public int getItemQuantity() {
+        return itemQuantity;
+    }
+
+    public void setItemQuantity(int itemQuantity) {
+        this.itemQuantity = itemQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\t\t$%s",itemName,itemPrice);
     }
 }
