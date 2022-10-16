@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AppController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AppController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="32.0" prefHeight="34.0" prefWidth="600.0" text="Lite Snacks Vending Machine" textAlignment="CENTER" />
       <Separator layoutY="207.0" prefHeight="0.0" prefWidth="600.0" />
@@ -19,7 +19,7 @@
             <TextField fx:id="username" layoutX="114.0" layoutY="19.0" />
             <PasswordField fx:id="password" layoutX="114.0" layoutY="57.0" />
             <Button layoutX="114.0" layoutY="105.0" mnemonicParsing="false" onAction="#signInCheck" text="Login" />
-            <Button layoutX="194.0" layoutY="105.0" mnemonicParsing="false" text="Register" />
+            <Button fx:id="registerButton" layoutX="194.0" layoutY="105.0" mnemonicParsing="false" onAction="#register" text="Register" />
          </children>
       </AnchorPane>
    </children>

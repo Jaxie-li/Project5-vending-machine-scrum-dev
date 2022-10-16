@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.PasswordFieldSkin;
@@ -43,8 +44,8 @@ public class AppController{
 
 
 
-//    public void setPassWordSkin() {
-//        passWord.setSkin(new PasswordFieldSkin(passWord));
+//    public void setPasswordSkin() {
+//        password.setSkin(new PasswordFieldSkin(password));
 //    }
 
     public AppController() throws IOException, ParseException {
@@ -72,7 +73,7 @@ public class AppController{
             this.model.setCurrentUser(user);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
-            alert.setContentText(String.format("Welcome %s",user.getUserName()));
+            alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
             userComponent.setVisible(false);
         } else {
@@ -85,6 +86,16 @@ public class AppController{
         }
 
 
+    }
+
+    public void register(){
+        User newUser = User.register(username.getText(), password.getText());
+        this.model.setCurrentUser(newUser);
+        userComponent.setVisible(false);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Register");
+        alert.setContentText("Registration Successful!");
+        alert.showAndWait();
     }
 
     public VendingMachineModel getModel() {
