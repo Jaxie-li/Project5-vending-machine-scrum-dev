@@ -42,6 +42,20 @@ public class VendingMachineModel {
             JSONObject each = (JSONObject) o;
             cashes.add(new Cash(each));
         }
+//         //TEST
+//        double price = 133.50;
+//        double paid = 200.00;
+//        if (Cash.isSufficient(price, paid)) {
+//            ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
+//            if (exchange == null) {
+//            System.out.println("找不开");
+//            } else {
+//                System.out.println(exchange);
+//                }
+//            } else {
+//            System.out.println("insufficient amount");
+//            }
+
 
     }
 

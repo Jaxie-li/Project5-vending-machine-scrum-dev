@@ -1,66 +1,66 @@
 [
-    {
-        "id": 1,
-        "username":"testcustomer1",
-        "password": "123456",
-        "user_type": "customer",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 2,
-        "username":"testcustomer2",
-        "password": "123456",
-        "user_type": "customer",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 3,
-        "username":"testseller1",
-        "password": "123456",
-        "user_type": "seller",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 4,
-        "username":"testseller2",
-        "password": "123456",
-        "user_type": "seller",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 5,
-        "username":"testcashier1",
-        "password": "123456",
-        "user_type": "cashier",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 6,
-        "username":"testcashier2",
-        "password": "123456",
-        "user_type": "cashier",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 7,
-        "username":"testadmin1",
-        "password": "123456",
-        "user_type": "admin",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    },
-    {
-        "id": 8,
-        "username":"testadmin2",
-        "password": "123456",
-        "user_type": "admin",
-        "saved_card_account": "",
-        "saved_card_number": ""
-    }
+  {
+    "id": 1,
+    "username":"testcustomer1",
+    "password": "123456",
+    "user_type": "customer",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 2,
+    "username":"testcustomer2",
+    "password": "123456",
+    "user_type": "customer",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 3,
+    "username":"testseller1",
+    "password": "123456",
+    "user_type": "seller",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 4,
+    "username":"testseller2",
+    "password": "123456",
+    "user_type": "seller",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 5,
+    "username":"testcashier1",
+    "password": "123456",
+    "user_type": "cashier",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 6,
+    "username":"testcashier2",
+    "password": "123456",
+    "user_type": "cashier",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 7,
+    "username":"testadmin1",
+    "password": "123456",
+    "user_type": "admin",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  },
+  {
+    "id": 8,
+    "username":"testadmin2",
+    "password": "123456",
+    "user_type": "admin",
+    "saved_card_account": "",
+    "saved_card_number": ""
+  }
 ]
