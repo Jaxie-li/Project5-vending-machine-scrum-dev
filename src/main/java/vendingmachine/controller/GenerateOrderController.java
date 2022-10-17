@@ -45,7 +45,8 @@ public class GenerateOrderController {
     public void switchToCash(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
         root = loader.load();
-        loader.setController(appController);
+        CashPaymentController cashPaymentController = loader.getController();
+        cashPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -56,7 +57,8 @@ public class GenerateOrderController {
     public void switchToCard(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CardPayment.fxml"));
         root = loader.load();
-        loader.setController(appController);
+        CardPaymentController cardPaymentController = loader.getController();
+        cardPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

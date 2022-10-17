@@ -1,10 +1,13 @@
 package vendingmachine;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import vendingmachine.controller.AppController;
 
 /**
@@ -23,8 +26,17 @@ public class App extends Application {
         stage.setTitle("Lite Snacks Vending Machine");
         stage.setResizable(false);
         stage.show();
-
         stage.setScene(scene);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent e){
+                try {
+                    System.exit(0);
+                }
+                catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         stage.show();
     }
 }

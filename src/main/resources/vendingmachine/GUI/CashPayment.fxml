@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane focusTraversable="true" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashPaymentController">
+<AnchorPane focusTraversable="true" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashPaymentController">
    <children>
       <Text layoutX="83.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cents" wrappingWidth="41.39208984375" />
       <Text layoutX="240.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dollars" wrappingWidth="41.39208984375" />
@@ -44,5 +44,6 @@
       <Button layoutX="397.0" layoutY="354.0" mnemonicParsing="false" onAction="#pay" prefHeight="26.0" prefWidth="78.0" text="Pay" />
       <Label fx:id="errorFlag" layoutX="132.0" layoutY="314.0" prefHeight="17.0" prefWidth="148.0" textFill="RED" />
       <Text layoutX="314.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" wrappingWidth="47.39208984375" />
+      <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

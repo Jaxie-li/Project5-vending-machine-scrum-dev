@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import vendingmachine.components.ProductComponents;
@@ -19,6 +21,8 @@ import vendingmachine.utils.Product;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ListProductController {
     private AppController appController;
@@ -34,6 +38,8 @@ public class ListProductController {
     private AnchorPane chips;
     @FXML
     private AnchorPane candies;
+    @FXML
+    private Button cancelButton;
 
 //    @FXML
 //    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
@@ -97,6 +103,21 @@ public class ListProductController {
                 candies.getChildren().add(pc.getSpinner());
             }
         }
+
+        /*
+        Timer: 30 second for the demo, remember to change to 2min
+        Issue: #6 implemented but not show in sprint1
+        */
+
+//        new Timer().schedule(new TimerTask(){
+//            @Override
+//            public void run() {
+//                Platform.runLater(()->{
+//                    cancelButton.fire();
+//                });
+//            }
+//        }, 30000);
+
 
 
 

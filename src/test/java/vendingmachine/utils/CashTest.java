@@ -15,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CashTest {
     private Cash cash;
 
-//    @BeforeEach
+    @BeforeEach
+    public void init(){
+        cash = new Cash(20,5);
+    }
 
     @Test
     public void constructorTest(){
@@ -24,7 +27,7 @@ public class CashTest {
 
     @Test
     public void getQualityTest(){
-        assertEquals("quality",this.cash.getQuantity());
+        assertEquals(5,this.cash.getQuantity());
     }
 
 }

@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class CashPaymentController {
+    private AppController appController;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     private TextField fiftyCentsAmount;
 
@@ -54,6 +58,21 @@ public class CashPaymentController {
     private Label errorFlag;
 
     public double balance;
+
+    public void init(AppController appController) {
+        this.appController = appController;
+    }
+
+    public void back(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+        root = loader.load();
+        GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     /**
      * This is for pay button. This will decide whether the balance is enough or not
