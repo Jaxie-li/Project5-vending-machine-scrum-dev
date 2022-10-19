@@ -14,7 +14,7 @@ public class Order extends DBModel {
 
     public static final String path = "src/main/resources/vendingmachine/data/order_history.json";
 
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm:ss");
     private int id;
     private String username;
     private String status;
@@ -35,16 +35,25 @@ public class Order extends DBModel {
         username = obj.get("username").toString();
         status = obj.get("status").toString();
         paymentMethod = obj.get("payment_method").toString();
-        startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
+
+        System.out.println(obj.get("start_time").toString());
+        System.out.println(obj.get("close_time").toString());
         try {
+            startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
             closeTime = LocalDateTime.parse(obj.get("close_time").toString(), formatter);
         } catch (DateTimeException e) {
+            // FIXME: handle exception
+            startTime = null;
             closeTime = null;
         }
         for (Object o: (JSONArray) obj.get("products")) {
             JSONObject each = (JSONObject) o;
             products.add(new Product(each));
         }
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
     private static int getNextId() {

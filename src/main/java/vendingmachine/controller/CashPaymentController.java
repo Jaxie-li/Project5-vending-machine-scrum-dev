@@ -6,17 +6,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.utils.DBModel;
+import vendingmachine.utils.Order;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class CashPaymentController {
     private AppController appController;
+
+    private Order model;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -69,6 +75,7 @@ public class CashPaymentController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
         root = loader.load();
         GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.setModel(model);
         generateOrderControl.init(appController);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -181,7 +188,10 @@ public class CashPaymentController {
             alert.setHeaderText("Insert Error :( ");
             alert.setContentText("Check input :<");
 
-            alert.showAndWait();
+            alert.showAndWait();}
         }
+    public void setModel(Order model) {
+        this.model = model;
     }
 }
+

@@ -1,21 +1,56 @@
 package vendingmachine.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import vendingmachine.utils.Order;
+import vendingmachine.utils.Product;
 
 import java.io.IOException;
 public class GenerateOrderController {
     private AppController appController;
+
+    private Order model;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    @FXML
+    private TableView<Product> orderTv;
+
+    @FXML
+    private TableColumn<Product, String> nameTc;
+
+    @FXML
+    private TableColumn<Product, Integer> quantityTc;
+
+    @FXML
+    private TableColumn<Product, Double> priceTc;
+
+    @FXML
+    private Text totalTxt;
+
     public void init(AppController appController){
         this.appController = appController;
+        nameTc.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        quantityTc.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
+        priceTc.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
+
+        ObservableList<Product> oProdList = FXCollections.observableArrayList(model.getProducts());
+
+        orderTv.setItems(oProdList);
+
+        totalTxt.setText("Total Price:  $" + model.getOrderTotal());
     }
 
 //    @FXML
@@ -46,6 +81,7 @@ public class GenerateOrderController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
         root = loader.load();
         CashPaymentController cashPaymentController = loader.getController();
+        cashPaymentController.setModel(model);
         cashPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -58,10 +94,19 @@ public class GenerateOrderController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CardPayment.fxml"));
         root = loader.load();
         CardPaymentController cardPaymentController = loader.getController();
+        cardPaymentController.setModel(model);
         cardPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Order getModel() {
+        return model;
+    }
+
+    public void setModel(Order model) {
+        this.model = model;
     }
 }

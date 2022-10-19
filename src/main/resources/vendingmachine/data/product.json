@@ -2,42 +2,42 @@
   {
     "item_code": 1001,
     "item_name": "Mineral Water",
-    "item_price": 12.0,
+    "item_price": 2.5,
     "item_category": "drinks",
     "item_quantity": 7
   },
   {
     "item_code": 1002,
     "item_name": "Sprite",
-    "item_price": 12.0,
+    "item_price": 3,
     "item_category": "drinks",
     "item_quantity": 7
   },
   {
     "item_code": 1003,
     "item_name": "Coca cola",
-    "item_price": 12.0,
+    "item_price": 3,
     "item_category": "drinks",
     "item_quantity": 7
   },
   {
     "item_code": 1004,
     "item_name": "Pepsi",
-    "item_price": 12.0,
+    "item_price": 3.5,
     "item_category": "drinks",
     "item_quantity": 7
   },
   {
     "item_code": 1005,
     "item_name": "Juice",
-    "item_price": 12.0,
+    "item_price": 5.0,
     "item_category": "drinks",
     "item_quantity": 7
   },
   {
     "item_code": 1006,
     "item_name": "Mars",
-    "item_price": 12.0,
+    "item_price": 8.0,
     "item_category": "chocolates",
     "item_quantity": 7
   },

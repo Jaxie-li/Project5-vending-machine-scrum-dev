@@ -34,4 +34,8 @@ public class ProductComponents {
     public Spinner<Integer> getSpinner() {
         return spinner;
     }
+
+    public Product getProduct() {
+        return product;
+    }
 }
