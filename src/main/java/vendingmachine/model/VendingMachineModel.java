@@ -1,14 +1,12 @@
 package vendingmachine.model;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import vendingmachine.utils.Cash;
+import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 import vendingmachine.utils.User;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,6 +21,7 @@ public class VendingMachineModel {
     private User currentUser;
     private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<Cash> cashes = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
     public VendingMachineModel() throws IOException, ParseException {
         // Read all the product from database
         User.setData(User.read(User.path));
@@ -42,6 +41,15 @@ public class VendingMachineModel {
             JSONObject each = (JSONObject) o;
             cashes.add(new Cash(each));
         }
+
+        // Read all the orders from database
+        Order.setData(Order.read(Order.path));
+
+        for (Object o: Order.getData()) {
+            JSONObject each = (JSONObject) o;
+            orders.add(new Order(each));
+        }
+
 //         //TEST
 //        double price = 133.50;
 //        double paid = 200.00;

@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 import vendingmachine.App;
 import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.Card;
+import vendingmachine.utils.Order;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class CardPaymentController {
 
     @FXML
     private TextField cardName;
+    private Order model;
 
     public void init(AppController appController){
         this.appController = appController;
@@ -46,10 +48,15 @@ public class CardPaymentController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
         root = loader.load();
         GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.setModel(model);
         generateOrderControl.init(appController);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void setModel(Order model) {
+        this.model = model;
     }
 }

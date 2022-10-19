@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import vendingmachine.components.ProductComponents;
 import vendingmachine.model.VendingMachineModel;
+import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ListProductController {
+
+    private ArrayList<ProductComponents> pcs = new ArrayList<>();
     private AppController appController;
     private VendingMachineModel model;
     private Stage stage;
@@ -41,35 +44,45 @@ public class ListProductController {
     @FXML
     private Button cancelButton;
 
-//    @FXML
-//    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
-//            marsLabel, mmLabel, bountyLabel, snickersLabel,
-////            smithsLabel, pringlesLabel, kettleLabel, thinsLabel,
-////            mentosLabel, sourPatchLabel, skittlesLabel;
-//    @FXML
-//    private Spinner<Integer> mineralWater;
+    //    @FXML
+    //    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
+    //            marsLabel, mmLabel, bountyLabel, snickersLabel,
+    ////            smithsLabel, pringlesLabel, kettleLabel, thinsLabel,
+    ////            mentosLabel, sourPatchLabel, skittlesLabel;
+    //    @FXML
+    //    private Spinner<Integer> mineralWater;
 
 
     public void cancelTransaction(ActionEvent event) throws IOException {
         System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 29");
         /*
-        Below should record this cancel and record it in model
-         */
+Below should record this cancel and record it in model
+*/
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
         loader.setController(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     public void generateOrder(ActionEvent event) throws IOException {
+
+        Order order = new Order(appController.getModel().getCurrentUser());
+        for (ProductComponents pc : pcs) {
+            if (pc.getSpinner().getValue() > 0) {
+                Product temp = pc.getProduct();
+                order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(), temp.getItemCategory(), pc.getSpinner().getValue()));
+            }
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
         root = loader.load();
-        GenerateOrderController generateOrderControl  = loader.getController();
+        GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.setModel(order);
         generateOrderControl.init(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -84,24 +97,26 @@ public class ListProductController {
         for (int i = 0; i < model.getProducts().size(); i++) {
             Product product = model.getProducts().get(i);
 //            ProductComponents pc = new ProductComponents(product,20,100+i*40);
+            ProductComponents pc;
             if (product.getItemCategory().equals("drinks")) {
 //                System.out.println(String.format("drinks: %s %s".formatted(drinks.getLayoutX(),drinks.getLayoutY())));
-                ProductComponents pc = new ProductComponents(product,(int)drinks.getLayoutX(),(int)drinks.getLayoutY()+i*40);
+                pc = new ProductComponents(product, (int) drinks.getLayoutX(), (int) drinks.getLayoutY() + i * 40);
                 drinks.getChildren().add(pc.getProductLabel());
                 drinks.getChildren().add(pc.getSpinner());
             } else if (product.getItemCategory().equals("chocolates")) {
-                ProductComponents pc = new ProductComponents(product,(int)chocolates.getLayoutX(),(int)chocolates.getLayoutY()+(i-drinks.getChildren().size())*40);
+                pc = new ProductComponents(product, (int) chocolates.getLayoutX(), (int) chocolates.getLayoutY() + (i - drinks.getChildren().size()) * 40);
                 chocolates.getChildren().add(pc.getProductLabel());
                 chocolates.getChildren().add(pc.getSpinner());
             } else if (product.getItemCategory().equals("chips")) {
-                ProductComponents pc = new ProductComponents(product,(int)chips.getLayoutX(),(int)chips.getLayoutY()+(i%9)*40);
+                pc = new ProductComponents(product, (int) chips.getLayoutX(), (int) chips.getLayoutY() + (i % 9) * 40);
                 chips.getChildren().add(pc.getProductLabel());
                 chips.getChildren().add(pc.getSpinner());
-            } else if (product.getItemCategory().equals("candies")) {
-                ProductComponents pc = new ProductComponents(product,(int)candies.getLayoutX(),(int)candies.getLayoutY()+(i-drinks.getChildren().size()-chips.getChildren().size())*40);
+            } else {
+                pc = new ProductComponents(product, (int) candies.getLayoutX(), (int) candies.getLayoutY() + (i - drinks.getChildren().size() - chips.getChildren().size()) * 40);
                 candies.getChildren().add(pc.getProductLabel());
                 candies.getChildren().add(pc.getSpinner());
             }
+            pcs.add(pc);
         }
 
         /*
@@ -117,9 +132,6 @@ public class ListProductController {
 //                });
 //            }
 //        }, 30000);
-
-
-
 
 
 //        // set the value of quantity of items to be 0~15 inclusive
