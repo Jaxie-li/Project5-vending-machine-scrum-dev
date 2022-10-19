@@ -91,14 +91,14 @@ public class User extends DBModel {
         return u;
     }
 
-    public static User isValidUser(String userName, String passWord){
+    public static User isValidUser(String username, String password){
         System.out.println(User.data);
         for (Object o : User.data){
             JSONObject each = (JSONObject) o;
-            String realUserName = each.get("username").toString();
-            String realPassWord = each.get("password").toString();
+            String realUsername = each.get("username").toString();
+            String realPassword = each.get("password").toString();
 
-            if (realUserName.equals(username) && realPassWord.equals(password)) {
+            if (realUsername.equals(User.username) && realPassword.equals(User.password)) {
                 return new User(each);
             }
         }
