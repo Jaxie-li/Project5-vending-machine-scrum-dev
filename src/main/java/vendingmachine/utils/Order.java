@@ -35,9 +35,9 @@ public class Order extends DBModel {
         username = obj.get("username").toString();
         status = obj.get("status").toString();
         paymentMethod = obj.get("payment_method").toString();
-
-        System.out.println(obj.get("start_time").toString());
-        System.out.println(obj.get("close_time").toString());
+//
+//        System.out.println(obj.get("start_time").toString());
+//        System.out.println(obj.get("close_time").toString());
         try {
             startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
             closeTime = LocalDateTime.parse(obj.get("close_time").toString(), formatter);
