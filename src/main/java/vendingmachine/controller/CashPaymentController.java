@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.Cash;
 import vendingmachine.utils.DBModel;
 import vendingmachine.utils.Order;
@@ -103,7 +104,7 @@ public class CashPaymentController {
      * @throws IOException throws exceptions
      */
     @FXML
-    private void pay(ActionEvent event) throws IOException {
+    private void pay(ActionEvent event) throws IOException, ParseException {
         if (balance <= 0) {
             invalidBalance();
 
@@ -112,12 +113,12 @@ public class CashPaymentController {
 
         } else {
             // can not find sufficient changes
-            ArrayList<Cash> changes = new ArrayList<>();
+//            ArrayList<Cash> changes = new ArrayList<>();
             System.out.println(model.getOrderTotal());
             System.out.println(balance);
             // TBD
-            exchange = Cash.payCash(model.getOrderTotal(), balance, changes);
-            System.out.println(exchange);
+            exchange = Cash.payCash(model.getOrderTotal(), balance, new VendingMachineModel().getCashes());
+            System.out.println(new VendingMachineModel().getCashes());
             if (exchange == null) {
                 System.out.println("Insufficient Changes");
                 findChangesUnsuccess(event);
