@@ -6,17 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import vendingmachine.utils.Cash;
 import vendingmachine.utils.DBModel;
 import vendingmachine.utils.Order;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class CashPaymentController {
@@ -65,10 +65,23 @@ public class CashPaymentController {
     @FXML
     private Label errorFlag;
 
-    public double balance;
+    @FXML
+    private Text orderPrice;
+
+    @FXML
+    private Button payButton;
+
+    private double balance;
+
+    private ArrayList<Cash> exchange;
 
     public void init(AppController appController) {
         this.appController = appController;
+    }
+
+    public void setModel(Order model) {
+        this.model = model;
+        orderPrice.setText("" + this.model.getOrderTotal());
     }
 
     public void back(ActionEvent event) throws IOException {
@@ -77,7 +90,7 @@ public class CashPaymentController {
         GenerateOrderController generateOrderControl = loader.getController();
         generateOrderControl.setModel(model);
         generateOrderControl.init(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -85,73 +98,44 @@ public class CashPaymentController {
 
     /**
      * This is for pay button. This will decide whether the balance is enough or not
+     *
      * @param event click the button
      * @throws IOException throws exceptions
      */
     @FXML
     private void pay(ActionEvent event) throws IOException {
+        if (balance <= 0) {
+            invalidBalance();
 
-        if (balance > 0) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("");
-            alert.setHeaderText("Not enough balance :( ");
-            alert.setContentText("Do you want to cancel transaction?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isEmpty()) {
-                System.out.println("Error!");
-            } else if (result.get() == ButtonType.OK) {
-
-                System.out.println("you Successfully cancel the transaction.");
-
-                // go to the main page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-                Parent root = loader.load();
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-            } else if (result.get() == ButtonType.CANCEL) {
-                errorFlag.setText("Insert enough balance!");
-                System.out.println("Insert enough balance!");
-            }
+        } else if (balance < model.getOrderTotal()) {
+            checkOutUnsuccess(event);
 
         } else {
-            // check out successfully
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("");
-            alert.setHeaderText("Welcome to use ! ");
-
+            // can not find sufficient changes
+            ArrayList<Cash> changes = new ArrayList<>();
+            System.out.println(model.getOrderTotal());
+            System.out.println(balance);
             // TBD
-            String checkOutInfo = "You will get your products " + " " + " and changes " + " ";
-            alert.setContentText(checkOutInfo);
+            exchange = Cash.payCash(model.getOrderTotal(), balance, changes);
+            System.out.println(exchange);
+            if (exchange == null) {
+                System.out.println("Insufficient Changes");
+                findChangesUnsuccess(event);
 
-            Optional<ButtonType> button = alert.showAndWait();
-
-            if (button.isEmpty()) {
-                System.out.println("Error");
-            } else if (button.get() == ButtonType.OK) {
-                System.out.println("Click OK");
-                // go back to previous page and log out
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+            } else {
+                // find sufficient changes
+                checkOutSuccess(event);
             }
         }
     }
 
     /**
      * Insert each note, will sum the balance
+     *
      * @param event click sum button to sum the balance
      */
     @FXML
-    public void sum(ActionEvent event) throws IOException {
+    public void sum(ActionEvent event) {
         try {
             int hundredDollar = Integer.parseInt(hundredDollarsAmount.getText());
             int fiftyDollar = Integer.parseInt(fiftyDollarsAmount.getText());
@@ -173,13 +157,6 @@ public class CashPaymentController {
             this.balance = amount;
             inputAmount.setText(String.format("%.2f", amount));
 
-//            DBModel db = new DBModel() {
-//                @Override
-//                public JSONObject serialize() {
-//                    return null;
-//                }
-//            };
-
         } catch (NumberFormatException nfe) {
 
             System.out.println("Input error");
@@ -188,10 +165,121 @@ public class CashPaymentController {
             alert.setHeaderText("Insert Error :( ");
             alert.setContentText("Check input :<");
 
-            alert.showAndWait();}
+            alert.showAndWait();
         }
-    public void setModel(Order model) {
-        this.model = model;
+    }
+
+    /**
+     * check out successfully, user will get the products and changes
+     *
+     * @param event click pay button
+     * @throws IOException throws any exception
+     */
+    public void checkOutSuccess(ActionEvent event) throws IOException {
+        // check out successfully
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Welcome to use ! ");
+
+        // TBD
+        System.out.println(model.getProducts());
+        String checkOutInfo = "You will get your products " + model.getProducts().toString() + " and changes " + exchange.toString();
+        alert.setContentText(checkOutInfo);
+
+        Optional<ButtonType> button = alert.showAndWait();
+
+        if (button.isEmpty()) {
+            System.out.println("Error");
+
+        } else if (button.get() == ButtonType.OK) {
+            System.out.println("Click OK");
+            // go back to main page and log out
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    /**
+     * check out unsuccessfully, user will not get the products and changes
+     * >> case : 1. not enough money
+     * >> two options: 1. cancel the transaction 2. reinsert the coins or notes
+     *
+     * @param event click pay button
+     * @throws IOException throws any exception
+     */
+    public void checkOutUnsuccess(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Not enough balance :( ");
+        alert.setContentText("Do you want to cancel transaction?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isEmpty()) {
+            System.out.println("Error!");
+        } else if (result.get() == ButtonType.OK) {
+
+            System.out.println("you Successfully cancel the transaction.");
+            // go to the main page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } else if (result.get() == ButtonType.CANCEL) {
+            errorFlag.setText("Insert enough balance!");
+            System.out.println("Insert enough balance!");
+        }
+    }
+
+    /**
+     * received money is larger than order price, but machine can't find sufficient changes
+     *
+     * @param event click pay button
+     * @throws IOException throws any exception
+     */
+    public void findChangesUnsuccess(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Not enough changes :( ");
+        alert.setContentText("Do you want to change notes or coins?   Click CANCEL to cancel the transaction");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isEmpty()) {
+            System.out.println("Error!");
+
+        } else if (result.get() == ButtonType.CANCEL) {
+            System.out.println("you Successfully cancel the transaction.");
+            // go to the main page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } else if (result.get() == ButtonType.OK) {
+            errorFlag.setText("Insert different notes or coins!");
+            System.out.println("Insert different notes or coins!");
+        }
+    }
+
+
+    public void invalidBalance() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Invalid Balance :( ");
+        alert.setContentText("Check your balance");
+
+        alert.showAndWait();
     }
 }
 
