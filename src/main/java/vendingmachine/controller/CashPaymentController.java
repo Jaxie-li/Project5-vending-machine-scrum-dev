@@ -183,7 +183,8 @@ public class CashPaymentController {
 
         // TBD
         System.out.println(model.getProducts());
-        String checkOutInfo = "You will get your products " + model.getProducts().toString() + " and changes " + exchange.toString();
+//        String checkOutInfo = "You will get your products " + model.getProducts().toString() + " and changes " + exchange.toString();
+        String checkOutInfo = "You will get your products: xxxxx " + " and changes: xxxx ";
         alert.setContentText(checkOutInfo);
 
         Optional<ButtonType> button = alert.showAndWait();

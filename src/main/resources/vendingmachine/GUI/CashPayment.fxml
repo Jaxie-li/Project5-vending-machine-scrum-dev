@@ -37,7 +37,7 @@
             <Font name="Apple Braille" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="inputAmount" layoutX="317.0" layoutY="277.0" prefHeight="26.0" prefWidth="71.0" />
+      <TextField fx:id="inputAmount" editable="false" layoutX="317.0" layoutY="277.0" prefHeight="26.0" prefWidth="71.0" />
       <Button layoutX="242.0" layoutY="246.0" mnemonicParsing="false" onAction="#sum" prefHeight="26.0" prefWidth="78.0" text="Sum">
          <font>
             <Font size="14.0" />
