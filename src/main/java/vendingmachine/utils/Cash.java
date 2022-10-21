@@ -89,7 +89,7 @@ public class Cash extends DBModel {
 
         ArrayList<Cash> cash = new ArrayList<>();
 
-        double value[] = { 50.0, 20.0, 10.0, 5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05 };
+        double value[] = {100.0, 50.0, 20.0, 10.0, 5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05 };
 
         for (double v: value) {
             // the quantity of value wanted
