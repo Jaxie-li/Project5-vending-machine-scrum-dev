@@ -2,6 +2,7 @@ package vendingmachine.utils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import vendingmachine.controller.AppController;
 
 /**
  * @version v1.0
@@ -11,8 +12,6 @@ import org.json.simple.JSONObject;
  */
 
 public class User extends DBModel {
-
-
     private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/user.json";
     private static String username;
@@ -48,8 +47,8 @@ public class User extends DBModel {
     public void createUser(String username, String password, String userType) {
         // if is owner
         if (this.userType.equals("owner")) {
-            User u = new User(username, password, userType);
-            data = User.create(data, u.serialise(), path);
+        User u = new User(username, password, userType);
+        data = User.create(data, u.serialise(), path);
         }
     }
 
@@ -65,18 +64,16 @@ public class User extends DBModel {
                     return;
                 }
             }
-
         }
-
     }
 
-    public static User register(String username,String password) throws RuntimeException {
+    public static User register(String username, String password) throws RuntimeException {
 
         for (Object o : data){
             JSONObject each = (JSONObject) o;
             String realUserName = each.get("username").toString();
 
-            // if username exist throw UserNameExistExceotion
+            // if username exist throw UserNameExistException
             if (realUserName.equals(username)) {
 
             }

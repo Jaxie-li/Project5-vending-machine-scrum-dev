@@ -71,10 +71,11 @@ public class CardPaymentController {
         User currentUser = appController.getModel().getCurrentUser();
 
         // if the current user is logged in (i.e., not anonymous)
-        if (currentUser != null){
+        if (currentUser != null) {
             // check if the card is valid
-            boolean valid = Card.checkCreditCardValid(getCardName(), getCardNumber());
+            boolean valid = Card.checkCreditCardValid(getCardName(), getCardNumber(), currentUser);
 
+            // TODO: valid VS saved card
             if (valid) {
                 // ask if they want to save the card information
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -95,7 +96,7 @@ public class CardPaymentController {
             }
         } else {
             // check if the card is valid
-            boolean valid = Card.checkCreditCardValid(getCardName(), getCardNumber(), currentUser);
+            boolean valid = Card.checkCreditCardValid(getCardName(), getCardNumber());
         }
     }
 }
