@@ -119,19 +119,15 @@ Below should record this cancel and record it in model
             pcs.add(pc);
         }
 
-        /*
-        Timer: 30 second for the demo, remember to change to 2min
-        Issue: #6 implemented but not show in sprint1
-        */
-
-//        new Timer().schedule(new TimerTask(){
-//            @Override
-//            public void run() {
-//                Platform.runLater(()->{
-//                    cancelButton.fire();
-//                });
-//            }
-//        }, 30000);
+        // Timer for 2 minutes
+        new Timer().schedule(new TimerTask(){
+            @Override
+            public void run() {
+                Platform.runLater(()->{
+                    cancelButton.fire();
+                });
+            }
+        }, 120000);
 
 
 //        // set the value of quantity of items to be 0~15 inclusive

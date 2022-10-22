@@ -41,7 +41,7 @@ public class Product extends DBModel {
         Product.data = data;
     }
 
-    public JSONObject serialize() {
+    public JSONObject serialise() {
         JSONObject prod = new JSONObject();
         prod.put("item_code", this.itemCode);
         prod.put("item_name", this.itemName);

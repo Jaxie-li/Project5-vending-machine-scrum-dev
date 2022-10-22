@@ -28,7 +28,7 @@ public class User extends DBModel {
         User.data = data;
     }
 
-    public JSONObject serialize() {
+    public JSONObject serialise() {
         JSONObject user = new JSONObject();
         user.put("username", this.username);
         user.put("password", this.password);
@@ -49,7 +49,7 @@ public class User extends DBModel {
         // if is owner
         if (this.userType.equals("owner")) {
             User u = new User(username, password, userType);
-            data = User.create(data, u.serialize(), path);
+            data = User.create(data, u.serialise(), path);
         }
     }
 
@@ -85,7 +85,7 @@ public class User extends DBModel {
         User u = new User(username, password, "customer");
 
         // create user in database
-        data = User.create(data, u.serialize(), path);
+        data = User.create(data, u.serialise(), path);
 
         // return created user for login
         return u;
