@@ -158,6 +158,13 @@ public class CashPaymentController {
             this.balance = amount;
             inputAmount.setText(String.format("%.2f", amount));
 
+//            DBModel db = new DBModel() {
+//                @Override
+//                public JSONObject serialise() {
+//                    return null;
+//                }
+//            };
+
         } catch (NumberFormatException nfe) {
 
             System.out.println("Input error");
