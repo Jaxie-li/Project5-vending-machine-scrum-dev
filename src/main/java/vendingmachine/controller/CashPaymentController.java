@@ -9,11 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.Cash;
-import vendingmachine.utils.DBModel;
 import vendingmachine.utils.Order;
 
 import java.io.IOException;
@@ -109,7 +107,7 @@ public class CashPaymentController {
             invalidBalance();
 
         } else if (balance < model.getOrderTotal()) {
-            checkOutUnsuccess(event);
+            checkOutUnsuccessful(event);
 
         } else {
             // can not find sufficient changes
@@ -121,7 +119,7 @@ public class CashPaymentController {
             System.out.println(new VendingMachineModel().getCashes());
             if (exchange == null) {
                 System.out.println("Insufficient Changes");
-                findChangesUnsuccess(event);
+                findChangesUnsuccessful(event);
 
             } else {
                 // find sufficient changes
@@ -220,7 +218,7 @@ public class CashPaymentController {
      * @param event click pay button
      * @throws IOException throws any exception
      */
-    public void checkOutUnsuccess(ActionEvent event) throws IOException {
+    public void checkOutUnsuccessful(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("Not enough balance :( ");
@@ -232,7 +230,7 @@ public class CashPaymentController {
             System.out.println("Error!");
         } else if (result.get() == ButtonType.OK) {
 
-            System.out.println("you Successfully cancel the transaction.");
+            System.out.println("You have successfully cancel the transaction.");
             // go to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
             Parent root = loader.load();
@@ -254,7 +252,7 @@ public class CashPaymentController {
      * @param event click pay button
      * @throws IOException throws any exception
      */
-    public void findChangesUnsuccess(ActionEvent event) throws IOException {
+    public void findChangesUnsuccessful(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("Not enough changes :( ");
@@ -265,7 +263,7 @@ public class CashPaymentController {
             System.out.println("Error!");
 
         } else if (result.get() == ButtonType.CANCEL) {
-            System.out.println("you Successfully cancel the transaction.");
+            System.out.println("You have successfully cancel the transaction.");
             // go to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
             Parent root = loader.load();
