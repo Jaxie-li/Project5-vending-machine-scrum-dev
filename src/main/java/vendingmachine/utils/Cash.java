@@ -18,7 +18,7 @@ public class Cash extends DBModel {
 
     private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/cash.json";
-    private Double value;
+    private int value;
     private int quantity;
 
     public static JSONArray getData() {
@@ -32,21 +32,21 @@ public class Cash extends DBModel {
         return new JSONObject();
     }
 
-    public Cash(double value, int quantity) {
+    public Cash(int value, int quantity) {
         this.value = value;
         this.quantity = quantity;
     }
 
     public Cash(JSONObject obj) {
-        this.value =    Double.parseDouble(obj.get("value").toString());
+        this.value =    Integer.parseInt(obj.get("value").toString());
         this.quantity = Integer.parseInt(obj.get("quantity").toString());
     }
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -61,16 +61,16 @@ public class Cash extends DBModel {
     // testing purpose
     @Override
     public String toString() {
-        return String.format("Value = %.2f, Quantity = %d", this.value, this.quantity);
+        return String.format("Value = %.2f, Quantity = %d", (double) this.value / 100, this.quantity);
     }
 
 
-    public static boolean isSufficient(double price, double received) {
+    public static boolean isSufficient(int price, int received) {
         return received >= price;
     }
 
     // Assume is sufficient
-    public static ArrayList<Cash> payCash(double price, double received, ArrayList<Cash> vendingMachineCash) {
+    public static ArrayList<Cash> payCash(int price, int received, ArrayList<Cash> vendingMachineCash) {
 
         assert received >= price;
 
@@ -83,15 +83,15 @@ public class Cash extends DBModel {
 
     }
 
-    private static ArrayList<Cash> exchange(double price, double received, ArrayList<Cash> vendingMachineCash) {
-        // exchange < 100
-        double exchange = received - price;
+    private static ArrayList<Cash> exchange(int price, int received, ArrayList<Cash> vendingMachineCash) {
+        int exchange = received - price;
 
         ArrayList<Cash> cash = new ArrayList<>();
 
-        double value[] = {100.0, 50.0, 20.0, 10.0, 5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05 };
+        int value[] = { 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5 };
 
-        for (double v: value) {
+        for (int v: value) {
+            //System.out.println(exchange);
             // the quantity of value wanted
             int q = (int) Math.floor(exchange / v);
 
@@ -100,14 +100,15 @@ public class Cash extends DBModel {
 
             if (actual > 0) {
                 // reduce remaining exchange by the actual quantity avaliable in the vending machine by the value
-                exchange -= (actual * v);
+                int amount = actual * v;
+                exchange -= amount;
 
                 // append cash instance
                 cash.add(new Cash(v, actual));
             }
 
             // early return if vending machine has sufficient amount to exchange
-            if (exchange == 0.0) {
+            if (exchange == 0) {
                 return cash;
             }
         }
@@ -116,10 +117,10 @@ public class Cash extends DBModel {
         return null;
     }
 
-    private static int has(double v, int q, ArrayList<Cash> array) {
+    private static int has(int v, int q, ArrayList<Cash> array) {
         for (Cash c: array) {
             if (c.getValue() == v) {
-                return c.getQuantity() >= q ? q : c.getQuantity();
+                return Math.min(c.getQuantity(), q);
             }
         }
         return -1;

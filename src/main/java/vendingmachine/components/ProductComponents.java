@@ -15,7 +15,7 @@ public class ProductComponents {
     public ProductComponents(Product product, int x, int y) {
 //        System.out.println(String.format("x:%s\ty:%s".formatted(x,y)));
         this.product = product;
-        productLabel.setText(product.getItemName() + "\t\t$" + product.getItemPrice());
+        productLabel.setText(product.getItemName() + "\t\t$" + ((double) product.getItemPrice()/100));
 
         productLabel.setLayoutX(x);
         productLabel.setLayoutY(y);

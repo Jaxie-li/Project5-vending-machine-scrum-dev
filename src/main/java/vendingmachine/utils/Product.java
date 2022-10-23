@@ -29,7 +29,7 @@ public class Product extends DBModel {
     public static final String path = "src/main/resources/vendingmachine/data/product.json";
     private int itemCode;
     private String itemName;
-    private double itemPrice;
+    private int itemPrice;
     private String itemCategory;
     private int itemQuantity;
 
@@ -51,7 +51,7 @@ public class Product extends DBModel {
         return prod;
     }
 
-    public Product(int itemCode, String itemName, double itemPrice, String itemCategory, int itemQuantity) {
+    public Product(int itemCode, String itemName, int itemPrice, String itemCategory, int itemQuantity) {
         this.itemCode = itemCode;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -62,7 +62,7 @@ public class Product extends DBModel {
     public Product(JSONObject obj) {
         this.itemCode = Integer.parseInt(obj.get("item_code").toString());
         this.itemName = obj.get("item_name").toString();
-        this.itemPrice = Double.parseDouble(obj.get("item_price").toString());
+        this.itemPrice = Integer.parseInt(obj.get("item_price").toString());
         this.itemCategory = obj.get("item_category").toString();
         this.itemQuantity = Integer.parseInt(obj.get("item_quantity").toString());
     }
@@ -83,11 +83,11 @@ public class Product extends DBModel {
         this.itemName = itemName;
     }
 
-    public double getItemPrice() {
+    public int getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(double itemPrice) {
+    public void setItemPrice(int itemPrice) {
         this.itemPrice = itemPrice;
     }
 

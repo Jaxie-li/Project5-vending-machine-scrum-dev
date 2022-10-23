@@ -80,8 +80,8 @@ public class Order extends DBModel {
         paymentMethod = "card";
     }
 
-    public double getOrderTotal() {
-        double total = 0.0;
+    public int getOrderTotal() {
+        int total = 0;
         for(Product p: products) {
             total += p.getItemPrice() * p.getItemQuantity();
         }

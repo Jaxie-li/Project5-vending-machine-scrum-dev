@@ -71,7 +71,7 @@ public class CashPaymentController {
     @FXML
     private Button payButton;
 
-    private double balance;
+    private int balance;
 
     private ArrayList<Cash> exchange;
 
@@ -86,7 +86,7 @@ public class CashPaymentController {
      */
     public void setModel(Order model) {
         this.model = model;
-        orderPrice.setText("" + this.model.getOrderTotal());
+        orderPrice.setText("" + (double) this.model.getOrderTotal() / 100);
     }
 
     public void back(ActionEvent event) throws IOException {
@@ -120,7 +120,7 @@ public class CashPaymentController {
 //            System.out.println(model.getOrderTotal());
 //            System.out.println(balance);
             // TBD
-            exchange = Cash.payCash(model.getOrderTotal(), balance, new VendingMachineModel().getCashes());
+            exchange = Cash.payCash(model.getOrderTotal(), balance, appController.getModel().getCashes());
 //            System.out.println(new VendingMachineModel().getCashes());
             if (exchange == null) {
                 System.out.println("Insufficient Changes");
@@ -152,18 +152,17 @@ public class CashPaymentController {
             int fiveDollar = Integer.parseInt(fiveDollarsAmount.getText());
             int twoDollar = Integer.parseInt(twoDollarsAmount.getText());
             int oneDollar = Integer.parseInt(oneDollarAmount.getText());
-
             int fiftyCent = Integer.parseInt(fiftyCentsAmount.getText());
             int twentyCent = Integer.parseInt(twentyCentsAmount.getText());
             int tenCent = Integer.parseInt(tenCentsAmount.getText());
             int fiveCent = Integer.parseInt(fiveCentsAmount.getText());
 
-            Double amount = 100.00 * hundredDollar + 50.00 * fiftyDollar + 20.00 * twentyDollar + 10.00 * tenDollar
-                    + 5.00 * fiveDollar + 2.00 * twoDollar + 1.00 * oneDollar + 0.50 * fiftyCent + 0.20 * twentyCent
-                    + 0.10 * tenCent + 0.05 * fiveCent;
+            int amount = 10000 * hundredDollar + 5000 * fiftyDollar + 2000 * twentyDollar + 1000 * tenDollar
+                    + 500 * fiveDollar + 200 * twoDollar + 100 * oneDollar + 50 * fiftyCent + 20 * twentyCent
+                    + 10 * tenCent + 5 * fiveCent;
 
             this.balance = amount;
-            inputAmount.setText(String.format("%.2f", amount));
+            inputAmount.setText(String.format("%.2f", (double) amount / 100));
 
 //            DBModel db = new DBModel() {
 //                @Override
@@ -324,7 +323,7 @@ public class CashPaymentController {
         StringBuilder outputChangess = new StringBuilder();
         for (Cash c : exchange) {
             outputChangess.append("$");
-            outputChangess.append(c.getValue());
+            outputChangess.append((double) c.getValue() / 100);
             outputChangess.append(": ");
             outputChangess.append(c.getQuantity());
             outputChangess.append(" \n");
