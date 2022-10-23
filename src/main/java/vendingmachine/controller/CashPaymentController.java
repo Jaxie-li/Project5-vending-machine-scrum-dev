@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.Cash;
 import vendingmachine.utils.Order;
+import vendingmachine.utils.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,6 +79,11 @@ public class CashPaymentController {
         this.appController = appController;
     }
 
+    /**
+     * Get the order from previous page >> get the order's detail, products and price
+     *
+     * @param model user's order
+     */
     public void setModel(Order model) {
         this.model = model;
         orderPrice.setText("" + this.model.getOrderTotal());
@@ -111,19 +117,22 @@ public class CashPaymentController {
 
         } else {
             // can not find sufficient changes
-//            ArrayList<Cash> changes = new ArrayList<>();
-            System.out.println(model.getOrderTotal());
-            System.out.println(balance);
+//            System.out.println(model.getOrderTotal());
+//            System.out.println(balance);
             // TBD
             exchange = Cash.payCash(model.getOrderTotal(), balance, new VendingMachineModel().getCashes());
-            System.out.println(new VendingMachineModel().getCashes());
+//            System.out.println(new VendingMachineModel().getCashes());
             if (exchange == null) {
                 System.out.println("Insufficient Changes");
                 findChangesUnsuccessful(event);
 
             } else {
-                // find sufficient changes
+                // find sufficient changes >> check out successfully, user receives products and changes
                 checkOutSuccess(event);
+
+                // update the stock
+                updateProductStock();
+                updateCashStock();
             }
         }
     }
@@ -176,7 +185,7 @@ public class CashPaymentController {
     }
 
     /**
-     * check out successfully, user will get the products and changes
+     * Check out successfully, user will get the products and changes
      *
      * @param event click pay button
      * @throws IOException throws any exception
@@ -187,10 +196,9 @@ public class CashPaymentController {
         alert.setTitle("");
         alert.setHeaderText("Welcome to use ! ");
 
-        // TBD
-        System.out.println(model.getProducts());
-//        String checkOutInfo = "You will get your products " + model.getProducts().toString() + " and changes " + exchange.toString();
-        String checkOutInfo = "You will get your products: xxxxx " + " and changes: xxxx ";
+        String checkOutInfo = "You will get:\n"
+                + "Products:\n" + receivedProducts() + "\n"
+                + "changes:\n" + receiveChanges();
         alert.setContentText(checkOutInfo);
 
         Optional<ButtonType> button = alert.showAndWait();
@@ -247,7 +255,7 @@ public class CashPaymentController {
     }
 
     /**
-     * received money is larger than order price, but machine can't find sufficient changes
+     * Received money is larger than order price, but machine can't find sufficient changes
      *
      * @param event click pay button
      * @throws IOException throws any exception
@@ -279,7 +287,9 @@ public class CashPaymentController {
         }
     }
 
-
+    /**
+     * There is invalid notes or coins, pop up a window to remind to reinsert
+     */
     public void invalidBalance() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
@@ -288,5 +298,86 @@ public class CashPaymentController {
 
         alert.showAndWait();
     }
+
+    /**
+     * A string to show received products
+     *
+     * @return string builder for received products
+     */
+    public StringBuilder receivedProducts() {
+        StringBuilder outputProducts = new StringBuilder();
+        for (Product p : model.getProducts()) {
+            outputProducts.append(p.getItemName());
+            outputProducts.append(": ");
+            outputProducts.append(p.getItemQuantity());
+            outputProducts.append(" \n");
+        }
+        return outputProducts;
+    }
+
+    /**
+     * A string to show received changes
+     *
+     * @return string builder for received products
+     */
+    public StringBuilder receiveChanges() {
+        StringBuilder outputChangess = new StringBuilder();
+        for (Cash c : exchange) {
+            outputChangess.append("$");
+            outputChangess.append(c.getValue());
+            outputChangess.append(": ");
+            outputChangess.append(c.getQuantity());
+            outputChangess.append(" \n");
+
+        }
+        return outputChangess;
+    }
+
+    /**
+     * Update the products stock in the database after users receive products
+     *
+     * @throws IOException    throws IO error
+     * @throws ParseException throws Parse error
+     */
+    public void updateProductStock() throws IOException, ParseException {
+
+        for (Product soldProduct : model.getProducts()) {
+            int sellQuantity = soldProduct.getItemQuantity();
+            VendingMachineModel vendingMachineModel = new VendingMachineModel();
+
+            for (Product machineProduct : vendingMachineModel.getProducts()) {
+                if (machineProduct.getItemName().equals(soldProduct.getItemName())) {
+                    machineProduct.setItemQuantity(machineProduct.getItemQuantity() - sellQuantity);
+
+                    // TBD >> Write Back to Product.json
+                    System.out.println(machineProduct.getItemName());
+                    System.out.println(machineProduct.getItemQuantity());
+                }
+            }
+        }
+    }
+
+    /**
+     * Update the cashes stock in the database after users receive changes
+     *
+     * @throws IOException    throws IO error
+     * @throws ParseException throws Parse error
+     */
+    public void updateCashStock() throws IOException, ParseException {
+
+        for (Cash cashes : exchange) {
+            VendingMachineModel vendingMachineModel = new VendingMachineModel();
+            for (Cash machineCash : vendingMachineModel.getCashes()) {
+                if (machineCash.getValue() == cashes.getValue()) {
+                    machineCash.setQuantity(machineCash.getQuantity() + cashes.getQuantity());
+
+                    // TBD >> Write back to Cash.json
+                    System.out.println(machineCash.getValue());
+                    System.out.println(machineCash.getQuantity());
+                }
+            }
+        }
+    }
+
 }
 
