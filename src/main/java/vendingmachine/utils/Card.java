@@ -16,9 +16,10 @@ import java.io.IOException;
  * @date: Created in 5/10/2022 1:56 am
  * @description: This is used for card stuff
  */
-public class Card {
+public class Card extends DBModel {
 
     private static JSONArray data;
+    public static final String path = "src/main/resources/vendingmachine/data/credit_cards.json";
     private String name;
     private String number;
 
@@ -46,19 +47,19 @@ public class Card {
     }
 
     public static boolean checkCreditCardValid(String name,String number){
-        for(Object each: data){
+        for (Object each: data) {
             JSONObject obj = (JSONObject)each;
-            if(obj.get("name").toString().equals(name) && obj.get("number").toString().equals(number)){
+            if (obj.get("name").toString().equals(name) && obj.get("number").toString().equals(number)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean checkCreditCardValid(String name,String number,User currentUser){
-        for(Object each: data){
+    public static boolean checkCreditCardValid(String name,String number,User currentUser) {
+        for (Object each: data) {
             JSONObject obj = (JSONObject)each;
-            if(obj.get("name").toString().equals(name) && obj.get("number").toString().equals(number)){
+            if (obj.get("name").toString().equals(name) && obj.get("number").toString().equals(number)) {
                 currentUser.setSavedCard(new Card(name,number));
                 return true;
             }
@@ -66,8 +67,13 @@ public class Card {
         return false;
     }
 
+    @Override
+    public JSONObject serialise() {
+        JSONObject card = new JSONObject();
 
+        card.put("name", this.name);
+        card.put("number", this.number);
 
-
-
+        return card;
+    }
 }

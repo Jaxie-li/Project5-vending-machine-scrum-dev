@@ -35,9 +35,9 @@ public class Order extends DBModel {
         username = obj.get("username").toString();
         status = obj.get("status").toString();
         paymentMethod = obj.get("payment_method").toString();
-
-        System.out.println(obj.get("start_time").toString());
-        System.out.println(obj.get("close_time").toString());
+//
+//        System.out.println(obj.get("start_time").toString());
+//        System.out.println(obj.get("close_time").toString());
         try {
             startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
             closeTime = LocalDateTime.parse(obj.get("close_time").toString(), formatter);
@@ -90,25 +90,25 @@ public class Order extends DBModel {
 
     public void cancelByTimeOut() {
         status = "time out";
-        Order.create(data, serialize(), path);
+        Order.create(data, serialise(), path);
     }
 
     public void cancelByUser() {
         status = "user cancel";
-        Order.create(data, serialize(), path);
+        Order.create(data, serialise(), path);
     }
 
     public void cancelByNoExchange() {
         status = "no exchange";
-        Order.create(data, serialize(), path);
+        Order.create(data, serialise(), path);
     }
 
     public void finalizeOrder() {
-        Order.create(data, serialize(), path);
+        Order.create(data, serialise(), path);
     }
 
     @Override
-    public JSONObject serialize() {
+    public JSONObject serialise() {
         JSONObject order = new JSONObject();
 
         order.put("id", this.id);
@@ -120,7 +120,7 @@ public class Order extends DBModel {
 
         JSONArray prods = new JSONArray();
         for (Product p: products) {
-            prods.add(p.serialize());
+            prods.add(p.serialise());
         }
 
         order.put("products", prods);

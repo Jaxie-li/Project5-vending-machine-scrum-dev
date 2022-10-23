@@ -28,7 +28,7 @@ public class Cash extends DBModel {
         Cash.data = data;
     }
 
-    public JSONObject serialize() {
+    public JSONObject serialise() {
         return new JSONObject();
     }
 

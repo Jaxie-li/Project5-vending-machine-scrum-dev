@@ -73,7 +73,8 @@ Below should record this cancel and record it in model
         for (ProductComponents pc : pcs) {
             if (pc.getSpinner().getValue() > 0) {
                 Product temp = pc.getProduct();
-                order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(), temp.getItemCategory(), pc.getSpinner().getValue()));
+                order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
+                        temp.getItemCategory(), pc.getSpinner().getValue()));
             }
         }
 
@@ -94,6 +95,8 @@ Below should record this cancel and record it in model
 
         this.model = appController.getModel();
 
+
+
         for (int i = 0; i < model.getProducts().size(); i++) {
             Product product = model.getProducts().get(i);
 //            ProductComponents pc = new ProductComponents(product,20,100+i*40);
@@ -104,34 +107,57 @@ Below should record this cancel and record it in model
                 drinks.getChildren().add(pc.getProductLabel());
                 drinks.getChildren().add(pc.getSpinner());
             } else if (product.getItemCategory().equals("chocolates")) {
-                pc = new ProductComponents(product, (int) chocolates.getLayoutX(), (int) chocolates.getLayoutY() + (i - drinks.getChildren().size()) * 40);
+                pc = new ProductComponents(product, (int) chocolates.getLayoutX(), (int) chocolates.getLayoutY() +
+                        (i - drinks.getChildren().size()) * 40);
                 chocolates.getChildren().add(pc.getProductLabel());
                 chocolates.getChildren().add(pc.getSpinner());
             } else if (product.getItemCategory().equals("chips")) {
-                pc = new ProductComponents(product, (int) chips.getLayoutX(), (int) chips.getLayoutY() + (i % 9) * 40);
+                pc = new ProductComponents(product, (int) chips.getLayoutX(), (int) chips.getLayoutY() +
+                        (i % 9) * 40);
                 chips.getChildren().add(pc.getProductLabel());
                 chips.getChildren().add(pc.getSpinner());
             } else {
-                pc = new ProductComponents(product, (int) candies.getLayoutX(), (int) candies.getLayoutY() + (i - drinks.getChildren().size() - chips.getChildren().size()) * 40);
+                pc = new ProductComponents(product, (int) candies.getLayoutX(), (int) candies.getLayoutY() +
+                        (i - drinks.getChildren().size() - chips.getChildren().size()) * 40);
                 candies.getChildren().add(pc.getProductLabel());
                 candies.getChildren().add(pc.getSpinner());
             }
             pcs.add(pc);
         }
 
-        /*
-        Timer: 30 second for the demo, remember to change to 2min
-        Issue: #6 implemented but not show in sprint1
-        */
+        Label drinksLabel = new Label();
+        drinksLabel.setLayoutX(drinks.getChildren().get(0).getLayoutX());
+        drinksLabel.setLayoutY(drinks.getChildren().get(0).getLayoutY()-30);
+        drinksLabel.setText("Drinks");
+        drinks.getChildren().add(drinksLabel);
 
-//        new Timer().schedule(new TimerTask(){
-//            @Override
-//            public void run() {
-//                Platform.runLater(()->{
-//                    cancelButton.fire();
-//                });
-//            }
-//        }, 30000);
+        Label chocolatesLabel = new Label();
+        chocolatesLabel.setLayoutX(chocolates.getChildren().get(0).getLayoutX());
+        chocolatesLabel.setLayoutY(chocolates.getChildren().get(0).getLayoutY()-30);
+        chocolatesLabel.setText("Chocolates");
+        chocolates.getChildren().add(chocolatesLabel);
+
+        Label chipsLabel = new Label();
+        chipsLabel.setLayoutX(chips.getChildren().get(0).getLayoutX());
+        chipsLabel.setLayoutY(chips.getChildren().get(0).getLayoutY()-30);
+        chipsLabel.setText("Chips");
+        chips.getChildren().add(chipsLabel);
+
+        Label candiesLabel = new Label();
+        candiesLabel.setLayoutX(candies.getChildren().get(0).getLayoutX());
+        candiesLabel.setLayoutY(candies.getChildren().get(0).getLayoutY()-30);
+        candiesLabel.setText("Candies");
+        candies.getChildren().add(candiesLabel);
+
+        // Timer for 2 minutes
+        new Timer().schedule(new TimerTask(){
+            @Override
+            public void run() {
+                Platform.runLater(()->{
+                    cancelButton.fire();
+                });
+            }
+        }, 120000);
 
 
 //        // set the value of quantity of items to be 0~15 inclusive
