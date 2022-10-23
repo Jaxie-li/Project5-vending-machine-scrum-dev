@@ -17,7 +17,7 @@ public abstract class DBModel {
         // append JSONObject to JSONArray
         arr.add(obj);
 
-        // write new JSONArray to users.json
+        // write new JSONArray to path
         try (FileWriter file = new FileWriter(path)) {
             file.write(arr.toJSONString());
             file.flush();
@@ -48,7 +48,7 @@ public abstract class DBModel {
             }
         }
 
-        // write new JSONArray to users.json
+        // write new JSONArray to path
         try (FileWriter file = new FileWriter(path)) {
             file.write(temp.toJSONString());
             file.flush();
@@ -79,5 +79,5 @@ public abstract class DBModel {
         return temp;
     }
 
-    public abstract JSONObject serialize();
+    public abstract JSONObject serialise();
 }
