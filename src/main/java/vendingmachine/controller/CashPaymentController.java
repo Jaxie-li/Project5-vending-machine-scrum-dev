@@ -236,6 +236,7 @@ public class CashPaymentController {
         if (result.isEmpty()) {
             System.out.println("Error!");
         } else if (result.get() == ButtonType.OK) {
+            // TBD  >> add cancelled order
 
             System.out.println("You have successfully cancel the transaction.");
             // go to the main page
@@ -270,6 +271,8 @@ public class CashPaymentController {
             System.out.println("Error!");
 
         } else if (result.get() == ButtonType.CANCEL) {
+            // TBD  >> add cancelled order
+            
             System.out.println("You have successfully cancel the transaction.");
             // go to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
@@ -377,6 +380,5 @@ public class CashPaymentController {
             }
         }
     }
-
 }
 
