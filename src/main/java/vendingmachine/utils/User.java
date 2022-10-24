@@ -75,7 +75,7 @@ public class User extends DBModel {
 
             // if username exist throw UserNameExistException
             if (realUserName.equals(username)) {
-
+                //throw new UserNameExistException();
             }
         }
         // construct new user
@@ -132,5 +132,13 @@ public class User extends DBModel {
 
     public void setSavedCard(Card savedCard) {
         this.savedCard = savedCard;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userType='" + userType + '\'' +
+                ", savedCard=" + savedCard +
+                '}';
     }
 }

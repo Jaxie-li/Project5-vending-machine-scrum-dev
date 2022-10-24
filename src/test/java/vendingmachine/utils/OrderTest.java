@@ -24,49 +24,49 @@ class OrderTest {
         this.order = new Order(user);
     }
 
-    @Test
-    void getData() {
-    }
-
-    @Test
-    void setData() {
-    }
-
-    @Test
-    void addProduct() {
-
-    }
-
-    @Test
-    void payByCash() {
-    }
-
-    @Test
-    void payByCard() {
-    }
-
-    @Test
-    void getOrderTotal() {
-
-    }
-
-    @Test
-    void cancelByTimeOut() {
-    }
-
-    @Test
-    void cancelByUser() {
-    }
-
-    @Test
-    void cancelByNoExchange() {
-    }
-
-    @Test
-    void finalizeOrder() {
-    }
-
-    @Test
-    void serialize() {
-    }
+//    @Test
+//    void getData() {
+//    }
+//
+//    @Test
+//    void setData() {
+//    }
+//
+//    @Test
+//    void addProduct() {
+//
+//    }
+//
+//    @Test
+//    void payByCash() {
+//    }
+//
+//    @Test
+//    void payByCard() {
+//    }
+//
+//    @Test
+//    void getOrderTotal() {
+//
+//    }
+//
+//    @Test
+//    void cancelByTimeOut() {
+//    }
+//
+//    @Test
+//    void cancelByUser() {
+//    }
+//
+//    @Test
+//    void cancelByNoExchange() {
+//    }
+//
+//    @Test
+//    void finalizeOrder() {
+//    }
+//
+//    @Test
+//    void serialize() {
+//    }
 }
