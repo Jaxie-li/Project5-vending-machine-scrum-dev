@@ -8,14 +8,14 @@
       {
         "item_code": 1001,
         "item_name": "Mineral Water",
-        "item_price": 12.0,
+        "item_price": 1200,
         "item_category": "drinks",
         "item_quantity": 1
       },
       {
         "item_code": 1002,
         "item_name": "Sprite",
-        "item_price": 12.0,
+        "item_price": 1200,
         "item_category": "drinks",
         "item_quantity": 3
       }
@@ -32,14 +32,14 @@
       {
         "item_code": 1001,
         "item_name": "Mineral Water",
-        "item_price": 12.0,
+        "item_price": 1200,
         "item_category": "drinks",
         "item_quantity": 1
       },
       {
         "item_code": 1002,
         "item_name": "Sprite",
-        "item_price": 12.0,
+        "item_price": 1200,
         "item_category": "drinks",
         "item_quantity": 3
       }

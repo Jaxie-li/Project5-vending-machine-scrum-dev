@@ -20,7 +20,7 @@
             <columns>
                 <TableColumn fx:id="nameTc" prefWidth="75.0" text="Goods"/>
                 <TableColumn fx:id="quantityTc" prefWidth="75.0" text="Quantity"/>
-                <TableColumn fx:id="priceTc" prefWidth="75.0" text="Price"/>
+                <TableColumn fx:id="priceTc" prefWidth="75.0" text="Unit Price"/>
             </columns>
         </TableView>
         <Text fx:id="totalTxt" layoutX="348.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total pay:"

@@ -22,6 +22,7 @@ public class VendingMachineModel {
     private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<Cash> cashes = new ArrayList<>();
     private ArrayList<Order> orders = new ArrayList<>();
+
     public VendingMachineModel() throws IOException, ParseException {
         // Read all the product from database
         User.setData(User.read(User.path));
@@ -29,7 +30,7 @@ public class VendingMachineModel {
         // Read all the product from database
         Product.setData(Product.read(Product.path));
 
-        for (Object o: Product.getData()) {
+        for (Object o : Product.getData()) {
             JSONObject each = (JSONObject) o;
             products.add(new Product(each));
         }
@@ -37,7 +38,7 @@ public class VendingMachineModel {
         // Read all the cash from database
         Cash.setData(Cash.read(Cash.path));
 
-        for (Object o: Cash.getData()) {
+        for (Object o : Cash.getData()) {
             JSONObject each = (JSONObject) o;
             cashes.add(new Cash(each));
         }
@@ -45,24 +46,24 @@ public class VendingMachineModel {
         // Read all the orders from database
         Order.setData(Order.read(Order.path));
 
-        for (Object o: Order.getData()) {
+        for (Object o : Order.getData()) {
             JSONObject each = (JSONObject) o;
             orders.add(new Order(each));
         }
 
-//         //TEST
-//        double price = 133.50;
-//        double paid = 200.00;
-//        if (Cash.isSufficient(price, paid)) {
-//            ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
-//            if (exchange == null) {
-//            System.out.println("找不开");
-//            } else {
-//                System.out.println(exchange);
-//                }
-//            } else {
-//            System.out.println("insufficient amount");
-//            }
+        //TEST
+        int price = 250;
+        int paid = 505;
+        if (Cash.isSufficient(price, paid)) {
+            ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
+            if (exchange == null) {
+                System.out.println("not enough change in vm");
+            } else {
+                System.out.println(exchange);
+            }
+        } else {
+            System.out.println("insufficient amount");
+        }
 
 
     }

@@ -1,5 +1,8 @@
 package vendingmachine.controller;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
 import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 
@@ -35,22 +37,26 @@ public class GenerateOrderController {
     private TableColumn<Product, Integer> quantityTc;
 
     @FXML
-    private TableColumn<Product, Double> priceTc;
+    private TableColumn<Product, String> priceTc;
 
     @FXML
     private Text totalTxt;
+
+    private double calculateItemCost(Product p){
+        return (double) p.getItemPrice() / 100;
+    }
 
     public void init(AppController appController){
         this.appController = appController;
         nameTc.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         quantityTc.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
-        priceTc.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
+        priceTc.setCellValueFactory(cellData -> new SimpleStringProperty(String.format("%.2f", calculateItemCost(cellData.getValue()))));
 
         ObservableList<Product> oProdList = FXCollections.observableArrayList(model.getProducts());
 
         orderTv.setItems(oProdList);
 
-        totalTxt.setText("Total Price:  $" + model.getOrderTotal());
+        totalTxt.setText("Total Price:  $" + (double) model.getOrderTotal() / 100);
     }
 
 //    @FXML
