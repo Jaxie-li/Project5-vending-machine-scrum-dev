@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "username": "testcustomer1",
+    "status": "closed",
+    "payment_method": "",
+    "products": [
+      {
+        "item_code": 1001,
+        "item_name": "Mineral Water",
+        "item_price": 12.0,
+        "item_category": "drinks",
+        "item_quantity": 1
+      },
+      {
+        "item_code": 1002,
+        "item_name": "Sprite",
+        "item_price": 12.0,
+        "item_category": "drinks",
+        "item_quantity": 3
+      }
+    ],
+    "start_time": "19-10-2022 11:54:51",
+    "close_time": ""
+  },
+  {
+    "id": 2,
+    "username": "",
+    "status": "time out",
+    "payment_method": "cash",
+    "products": [
+      {
+        "item_code": 1001,
+        "item_name": "Mineral Water",
+        "item_price": 12.0,
+        "item_category": "drinks",
+        "item_quantity": 1
+      },
+      {
+        "item_code": 1002,
+        "item_name": "Sprite",
+        "item_price": 12.0,
+        "item_category": "drinks",
+        "item_quantity": 3
+      }
+    ],
+    "start_time": "19-10-2022 11:54:51",
+    "close_time": "19-10-2022 13:54:51"
+  }
+]

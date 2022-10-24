@@ -2,8 +2,12 @@ package vendingmachine.utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @version v1.0
@@ -30,5 +34,30 @@ public class CardTest {
         assertEquals("admin",this.card.getName());
         assertNotEquals("root",this.card.getName());
     }
+
+    @Test
+    public void checkCreditCardValidTest(){
+        assertFalse(Card.checkCreditCardValid("admin","admin"));
+        assertFalse(Card.checkCreditCardValid("Charles","asdjhf"));
+        assertTrue(Card.checkCreditCardValid("Charles","40691"));
+    }
+
+    @Test
+    public void checkCreditCardValidTwoTest(){
+        assertFalse(Card.checkCreditCardValid("admin","asdhgsdj",new User("admin","admin","customer")));
+        assertFalse(Card.checkCreditCardValid("Charles","asdhgsdj",new User("Charles","admin","customer")));
+        assertTrue(Card.checkCreditCardValid("Charles","40691",new User("Charles","40691","customer")));
+    }
+
+    @Test
+    public void serialiseTest(){
+        assertNotNull(card.serialise());
+    }
+
+    @Test
+    public void getNumberTest(){
+        assertEquals("123456",card.getNumber());
+    }
+
 
 }
