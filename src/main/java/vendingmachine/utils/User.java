@@ -31,14 +31,14 @@ public class User extends DBModel {
         JSONObject user = new JSONObject();
         user.put("username", this.username);
         user.put("password", this.password);
-        user.put("user_type", this.userType);
+        user.put("userType", this.userType);
 
         if (this.savedCard != null) {
-            user.put("saved_card_account", this.savedCard.getName());
-            user.put("saved_card_number", this.savedCard.getNumber());
+            user.put("savedCardAccount", this.savedCard.getName());
+            user.put("savedCardNumber", this.savedCard.getNumber());
         } else {
-            user.put("saved_card_account", "");
-            user.put("saved_card_number", "");
+            user.put("savedCardAccount", "");
+            user.put("savedCardNumber", "");
         }
 
         return user;
@@ -107,9 +107,9 @@ public class User extends DBModel {
         Parse the JSON into instance
          */
         this.username = data.get("username").toString();
-        this.userType = data.get("user_type").toString();
+        this.userType = data.get("userType").toString();
         this.password = data.get("password").toString();
-        this.savedCard = new Card(data.get("saved_card_account").toString(), data.get("saved_card_number").toString());
+        this.savedCard = new Card(data.get("savedCardAccount").toString(), data.get("savedCardNumber").toString());
     }
 
     public User(String username, String password, String userType) {

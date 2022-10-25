@@ -1,80 +1,80 @@
 [
   {
     "password":"123456",
-    "user_type":"customer",
-    "saved_card_account":"",
+    "userType":"customer",
+    "savedCardAccount":"",
     "id":1,
     "username":"testcustomer1",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"customer",
-    "saved_card_account":"",
+    "userType":"customer",
+    "savedCardAccount":"",
     "id":2,
     "username":"testcustomer2",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"seller",
-    "saved_card_account":"",
+    "userType":"seller",
+    "savedCardAccount":"",
     "id":3,
     "username":"testseller1",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"seller",
-    "saved_card_account":"",
+    "userType":"seller",
+    "savedCardAccount":"",
     "id":4,
     "username":"testseller2",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"cashier",
-    "saved_card_account":"",
+    "userType":"cashier",
+    "savedCardAccount":"",
     "id":5,
     "username":"testcashier1",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"cashier",
-    "saved_card_account":"",
+    "userType":"cashier",
+    "savedCardAccount":"",
     "id":6,
     "username":"testcashier2",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"admin",
-    "saved_card_account":"",
+    "userType":"admin",
+    "savedCardAccount":"",
     "id":7,
     "username":"testadmin1",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"123456",
-    "user_type":"admin",
-    "saved_card_account":"",
+    "userType":"admin",
+    "savedCardAccount":"",
     "id":8,
     "username":"testadmin2",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"customer",
-    "user_type":"123",
-    "saved_card_account":"",
+    "userType":"123",
+    "savedCardAccount":"",
     "username":"123",
-    "saved_card_number":""
+    "savedCardNumber":""
   },
   {
     "password":"customer",
-    "user_type":"123",
-    "saved_card_account":"",
+    "userType":"123",
+    "savedCardAccount":"",
     "username":"123",
-    "saved_card_number":""
+    "savedCardNumber":""
   }
 ]

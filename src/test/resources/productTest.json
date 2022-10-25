@@ -1,9 +1,9 @@
 [
   {
-    "item_code": 1001,
-    "item_name": "Mineral Water",
-    "item_price": 2.5,
-    "item_category": "drinks",
-    "item_quantity": 7
+    "itemCode": 1001,
+    "itemName": "Mineral Water",
+    "itemPrice": 2.5,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
   }
 ]

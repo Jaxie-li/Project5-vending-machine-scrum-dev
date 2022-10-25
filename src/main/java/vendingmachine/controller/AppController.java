@@ -44,7 +44,7 @@ public class AppController {
     public static final String path = "src/main/resources/vendingmachine/data/user.json";
     private String username;
     private String password;
-    private String user_type;
+    private String userType;
 
     @FXML
     private Button logout;
@@ -96,14 +96,14 @@ public class AppController {
         JSONObject users = new JSONObject();
         users.put("username", this.username);
         users.put("password", this.password);
-        users.put("user_type", this.user_type);
+        users.put("user_type", this.userType);
         return users;
     }
 
     public AppController(JSONObject obj){
         this.username = obj.get("username").toString();
         this.password = obj.get("password").toString();
-        this.user_type = obj.get("user_type").toString();
+        this.userType = obj.get("user_type").toString();
     }
 
     public String getUsername() {
@@ -114,11 +114,11 @@ public class AppController {
     public void setPassword(String password) {
         this.password = password;}
 
-    public String getUser_type() {
-        return user_type;
+    public String getUserType() {
+        return userType;
     }
-    public void setUser_type(String user_type) {
-        this.user_type = user_type;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
 
@@ -140,7 +140,7 @@ public class AppController {
             //if (this.user_type.equals("customer")){
 
             //check seller
-            if (this.user_type.equals("seller")){
+            if (this.userType.equals("seller")){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Seller.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());
@@ -149,7 +149,7 @@ public class AppController {
                 stage.show();
             }
             //check cashier
-            else if (this.user_type.equals("cashier")){
+            else if (this.userType.equals("cashier")){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Cashier.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());
@@ -158,7 +158,7 @@ public class AppController {
                 stage.show();
             }
             //check owner
-            else if (this.user_type.equals("owner")) {
+            else if (this.userType.equals("owner")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Owner.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());

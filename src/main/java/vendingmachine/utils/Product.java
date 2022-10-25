@@ -43,11 +43,11 @@ public class Product extends DBModel {
 
     public JSONObject serialise() {
         JSONObject prod = new JSONObject();
-        prod.put("item_code", this.itemCode);
-        prod.put("item_name", this.itemName);
-        prod.put("item_price", this.itemPrice);
-        prod.put("item_category", this.itemCategory);
-        prod.put("item_quantity", this.itemQuantity);
+        prod.put("itemCode", this.itemCode);
+        prod.put("itemName", this.itemName);
+        prod.put("itemPrice", this.itemPrice);
+        prod.put("itemCategory", this.itemCategory);
+        prod.put("itemQuantity", this.itemQuantity);
         return prod;
     }
 
@@ -60,11 +60,11 @@ public class Product extends DBModel {
     }
 
     public Product(JSONObject obj) {
-        this.itemCode = Integer.parseInt(obj.get("item_code").toString());
-        this.itemName = obj.get("item_name").toString();
-        this.itemPrice = Integer.parseInt(obj.get("item_price").toString());
-        this.itemCategory = obj.get("item_category").toString();
-        this.itemQuantity = Integer.parseInt(obj.get("item_quantity").toString());
+        this.itemCode = Integer.parseInt(obj.get("itemCode").toString());
+        this.itemName = obj.get("itemName").toString();
+        this.itemPrice = Integer.parseInt(obj.get("itemPrice").toString());
+        this.itemCategory = obj.get("itemCategory").toString();
+        this.itemQuantity = Integer.parseInt(obj.get("itemQuantity").toString());
     }
 
     public int getItemCode() {

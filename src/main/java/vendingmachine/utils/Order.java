@@ -34,13 +34,13 @@ public class Order extends DBModel {
         id = Integer.parseInt(obj.get("id").toString());
         username = obj.get("username").toString();
         status = obj.get("status").toString();
-        paymentMethod = obj.get("payment_method").toString();
+        paymentMethod = obj.get("paymentMethod").toString();
 //
 //        System.out.println(obj.get("start_time").toString());
 //        System.out.println(obj.get("close_time").toString());
         try {
-            startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
-            closeTime = LocalDateTime.parse(obj.get("close_time").toString(), formatter);
+            startTime = LocalDateTime.parse(obj.get("startTime").toString(), formatter);
+            closeTime = LocalDateTime.parse(obj.get("closeTime").toString(), formatter);
         } catch (DateTimeException e) {
             // FIXME: handle exception
             startTime = null;
@@ -118,9 +118,9 @@ public class Order extends DBModel {
         order.put("id", this.id);
         order.put("username", this.username);
         order.put("status", this.status);
-        order.put("payment_method", this.paymentMethod);
-        order.put("start_time", this.startTime.format(formatter));
-        order.put("close_time", this.closeTime.format(formatter));
+        order.put("paymentMethod", this.paymentMethod);
+        order.put("startTime", this.startTime.format(formatter));
+        order.put("closeTime", this.closeTime.format(formatter));
 
         JSONArray prods = new JSONArray();
         for (Product p: products) {

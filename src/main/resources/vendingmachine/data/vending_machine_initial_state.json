@@ -1,116 +1,116 @@
 {
     "product": [
         {
-            "item_code":1001,
-            "item_name": "Mineral Water",
-            "item_price": 12.0,
-            "item_category":"drinks",
-            "item_quantity": 7
+            "itemCode":1001,
+            "itemName": "Mineral Water",
+            "itemPrice": 12.0,
+            "itemCategory":"drinks",
+            "itemQuantity": 7
         },
         {
-            "item_code":1002,
-            "item_name": "Sprite",
-            "item_price": 12.0,
-            "item_category":"drinks",
-            "item_quantity": 7
+            "itemCode":1002,
+            "itemName": "Sprite",
+            "itemPrice": 12.0,
+            "itemCategory":"drinks",
+            "itemQuantity": 7
         },
         {
-            "item_code":1003,
-            "item_name": "Coca cola",
-            "item_price": 12.0,
-            "item_category":"drinks",
-            "item_quantity": 7
+            "itemCode":1003,
+            "itemName": "Coca cola",
+            "itemPrice": 12.0,
+            "itemCategory":"drinks",
+            "itemQuantity": 7
         },
         {
-            "item_code":1004,
-            "item_name": "Pepsi",
-            "item_price": 12.0,
-            "item_category":"drinks",
-            "item_quantity": 7
+            "itemCode":1004,
+            "itemName": "Pepsi",
+            "itemPrice": 12.0,
+            "itemCategory":"drinks",
+            "itemQuantity": 7
         },
         {
-            "item_code":1005,
-            "item_name": "Juice",
-            "item_price": 12.0,
-            "item_category":"drinks",
-            "item_quantity": 7
+            "itemCode":1005,
+            "itemName": "Juice",
+            "itemPrice": 12.0,
+            "itemCategory":"drinks",
+            "itemQuantity": 7
         },
         {
-            "item_code":1006,
-            "item_name": "Mars",
-            "item_price": 12.0,
-            "item_category":"chocolates",
-            "item_quantity": 7
+            "itemCode":1006,
+            "itemName": "Mars",
+            "itemPrice": 12.0,
+            "itemCategory":"chocolates",
+            "itemQuantity": 7
         },
         {
-            "item_code":1007,
-            "item_name": "M&M",
-            "item_price": 12.0,
-            "item_category":"chocolates",
-            "item_quantity": 7
+            "itemCode":1007,
+            "itemName": "M&M",
+            "itemPrice": 12.0,
+            "itemCategory":"chocolates",
+            "itemQuantity": 7
         },
         {
-            "item_code":1008,
-            "item_name": "Bounty",
-            "item_price": 12.0,
-            "item_category":"chocolates",
-            "item_quantity": 7
+            "itemCode":1008,
+            "itemName": "Bounty",
+            "itemPrice": 12.0,
+            "itemCategory":"chocolates",
+            "itemQuantity": 7
         },
         {
-            "item_code":1009,
-            "item_name": "Snickers",
-            "item_price": 12.0,
-            "item_category":"chocolates",
-            "item_quantity": 7
+            "itemCode":1009,
+            "itemName": "Snickers",
+            "itemPrice": 12.0,
+            "itemCategory":"chocolates",
+            "itemQuantity": 7
         },
         {
-            "item_code":1010,
-            "item_name": "Smiths",
-            "item_price": 12.0,
-            "item_category":"chips",
-            "item_quantity": 7
+            "itemCode":1010,
+            "itemName": "Smiths",
+            "itemPrice": 12.0,
+            "itemCategory":"chips",
+            "itemQuantity": 7
         },
         {
-            "item_code":1011,
-            "item_name": "Pringles",
-            "item_price": 12.0,
-            "item_category":"chips",
-            "item_quantity": 7
+            "itemCode":1011,
+            "itemName": "Pringles",
+            "itemPrice": 12.0,
+            "itemCategory":"chips",
+            "itemQuantity": 7
         },
         {
-            "item_code":1012,
-            "item_name": "Kettle",
-            "item_price": 12.0,
-            "item_category":"chips",
-            "item_quantity": 7
+            "itemCode":1012,
+            "itemName": "Kettle",
+            "itemPrice": 12.0,
+            "itemCategory":"chips",
+            "itemQuantity": 7
         },
         {
-            "item_code":1013,
-            "item_name": "Thins",
-            "item_price": 12.0,
-            "item_category":"chips",
-            "item_quantity": 7
+            "itemCode":1013,
+            "itemName": "Thins",
+            "itemPrice": 12.0,
+            "itemCategory":"chips",
+            "itemQuantity": 7
         },
         {
-            "item_code":1014,
-            "item_name": "Mentos",
-            "item_price": 12.0,
-            "item_category":"candies",
-            "item_quantity": 7
+            "itemCode":1014,
+            "itemName": "Mentos",
+            "itemPrice": 12.0,
+            "itemCategory":"candies",
+            "itemQuantity": 7
         },
         {
-            "item_code":1015,
-            "item_name": "Sour Patch",
-            "item_price": 12.0,
-            "item_category":"candies",
-            "item_quantity": 7
+            "itemCode":1015,
+            "itemName": "Sour Patch",
+            "itemPrice": 12.0,
+            "itemCategory":"candies",
+            "itemQuantity": 7
         },
         {
-            "item_code":1016,
-            "item_name": "Skittles",
-            "item_price": 12.0,
-            "item_category":"candies",
-            "item_quantity": 7
+            "itemCode":1016,
+            "itemName": "Skittles",
+            "itemPrice": 12.0,
+            "itemCategory":"candies",
+            "itemQuantity": 7
         }
     ],
     "cash":[
