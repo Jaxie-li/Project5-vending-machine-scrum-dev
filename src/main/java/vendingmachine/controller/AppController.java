@@ -43,8 +43,6 @@ public class AppController{
     @FXML
     private AnchorPane userComponent;
     @FXML
-    private Button logout;
-    @FXML
     private Button back;
     @FXML
     private Button login;
@@ -162,7 +160,7 @@ public class AppController{
     }
 
     //logout and re-login
-    public void Logout(ActionEvent actionEvent) throws IOException {
+    public void Logout(ActionEvent event) throws IOException {
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
     }
