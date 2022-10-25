@@ -37,19 +37,15 @@ public class AppController{
     @FXML
     private PasswordField password;
 
-    @FXML
-    private PasswordFieldSkin skin;
+//    @FXML
+//    private PasswordFieldSkin skin;
 
     @FXML
     private AnchorPane userComponent;
     @FXML
     private Button logout;
     @FXML
-    private TextField uname;
-    @FXML
     private Button back;
-    @FXML
-    private PasswordField pw;
     @FXML
     private Button login;
     @FXML
@@ -86,9 +82,10 @@ public class AppController{
         this.userType = userType;
     }
 
-    public void signInCheck(ActionEvent actionEvent) throws IOException{
-        pw.setSkin(new PasswordFieldSkin(pw));
-        User user = User.isValidUser(uname.getText(), pw.getText());
+    public void signInCheck(ActionEvent event) throws IOException {
+//        password.setSkin(new PasswordFieldSkin(password));
+        User user = User.isValidUser(username.getText(), password.getText());
+
 
         if (user != null) {
             //check the username and password,
@@ -98,43 +95,21 @@ public class AppController{
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
-            userComponent.setVisible(false);
-            //check customer
-            //if (this.user_type.equals("customer")){
+//            userComponent.setVisible(false);
 
-            //check seller
-            if (getUserType().equals("seller")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Seller.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) (login.getScene().getWindow());
-                Scene scene = new Scene(root);
+            if(user.getUserType().equals("seller")){
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
+                root = loader.load();
+                SellerPageController sellerPageController = loader.getController();
+                sellerPageController.init(this);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             }
-            //check cashier
-            else if (getUserType().equals("cashier")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Cashier.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) (login.getScene().getWindow());
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            //check owner
-            else if (getUserType().equals("owner")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Owner.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) (login.getScene().getWindow());
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-        }
-
-
-        else if (uname.getText().isEmpty() || pw.getText().isEmpty()){
-            uname.setText("");
-            pw.setText("");
+        } else {
+            username.setText("");
+            password.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Log In Failed!");
             alert.setContentText("Incorrect Username or password");
