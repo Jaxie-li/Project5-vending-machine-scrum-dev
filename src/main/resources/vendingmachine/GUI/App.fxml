@@ -22,6 +22,6 @@
             <Button fx:id="registerButton" layoutX="194.0" layoutY="105.0" mnemonicParsing="false" onAction="#register" text="Register" />
          </children>
       </AnchorPane>
-      <Button fx:id="logout" layoutX="26.0" layoutY="182.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="logout" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
    </children>
 </AnchorPane>

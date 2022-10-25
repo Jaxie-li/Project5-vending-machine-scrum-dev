@@ -193,14 +193,10 @@ public class AppController {
         return model;
     }
 
-    //logout and re login todo
+    //logout and re-login
     public void Logout(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/App.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (logout.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        this.model.setCurrentUser(null);
+        userComponent.setVisible(true);
     }
     public void returnToMainPage(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/App.fxml"));
@@ -235,7 +231,7 @@ public class AppController {
         stage.show();
     }
     public void changeManagement(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/cashierMoney.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/OwnerAddDelete.fxml"));
         Parent root = loader.load();
         stage = (Stage) (manage_add_delete.getScene().getWindow());
         scene = new Scene(root);
