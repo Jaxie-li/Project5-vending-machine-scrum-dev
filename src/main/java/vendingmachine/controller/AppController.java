@@ -45,11 +45,7 @@ public class AppController{
     @FXML
     private Button logout;
     @FXML
-    private TextField uname;
-    @FXML
     private Button back;
-    @FXML
-    private PasswordField pw;
     @FXML
     private Button login;
     @FXML
