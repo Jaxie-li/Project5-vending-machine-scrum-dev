@@ -2,7 +2,6 @@ package vendingmachine.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,7 +16,7 @@ public class Seller {
     private Stage stage;
     private Scene scene;
 
-    public void SellerMain(ActionEvent actionEvent) throws IOException {
+    public void sellerMain(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Seller.fxml"));
         Parent root = loader.load();
         stage = (Stage) (back.getScene().getWindow());

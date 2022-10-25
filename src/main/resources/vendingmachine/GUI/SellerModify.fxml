@@ -30,7 +30,7 @@
       <TextField layoutX="306.0" layoutY="196.0" prefHeight="24.0" prefWidth="87.0" />
       <TextField layoutX="306.0" layoutY="236.0" prefHeight="24.0" prefWidth="87.0" />
       <TextField layoutX="306.0" layoutY="281.0" prefHeight="24.0" prefWidth="87.0" />
-      <Button fx:id="back" layoutX="34.0" layoutY="347.0" mnemonicParsing="false" text="back" onAction="#SellerMain" />
+      <Button fx:id="back" layoutX="34.0" layoutY="347.0" mnemonicParsing="false" text="back" onAction="#sellerMain" />
       <Button fx:id="modify" layoutX="467.0" layoutY="176.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="87.0" text="Modify" />
       <Label fx:id="check_max15" layoutX="232.0" layoutY="339.0" prefHeight="26.0" prefWidth="191.0" />
    </children>
