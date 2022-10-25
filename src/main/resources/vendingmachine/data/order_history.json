@@ -3,7 +3,7 @@
     "id": 1,
     "username": "testcustomer1",
     "status": "closed",
-    "payment_method": "",
+    "payment_method": "card",
     "products": [
       {
         "item_code": 1001,
@@ -21,7 +21,6 @@
       }
     ],
     "start_time": "19-10-2022 11:54:51",
-    "close_time": ""
   },
   {
     "id": 2,
@@ -45,6 +44,5 @@
       }
     ],
     "start_time": "19-10-2022 11:54:51",
-    "close_time": "19-10-2022 13:54:51"
   }
 ]
