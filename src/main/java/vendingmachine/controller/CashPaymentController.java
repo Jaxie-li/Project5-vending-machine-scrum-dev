@@ -341,9 +341,8 @@ public class CashPaymentController {
 
         for (Product soldProduct : model.getProducts()) {
             int sellQuantity = soldProduct.getItemQuantity();
-            VendingMachineModel vendingMachineModel = new VendingMachineModel();
 
-            for (Product machineProduct : vendingMachineModel.getProducts()) {
+            for (Product machineProduct : appController.getModel().getProducts()) {
                 if (machineProduct.getItemName().equals(soldProduct.getItemName())) {
                     machineProduct.setItemQuantity(machineProduct.getItemQuantity() - sellQuantity);
 
