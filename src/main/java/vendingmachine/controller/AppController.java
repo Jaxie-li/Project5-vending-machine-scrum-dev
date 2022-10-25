@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
@@ -24,28 +23,25 @@ import java.io.IOException;
  * @date: Created in 5/10/2022 1:53 am
  * @description: This is the controller for the App class, and it will take the responsibility of GUI Action & Response
  */
-public class AppController {
-    private VendingMachineModel model;
-    {
-        try {
-            model = new VendingMachineModel();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
+public class AppController{
+    private VendingMachineModel model = new VendingMachineModel();
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    private static JSONArray data;
-    public static final String path = "src/main/resources/vendingmachine/data/user.json";
-    private String username;
-    private String password;
     private String userType;
 
+    @FXML
+    private TextField username;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private PasswordFieldSkin skin;
+
+    @FXML
+    private AnchorPane userComponent;
     @FXML
     private Button logout;
     @FXML
@@ -57,17 +53,11 @@ public class AppController {
     @FXML
     private Button login;
     @FXML
-    private PasswordFieldSkin skin;
-
-    @FXML
-    private AnchorPane userComponent;
-    @FXML
     private Button change_seller;
     @FXML
     private Button change_cashier;
     @FXML private Button money;
     @FXML private Button manage_add_delete;
-
 
 
 //    public void setPasswordSkin() {
@@ -76,6 +66,8 @@ public class AppController {
 
     public AppController() throws IOException, ParseException {
     }
+
+
 
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
@@ -87,33 +79,6 @@ public class AppController {
         stage.setScene(scene);
         stage.show();
     }
-
-    public static JSONArray getData() {
-        return data;
-    }
-    public static void setData(JSONArray data) {AppController.data = data;}
-    public JSONObject serialise() {
-        JSONObject users = new JSONObject();
-        users.put("username", this.username);
-        users.put("password", this.password);
-        users.put("userType", this.userType);
-        return users;
-    }
-
-    public AppController(JSONObject obj){
-        this.username = obj.get("username").toString();
-        this.password = obj.get("password").toString();
-        this.userType = obj.get("userType").toString();
-    }
-
-    public String getUsername() {
-        return username;}
-    public void setUsername(String username) {this.username = username;}
-    public String getPassword() {
-        return password;}
-    public void setPassword(String password) {
-        this.password = password;}
-
     public String getUserType() {
         return userType;
     }
@@ -121,14 +86,12 @@ public class AppController {
         this.userType = userType;
     }
 
-
-
     public void signInCheck(ActionEvent actionEvent) throws IOException{
         pw.setSkin(new PasswordFieldSkin(pw));
         User user = User.isValidUser(uname.getText(), pw.getText());
 
         if (user != null) {
-           //check the username and password,
+            //check the username and password,
             this.model.setCurrentUser(user);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -140,7 +103,7 @@ public class AppController {
             //if (this.user_type.equals("customer")){
 
             //check seller
-            if (this.userType.equals("seller")){
+            if (getUserType().equals("seller")){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Seller.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());
@@ -149,7 +112,7 @@ public class AppController {
                 stage.show();
             }
             //check cashier
-            else if (this.userType.equals("cashier")){
+            else if (getUserType().equals("cashier")){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Cashier.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());
@@ -158,7 +121,7 @@ public class AppController {
                 stage.show();
             }
             //check owner
-            else if (this.userType.equals("owner")) {
+            else if (getUserType().equals("owner")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/Owner.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) (login.getScene().getWindow());
@@ -166,7 +129,7 @@ public class AppController {
                 stage.setScene(scene);
                 stage.show();
             }
-            }
+        }
 
 
         else if (uname.getText().isEmpty() || pw.getText().isEmpty()){
@@ -176,11 +139,11 @@ public class AppController {
             alert.setTitle("Log In Failed!");
             alert.setContentText("Incorrect Username or password");
             alert.showAndWait();
-        }}
+        }
+    }
 
-
-        public void register(){
-        User newUser = User.register(uname.getText(), pw.getText());
+    public void register(){
+        User newUser = User.register(username.getText(), password.getText());
         this.model.setCurrentUser(newUser);
         userComponent.setVisible(false);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -223,7 +186,7 @@ public class AppController {
         stage.show();
     }
     public void changeMoney(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/cashierMoney.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/CashierMoney.fxml"));
         Parent root = loader.load();
         stage = (Stage) (money.getScene().getWindow());
         scene = new Scene(root);
@@ -238,5 +201,4 @@ public class AppController {
         stage.setScene(scene);
         stage.show();
     }
-
 }
