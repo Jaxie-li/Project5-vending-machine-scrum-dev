@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="modify" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashierController">
    <children>
-      <Label layoutX="180.0" layoutY="35.0" prefHeight="49.0" prefWidth="240.0" text="Weclome Cashier">
+      <Label layoutX="180.0" layoutY="35.0" prefHeight="49.0" prefWidth="240.0" text="Weclome Cashier :)">
          <font>
             <Font size="24.0" />
          </font>
