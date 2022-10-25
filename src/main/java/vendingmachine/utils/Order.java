@@ -107,6 +107,10 @@ public class Order extends DBModel {
         Order.create(data, serialise(), path);
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
     @Override
     public JSONObject serialise() {
         JSONObject order = new JSONObject();

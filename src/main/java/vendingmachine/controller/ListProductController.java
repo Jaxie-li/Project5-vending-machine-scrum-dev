@@ -33,14 +33,19 @@ public class ListProductController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private final int DRINKS_X = 30;
+    private final int DRINKS_Y = 60;
+    private final int CHOCOLATES_X = 30;
+    private final int CHOCOLATES_Y = 330;
+    private final int CHIPS_X = 350;
+    private final int CHIPS_Y = 60;
+    private final int CANDIES_X = 350;
+    private final int CANDIES_Y = 330;
+
+
     @FXML
-    private AnchorPane drinks;
-    @FXML
-    private AnchorPane chocolates;
-    @FXML
-    private AnchorPane chips;
-    @FXML
-    private AnchorPane candies;
+    private AnchorPane page;
+
     @FXML
     private Button cancelButton;
 
@@ -92,62 +97,60 @@ Below should record this cancel and record it in model
 
     public void init(AppController appController) {
         this.appController = appController;
-
         this.model = appController.getModel();
-
 
 
         for (int i = 0; i < model.getProducts().size(); i++) {
             Product product = model.getProducts().get(i);
-//            ProductComponents pc = new ProductComponents(product,20,100+i*40);
             ProductComponents pc;
             if (product.getItemCategory().equals("drinks")) {
-//                System.out.println(String.format("drinks: %s %s".formatted(drinks.getLayoutX(),drinks.getLayoutY())));
-                pc = new ProductComponents(product, (int) drinks.getLayoutX(), (int) drinks.getLayoutY() + i * 40);
-                drinks.getChildren().add(pc.getProductLabel());
-                drinks.getChildren().add(pc.getSpinner());
+                pc = new ProductComponents(product, DRINKS_X, DRINKS_Y + i * 40);
             } else if (product.getItemCategory().equals("chocolates")) {
-                pc = new ProductComponents(product, (int) chocolates.getLayoutX(), (int) chocolates.getLayoutY() +
-                        (i - drinks.getChildren().size()) * 40);
-                chocolates.getChildren().add(pc.getProductLabel());
-                chocolates.getChildren().add(pc.getSpinner());
+                pc = new ProductComponents(product, CHOCOLATES_X, CHOCOLATES_Y +
+                        (i - 5) * 40);
             } else if (product.getItemCategory().equals("chips")) {
-                pc = new ProductComponents(product, (int) chips.getLayoutX(), (int) chips.getLayoutY() +
+                pc = new ProductComponents(product, CHIPS_X,  CHIPS_Y+
                         (i % 9) * 40);
-                chips.getChildren().add(pc.getProductLabel());
-                chips.getChildren().add(pc.getSpinner());
             } else {
-                pc = new ProductComponents(product, (int) candies.getLayoutX(), (int) candies.getLayoutY() +
-                        (i - drinks.getChildren().size() - chips.getChildren().size()) * 40);
-                candies.getChildren().add(pc.getProductLabel());
-                candies.getChildren().add(pc.getSpinner());
+                pc = new ProductComponents(product, CANDIES_X, CANDIES_Y +
+                        (i - 13) * 40);
+            }
+
+            for (int j = 0; j < pc.getElements().size(); j++) {
+                page.getChildren().add(pc.getElements().get(j));
             }
             pcs.add(pc);
         }
 
         Label drinksLabel = new Label();
-        drinksLabel.setLayoutX(drinks.getChildren().get(0).getLayoutX());
-        drinksLabel.setLayoutY(drinks.getChildren().get(0).getLayoutY()-30);
-        drinksLabel.setText("Drinks");
-        drinks.getChildren().add(drinksLabel);
+//        Label drinksTitleLabel = new Label();
+        drinksLabel.setLayoutX(DRINKS_X);
+//        drinksTitleLabel.setLayoutX(DRINKS_X);
+        drinksLabel.setLayoutY(DRINKS_Y-40);
+//        drinksTitleLabel.setLayoutY(DRINKS_Y-20);
+//        drinksLabel.setText("Drinks");
+//        drinksTitleLabel.setText("Name \t\t\t\tPrice \t Quality\t  Selected");
+
+        page.getChildren().add(drinksLabel);
+//        page.getChildren().add(drinksTitleLabel);
 
         Label chocolatesLabel = new Label();
-        chocolatesLabel.setLayoutX(chocolates.getChildren().get(0).getLayoutX());
-        chocolatesLabel.setLayoutY(chocolates.getChildren().get(0).getLayoutY()-30);
+        chocolatesLabel.setLayoutX(CHOCOLATES_X);
+        chocolatesLabel.setLayoutY(CHOCOLATES_Y-40);
         chocolatesLabel.setText("Chocolates");
-        chocolates.getChildren().add(chocolatesLabel);
+        page.getChildren().add(chocolatesLabel);
 
         Label chipsLabel = new Label();
-        chipsLabel.setLayoutX(chips.getChildren().get(0).getLayoutX());
-        chipsLabel.setLayoutY(chips.getChildren().get(0).getLayoutY()-30);
+        chipsLabel.setLayoutX(CHIPS_X);
+        chipsLabel.setLayoutY(CHIPS_Y-40);
         chipsLabel.setText("Chips");
-        chips.getChildren().add(chipsLabel);
+        page.getChildren().add(chipsLabel);
 
         Label candiesLabel = new Label();
-        candiesLabel.setLayoutX(candies.getChildren().get(0).getLayoutX());
-        candiesLabel.setLayoutY(candies.getChildren().get(0).getLayoutY()-30);
+        candiesLabel.setLayoutX(CANDIES_X);
+        candiesLabel.setLayoutY(CANDIES_Y-40);
         candiesLabel.setText("Candies");
-        candies.getChildren().add(candiesLabel);
+        page.getChildren().add(candiesLabel);
 
         // Timer for 2 minutes
         new Timer().schedule(new TimerTask(){
