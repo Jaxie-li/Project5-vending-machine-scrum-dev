@@ -344,11 +344,13 @@ public class CashPaymentController {
 
             for (Product machineProduct : appController.getModel().getProducts()) {
                 if (machineProduct.getItemName().equals(soldProduct.getItemName())) {
-                    machineProduct.setItemQuantity(machineProduct.getItemQuantity() - sellQuantity);
-
                     // TBD >> Write Back to Product.json
+                    System.out.println(machineProduct.getItemCode());
                     System.out.println(machineProduct.getItemName());
                     System.out.println(machineProduct.getItemQuantity());
+
+                    machineProduct.setItemQuantity(machineProduct.getItemQuantity() - sellQuantity);
+                    machineProduct.updateStock(String.valueOf(machineProduct.getItemCode()));
                 }
             }
         }
