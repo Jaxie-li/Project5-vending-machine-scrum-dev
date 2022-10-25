@@ -95,7 +95,7 @@ public class User extends DBModel {
             String realUsername = each.get("username").toString();
             String realPassword = each.get("password").toString();
 
-            if (realUsername.equals(User.username) && realPassword.equals(User.password)) {
+            if (realUsername.equals(username) && realPassword.equals(password)) {
                 return new User(each);
             }
         }
