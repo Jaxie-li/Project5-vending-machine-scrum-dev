@@ -36,8 +36,8 @@ public class AppController{
     @FXML
     private PasswordField password;
 
-    @FXML
-    private PasswordFieldSkin skin;
+//    @FXML
+//    private PasswordFieldSkin skin;
 
     @FXML
     private AnchorPane userComponent;
@@ -64,8 +64,8 @@ public class AppController{
         stage.show();
     }
 
-    public void signInCheck(){
-        password.setSkin(new PasswordFieldSkin(password));
+    public void signInCheck(ActionEvent event) throws IOException {
+//        password.setSkin(new PasswordFieldSkin(password));
         User user = User.isValidUser(username.getText(), password.getText());
 
 
@@ -75,7 +75,18 @@ public class AppController{
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
-            userComponent.setVisible(false);
+//            userComponent.setVisible(false);
+
+            if(user.getUserType().equals("seller")){
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
+                root = loader.load();
+                SellerPageController sellerPageController = loader.getController();
+                sellerPageController.init(this);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         } else {
             username.setText("");
             password.setText("");
