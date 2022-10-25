@@ -109,12 +109,8 @@ public class Product extends DBModel {
 
     /**
      * update the stock based on the pk value
-     * @param pk item_code
      */
-    public void updateStock(String pk) {
-        System.out.println(Product.read(path));
-        System.out.println(serialise());
-
+    public void updateStock() {
         Product.update(Product.read(path), serialise(), path, "item_code");
     }
 
