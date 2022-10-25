@@ -125,4 +125,18 @@ public class Cash extends DBModel {
         }
         return -1;
     }
+
+    public JSONObject setSerialise() {
+        JSONObject cashes = new JSONObject();
+        cashes.put("value", this.value);
+        cashes.put("quantity", this.quantity);
+        return cashes;
+    }
+
+    /**
+     * update cash quantity
+     */
+    public void updateQuantity() {
+        Cash.update(Cash.read(path), setSerialise(), path, "value");
+    }
 }
