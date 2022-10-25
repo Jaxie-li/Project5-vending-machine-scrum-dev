@@ -11,12 +11,15 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
+import vendingmachine.utils.CancelledOrder;
 import vendingmachine.utils.Cash;
 import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 public class CashPaymentController {
@@ -117,11 +120,9 @@ public class CashPaymentController {
 
         } else {
             // can not find sufficient changes
-//            System.out.println(model.getOrderTotal());
-//            System.out.println(balance);
+
             // TBD
             exchange = Cash.payCash(model.getOrderTotal(), balance, appController.getModel().getCashes());
-//            System.out.println(new VendingMachineModel().getCashes());
             if (exchange == null) {
                 System.out.println("Insufficient Changes");
                 findChangesUnsuccessful(event);
@@ -163,13 +164,6 @@ public class CashPaymentController {
 
             this.balance = amount;
             inputAmount.setText(String.format("%.2f", (double) amount / 100));
-
-//            DBModel db = new DBModel() {
-//                @Override
-//                public JSONObject serialise() {
-//                    return null;
-//                }
-//            };
 
         } catch (NumberFormatException nfe) {
 
@@ -237,6 +231,7 @@ public class CashPaymentController {
             System.out.println("Error!");
         } else if (result.get() == ButtonType.OK) {
             // TBD  >> add cancelled order
+            cancelOrder("userCancelled");
 
             System.out.println("You have successfully cancel the transaction.");
             // go to the main page
@@ -272,7 +267,8 @@ public class CashPaymentController {
 
         } else if (result.get() == ButtonType.CANCEL) {
             // TBD  >> add cancelled order
-            
+            cancelOrder("unavailableChanges");
+
             System.out.println("You have successfully cancel the transaction.");
             // go to the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
@@ -379,6 +375,29 @@ public class CashPaymentController {
                 }
             }
         }
+    }
+
+    /**
+     * add the cancel order into cancel order transactions
+     */
+    public void cancelOrder(String reason) {
+        CancelledOrder cancelledOrder = new CancelledOrder();
+        cancelledOrder.setId(cancelledOrder.getNextId());
+
+        if (model.getUsername().equals("")) {
+            cancelledOrder.setUsername("anonymous");
+        } else {
+            cancelledOrder.setUsername(model.getUsername());
+        }
+
+        if (reason.equals("userCancelled")) {
+            cancelledOrder.setReason("user cancelled");
+
+        } else if (reason.equals("unavailableChanges")){
+            cancelledOrder.setReason("change not available");
+        }
+
+        cancelledOrder.addCancelOrder();
     }
 }
 
