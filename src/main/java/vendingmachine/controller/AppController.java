@@ -29,6 +29,7 @@ public class AppController{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private String userType;
 
     @FXML
     private TextField username;
@@ -41,7 +42,22 @@ public class AppController{
 
     @FXML
     private AnchorPane userComponent;
-
+    @FXML
+    private Button logout;
+    @FXML
+    private TextField uname;
+    @FXML
+    private Button back;
+    @FXML
+    private PasswordField pw;
+    @FXML
+    private Button login;
+    @FXML
+    private Button change_seller;
+    @FXML
+    private Button change_cashier;
+    @FXML private Button money;
+    @FXML private Button manage_add_delete;
 
 
 //    public void setPasswordSkin() {
@@ -63,6 +79,12 @@ public class AppController{
         stage.setScene(scene);
         stage.show();
     }
+    public String getUserType() {
+        return userType;
+    }
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public void signInCheck(ActionEvent event) throws IOException {
 //        password.setSkin(new PasswordFieldSkin(password));
@@ -70,7 +92,9 @@ public class AppController{
 
 
         if (user != null) {
+            //check the username and password,
             this.model.setCurrentUser(user);
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
@@ -95,8 +119,6 @@ public class AppController{
             alert.setContentText("Incorrect Username or password");
             alert.showAndWait();
         }
-
-
     }
 
     public void register(){
@@ -111,5 +133,51 @@ public class AppController{
 
     public VendingMachineModel getModel() {
         return model;
+    }
+
+    //logout and re-login
+    public void Logout(ActionEvent actionEvent) throws IOException {
+        this.model.setCurrentUser(null);
+        userComponent.setVisible(true);
+    }
+    public void returnToMainPage(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/App.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) (back.getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void changeSeller(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/seller.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) (change_seller.getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void changeCashier(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/cashier.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) (change_cashier.getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void changeMoney(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/CashierMoney.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) (money.getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void changeManagement(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/OwnerAddDelete.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) (manage_add_delete.getScene().getWindow());
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
