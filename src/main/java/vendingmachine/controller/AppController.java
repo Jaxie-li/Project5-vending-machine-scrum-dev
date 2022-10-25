@@ -107,6 +107,36 @@ public class AppController{
                 stage.setScene(scene);
                 stage.show();
             }
+            else if(user.getUserType().equals("cashier")){
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
+                root = loader.load();
+                CashierController cashierController = loader.getController();
+                cashierController.init(this);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else if(user.getUserType().equals("owner")){
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Owner.fxml"));
+                root = loader.load();
+                OwnerController ownerController = loader.getController();
+                ownerController.init(this);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }else if(user.getUserType().equals("admin")){
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Admin.fxml"));
+                root = loader.load();
+                AdminController adminController = loader.getController();
+                adminController.init(this);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+
         } else {
             username.setText("");
             password.setText("");
@@ -135,45 +165,5 @@ public class AppController{
     public void Logout(ActionEvent actionEvent) throws IOException {
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
-    }
-    public void returnToMainPage(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/App.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (back.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void changeSeller(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/seller.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (change_seller.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void changeCashier(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/cashier.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (change_cashier.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void changeMoney(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/CashierMoney.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (money.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void changeManagement(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/vendingmachine/GUI/OwnerAddDelete.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) (manage_add_delete.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 }

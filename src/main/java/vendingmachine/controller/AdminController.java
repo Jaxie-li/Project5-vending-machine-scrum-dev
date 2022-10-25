@@ -1,5 +1,4 @@
 package vendingmachine.controller;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,25 +10,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CashierController {
+public class AdminController {
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     private AppController appController;
-    public void init(AppController appController){
-        this.appController = appController;
-    }
 
-    //sub function want to go back to main cashier page.
-    public void cashierMain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
-        root = loader.load();
-        loader.setController(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void init(AppController appController) {
+        this.appController = appController;
     }
     public void returnToMainPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
@@ -40,9 +29,8 @@ public class CashierController {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void changeMoney(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/cashierMoney.fxml"));
+    public void changeCashier(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
         root = loader.load();
         loader.setController(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -50,6 +38,13 @@ public class CashierController {
         stage.setScene(scene);
         stage.show();
     }
-
-
+    public void changeSeller(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
+        root = loader.load();
+        loader.setController(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="manage_account" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AppController">
+<AnchorPane fx:id="manage_account" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.OwnerController">
    <children>
       <Label layoutX="149.0" layoutY="49.0" prefHeight="40.0" prefWidth="275.0" text="Hello, super power owner">
          <font>

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="modify" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AppController">
+<AnchorPane fx:id="modify" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashierController">
    <children>
       <Label layoutX="180.0" layoutY="35.0" prefHeight="49.0" prefWidth="240.0" text="Weclome Cashier">
          <font>
@@ -19,7 +19,7 @@
       </Button>
       <Button layoutX="70.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text=" Currently available change" />
       <Button layoutX="293.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text="Summary of transactions" />
-      <Button fx:id="back" layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#returnToMainPage" text="return" />
+      <Button fx:id="back" layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#returnToMainPage" text="back" />
       <Label layoutX="199.0" layoutY="200.0" prefHeight="41.0" prefWidth="189.0" text="2 Reports below">
          <font>
             <Font size="18.0" />
