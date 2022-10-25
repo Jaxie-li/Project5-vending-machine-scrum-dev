@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import org.json.simple.parser.ParseException;
+import vendingmachine.App;
 import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.CancelledOrder;
 import vendingmachine.utils.Cash;
@@ -78,9 +79,16 @@ public class CashPaymentController {
 
     private ArrayList<Cash> exchange;
 
+    private ArrayList<Cash> insertMoney = new ArrayList<>();
+
     public void init(AppController appController) {
         this.appController = appController;
     }
+
+    public ArrayList<Cash> getExchange() {
+        return this.exchange;
+    }
+
 
     /**
      * Get the order from previous page >> get the order's detail, products and price
@@ -111,7 +119,7 @@ public class CashPaymentController {
      * @throws IOException throws exceptions
      */
     @FXML
-    private void pay(ActionEvent event) throws IOException, ParseException {
+    private void pay(ActionEvent event) throws Exception {
         if (balance <= 0) {
             invalidBalance();
 
@@ -147,16 +155,27 @@ public class CashPaymentController {
     public void sum(ActionEvent event) {
         try {
             int hundredDollar = Integer.parseInt(hundredDollarsAmount.getText());
+            insertMoney.add(new Cash(10000, hundredDollar));
             int fiftyDollar = Integer.parseInt(fiftyDollarsAmount.getText());
+            insertMoney.add(new Cash(5000, fiftyDollar));
             int twentyDollar = Integer.parseInt(twentyDollarsAmount.getText());
+            insertMoney.add(new Cash(2000, twentyDollar));
             int tenDollar = Integer.parseInt(tenDollarsAmount.getText());
+            insertMoney.add(new Cash(1000, tenDollar));
             int fiveDollar = Integer.parseInt(fiveDollarsAmount.getText());
+            insertMoney.add(new Cash(500, fiveDollar));
             int twoDollar = Integer.parseInt(twoDollarsAmount.getText());
+            insertMoney.add(new Cash(200, twoDollar));
             int oneDollar = Integer.parseInt(oneDollarAmount.getText());
+            insertMoney.add(new Cash(100, oneDollar));
             int fiftyCent = Integer.parseInt(fiftyCentsAmount.getText());
+            insertMoney.add(new Cash(50, fiftyCent));
             int twentyCent = Integer.parseInt(twentyCentsAmount.getText());
+            insertMoney.add(new Cash(20, twentyCent));
             int tenCent = Integer.parseInt(tenCentsAmount.getText());
+            insertMoney.add(new Cash(10, tenCent));
             int fiveCent = Integer.parseInt(fiveCentsAmount.getText());
+            insertMoney.add(new Cash(5, fiveCent));
 
             int amount = 10000 * hundredDollar + 5000 * fiftyDollar + 2000 * twentyDollar + 1000 * tenDollar
                     + 500 * fiveDollar + 200 * twoDollar + 100 * oneDollar + 50 * fiftyCent + 20 * twentyCent
@@ -183,7 +202,7 @@ public class CashPaymentController {
      * @param event click pay button
      * @throws IOException throws any exception
      */
-    public void checkOutSuccess(ActionEvent event) throws IOException {
+    public void checkOutSuccess(ActionEvent event) throws Exception {
         // check out successfully
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
@@ -200,14 +219,22 @@ public class CashPaymentController {
             System.out.println("Error");
 
         } else if (button.get() == ButtonType.OK) {
-            System.out.println("Click OK");
+            System.out.println("Click OK >> Check out successfully");
+
+            //TBD : add successfully order
+            model.setStatus("closed");
+            model.setPaymentMethod("cash");
+            model.addOrder();
             // go back to main page and log out
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-            Parent root = loader.load();
+            App newApp = new App();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            newApp.start(stage);
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+//            Parent root = loader.load();
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
         }
     }
 
@@ -333,11 +360,8 @@ public class CashPaymentController {
 
     /**
      * Update the products stock in the database after users receive products
-     *
-     * @throws IOException    throws IO error
-     * @throws ParseException throws Parse error
      */
-    public void updateProductStock() throws IOException, ParseException {
+    public void updateProductStock() {
 
         for (Product soldProduct : model.getProducts()) {
             int sellQuantity = soldProduct.getItemQuantity();
@@ -345,10 +369,7 @@ public class CashPaymentController {
             for (Product machineProduct : appController.getModel().getProducts()) {
                 if (machineProduct.getItemName().equals(soldProduct.getItemName())) {
                     machineProduct.setItemQuantity(machineProduct.getItemQuantity() - sellQuantity);
-
-                    // TBD >> Write Back to Product.json
-                    System.out.println(machineProduct.getItemName());
-                    System.out.println(machineProduct.getItemQuantity());
+                    machineProduct.updateStock();
                 }
             }
         }
@@ -356,21 +377,24 @@ public class CashPaymentController {
 
     /**
      * Update the cashes stock in the database after users receive changes
-     *
-     * @throws IOException    throws IO error
-     * @throws ParseException throws Parse error
      */
-    public void updateCashStock() throws IOException, ParseException {
+    public void updateCashStock() {
 
         for (Cash cashes : exchange) {
-            VendingMachineModel vendingMachineModel = new VendingMachineModel();
-            for (Cash machineCash : vendingMachineModel.getCashes()) {
+            for (Cash machineCash : appController.getModel().getCashes()) {
                 if (machineCash.getValue() == cashes.getValue()) {
                     machineCash.setQuantity(machineCash.getQuantity() + cashes.getQuantity());
+                    machineCash.updateQuantity();
+                }
+            }
+        }
 
-                    // TBD >> Write back to Cash.json
-                    System.out.println(machineCash.getValue());
-                    System.out.println(machineCash.getQuantity());
+        for (Cash paidCash : insertMoney) {
+            for (Cash machineCash : appController.getModel().getCashes()) {
+                if (machineCash.getValue() == paidCash.getValue()
+                        && paidCash.getQuantity() != 0) {
+                    machineCash.setQuantity(machineCash.getQuantity() - paidCash.getQuantity());
+                    machineCash.updateQuantity();
                 }
             }
         }
@@ -392,7 +416,7 @@ public class CashPaymentController {
         if (reason.equals("userCancelled")) {
             cancelledOrder.setReason("user cancelled");
 
-        } else if (reason.equals("unavailableChanges")){
+        } else if (reason.equals("unavailableChanges")) {
             cancelledOrder.setReason("change not available");
         }
 

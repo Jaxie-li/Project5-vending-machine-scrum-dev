@@ -21,7 +21,6 @@ public class Order extends DBModel {
     private String paymentMethod;
     private final ArrayList<Product> products = new ArrayList<>();
     private LocalDateTime startTime;
-    private LocalDateTime closeTime;
 
     public Order(User user) {
         id = getNextId();
@@ -40,11 +39,9 @@ public class Order extends DBModel {
 //        System.out.println(obj.get("close_time").toString());
         try {
             startTime = LocalDateTime.parse(obj.get("start_time").toString(), formatter);
-            closeTime = LocalDateTime.parse(obj.get("close_time").toString(), formatter);
         } catch (DateTimeException e) {
             // FIXME: handle exception
             startTime = null;
-            closeTime = null;
         }
         for (Object o: (JSONArray) obj.get("products")) {
             JSONObject each = (JSONObject) o;
@@ -104,11 +101,7 @@ public class Order extends DBModel {
     }
 
     public void finalizeOrder() {
-        Order.create(data, serialise(), path);
-    }
-
-    public String getUsername() {
-        return this.username;
+        Order.create(Order.read(path), serialise(), path);
     }
 
     @Override
@@ -120,7 +113,7 @@ public class Order extends DBModel {
         order.put("status", this.status);
         order.put("payment_method", this.paymentMethod);
         order.put("start_time", this.startTime.format(formatter));
-        order.put("close_time", this.closeTime.format(formatter));
+//        order.put("close_time", this.closeTime.format(formatter));
 
         JSONArray prods = new JSONArray();
         for (Product p: products) {
@@ -130,5 +123,34 @@ public class Order extends DBModel {
         order.put("products", prods);
 
         return order;
+    }
+
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void addOrder() {
+        Order.create(Order.read(path), serialise(), path);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 }

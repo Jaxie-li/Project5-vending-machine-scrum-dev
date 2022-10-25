@@ -107,6 +107,13 @@ public class Product extends DBModel {
         this.itemQuantity = itemQuantity;
     }
 
+    /**
+     * update the stock based on the pk value
+     */
+    public void updateStock() {
+        Product.update(Product.read(path), serialise(), path, "item_code");
+    }
+
     @Override
     public String toString() {
         return String.format("%s\t\t$%s", itemName, itemPrice);
