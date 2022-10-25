@@ -96,14 +96,14 @@ public class AppController {
         JSONObject users = new JSONObject();
         users.put("username", this.username);
         users.put("password", this.password);
-        users.put("user_type", this.userType);
+        users.put("userType", this.userType);
         return users;
     }
 
     public AppController(JSONObject obj){
         this.username = obj.get("username").toString();
         this.password = obj.get("password").toString();
-        this.userType = obj.get("user_type").toString();
+        this.userType = obj.get("userType").toString();
     }
 
     public String getUsername() {
