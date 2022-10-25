@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="modify" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AppController">
+   <children>
+      <Label layoutX="180.0" layoutY="35.0" prefHeight="49.0" prefWidth="240.0" text="Weclome Cashier">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="money" layoutX="187.0" layoutY="127.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text="Modify coin/note" onAction="#changeMoney">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="70.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text=" Currently available change" />
+      <Button layoutX="293.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text="Summary of transactions" />
+      <Button fx:id="back" layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#returnToMainPage" text="return" />
+      <Label layoutX="199.0" layoutY="200.0" prefHeight="41.0" prefWidth="189.0" text="2 Reports below">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
