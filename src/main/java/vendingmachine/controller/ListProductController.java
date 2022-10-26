@@ -49,20 +49,12 @@ public class ListProductController {
     @FXML
     private Button cancelButton;
 
-    //    @FXML
-    //    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
-    //            marsLabel, mmLabel, bountyLabel, snickersLabel,
-    ////            smithsLabel, pringlesLabel, kettleLabel, thinsLabel,
-    ////            mentosLabel, sourPatchLabel, skittlesLabel;
-    //    @FXML
-    //    private Spinner<Integer> mineralWater;
-
-
+    // TODO: Cancel transaction record
     public void cancelTransaction(ActionEvent event) throws IOException {
-        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 29");
+        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 54");
         /*
-Below should record this cancel and record it in model
-*/
+        Below should record this cancel and record it in model
+        */
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
         loader.setController(appController);
@@ -99,7 +91,7 @@ Below should record this cancel and record it in model
         this.appController = appController;
         this.model = appController.getModel();
 
-
+        // list all products
         for (int i = 0; i < model.getProducts().size(); i++) {
             Product product = model.getProducts().get(i);
             ProductComponents pc;
@@ -122,17 +114,12 @@ Below should record this cancel and record it in model
             pcs.add(pc);
         }
 
+        // Add all category name labels
         Label drinksLabel = new Label();
-//        Label drinksTitleLabel = new Label();
         drinksLabel.setLayoutX(DRINKS_X);
-//        drinksTitleLabel.setLayoutX(DRINKS_X);
         drinksLabel.setLayoutY(DRINKS_Y-40);
-//        drinksTitleLabel.setLayoutY(DRINKS_Y-20);
         drinksLabel.setText("Drinks");
-//        drinksTitleLabel.setText("Name \t\t\t\tPrice \t Quality\t  Selected");
-
         page.getChildren().add(drinksLabel);
-//        page.getChildren().add(drinksTitleLabel);
 
         Label chocolatesLabel = new Label();
         chocolatesLabel.setLayoutX(CHOCOLATES_X);
@@ -161,42 +148,7 @@ Below should record this cancel and record it in model
                 });
             }
         }, 120000);
-
-
-
-//        // set the value of quantity of items to be 0~15 inclusive
-//        SpinnerValueFactory<Integer> valueFactory =
-//                new SpinnerValueFactory.IntegerSpinnerValueFactory(0,15);
-//        valueFactory.setValue(0);
-//
-
-//
-//        ArrayList<Product> products = model.getProducts();
-//
-//        for (int i = 0; i < products.size(); i++) {
-//            Label label = new Label(products.get(i).toString());
-//            label.setLayoutX(20);
-//            label.setLayoutY(100+i*20);
-//            Spinner<Integer> spinner = new Spinner<Integer>();
-//            spinner.setValueFactory(valueFactory);
-//
-//
-//        }
-//
-////        mineralWaterLabel.setText();
-//
-//        mineralWater.setValueFactory(valueFactory);
-
     }
-    /*
-    public void checkOut(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
-        root = loader.load();
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
+    // TODO: Every time when the product number updates, re-initialise this page
 }
