@@ -12,12 +12,13 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="change_seller" layoutX="123.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeSeller" prefHeight="33.0" prefWidth="172.0" text="Seller page" />
-      <Button fx:id="change_cashier" layoutX="300.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeCashier" prefHeight="33.0" prefWidth="172.0" text="Cashier page" />
-      <Button fx:id="manage_add_delete" layoutX="123.0" layoutY="210.0" mnemonicParsing="false" onAction="#changeManagement" prefHeight="33.0" prefWidth="172.0" text="management account" />
-      <Button fx:id="associated_role" layoutX="300.0" layoutY="210.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="172.0" text="Associated role" />
+      <Button fx:id="change_seller" layoutX="93.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeSeller" prefHeight="33.0" prefWidth="172.0" text="Seller page" />
+      <Button fx:id="change_cashier" layoutX="287.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeCashier" prefHeight="33.0" prefWidth="172.0" text="Cashier page" />
+      <Button fx:id="manage_add_delete" layoutX="93.0" layoutY="210.0" mnemonicParsing="false" onAction="#changeManagement" prefHeight="33.0" prefWidth="172.0" text="management account" />
+      <Button fx:id="associated_role" layoutX="142.0" layoutY="348.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="330.0" text="Summary user information associated role" />
       <Button fx:id="back" layoutX="49.0" layoutY="335.0" mnemonicParsing="false" onAction="#returnToMainPage" text="back" />
       <Button fx:id="cancelled_transaction" layoutX="142.0" layoutY="264.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="330.0" text="Summary Cancelled Transaction" />
       <Button fx:id="cancelled_transaction1" layoutX="142.0" layoutY="308.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="330.0" text="Summary Avaliable Product " />
+      <Button layoutX="287.0" layoutY="210.0" mnemonicParsing="false" onAction="#listProduct" prefHeight="33.0" prefWidth="172.0" text="List Product" />
    </children>
 </AnchorPane>

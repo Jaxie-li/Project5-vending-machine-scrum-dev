@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.AdminController">
    <children>
       <Label layoutX="192.0" layoutY="44.0" prefHeight="29.0" prefWidth="228.0" text="Hello Admin :)">
@@ -13,8 +12,9 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="change_cashier" layoutX="330.0" layoutY="164.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="135.0" text="Cashier Page" onAction="#changeCashier" />
-      <Button fx:id="change_seller" layoutX="102.0" layoutY="164.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="135.0" text="Seller Page" onAction="#changeSeller" />
-      <Button fx:id="back" layoutX="32.0" layoutY="361.0" mnemonicParsing="false" text="back" onAction="#returnToMainPage"/>
+      <Button fx:id="change_cashier" layoutX="196.0" layoutY="223.0" mnemonicParsing="false" onAction="#changeCashier" prefHeight="47.0" prefWidth="135.0" text="Cashier Page" />
+      <Button fx:id="change_seller" layoutX="196.0" layoutY="141.0" mnemonicParsing="false" onAction="#changeSeller" prefHeight="47.0" prefWidth="135.0" text="Seller Page" />
+      <Button fx:id="back" layoutX="32.0" layoutY="361.0" mnemonicParsing="false" onAction="#returnToMainPage" text="back" />
+      <Button layoutX="196.0" layoutY="305.0" mnemonicParsing="false" prefHeight="47.0"  onAction="#listProduct" prefWidth="135.0" text="List Product" />
    </children>
 </AnchorPane>

@@ -48,4 +48,13 @@ public class SellerPageController {
         stage.setScene(scene);
         stage.show();
     }
+    public void listProduct(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
+        root = loader.load();
+        loader.setController(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

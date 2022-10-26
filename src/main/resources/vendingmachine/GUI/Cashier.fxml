@@ -12,7 +12,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="money" layoutX="187.0" layoutY="127.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text="Modify coin/note" onAction="#changeMoney">
+      <Button fx:id="money" layoutX="86.0" layoutY="123.0" mnemonicParsing="false" onAction="#changeMoney" prefHeight="41.0" prefWidth="189.0" text="Modify coin/note">
          <font>
             <Font size="14.0" />
          </font>
@@ -25,5 +25,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="product" layoutX="310.0" layoutY="123.0" mnemonicParsing="false" onAction="#listProduct" prefHeight="41.0" prefWidth="189.0" text="List Product">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
