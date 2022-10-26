@@ -3,7 +3,7 @@
     "id": 1,
     "username": "testcustomer1",
     "status": "closed",
-    "payment_method": "card",
+    "paymentMethod": "card",
     "products": [
       {
         "itemCode": 1001,
@@ -26,7 +26,7 @@
     "id": 2,
     "username": "",
     "status": "time out",
-    "payment_method": "cash",
+    "paymentMethod": "cash",
     "products": [
       {
         "itemCode": 1001,
