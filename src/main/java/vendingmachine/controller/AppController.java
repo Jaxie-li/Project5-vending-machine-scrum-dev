@@ -89,12 +89,6 @@ public class AppController{
             //check the username and password,
             this.model.setCurrentUser(user);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Log In Success!");
-            alert.setContentText(String.format("Welcome %s",user.getUsername()));
-            alert.showAndWait();
-//            userComponent.setVisible(false);
-
             if(user.getUserType().equals("seller")){
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
                 root = loader.load();
@@ -143,6 +137,11 @@ public class AppController{
             alert.setContentText("Incorrect Username or password");
             alert.showAndWait();
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Log In Success!");
+        alert.setContentText(String.format("Welcome %s",user.getUsername()));
+        alert.showAndWait();
+        userComponent.setVisible(false);
     }
 
     public void register(){
