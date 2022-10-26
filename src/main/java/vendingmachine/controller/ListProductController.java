@@ -128,7 +128,7 @@ Below should record this cancel and record it in model
 //        drinksTitleLabel.setLayoutX(DRINKS_X);
         drinksLabel.setLayoutY(DRINKS_Y-40);
 //        drinksTitleLabel.setLayoutY(DRINKS_Y-20);
-//        drinksLabel.setText("Drinks");
+        drinksLabel.setText("Drinks");
 //        drinksTitleLabel.setText("Name \t\t\t\tPrice \t Quality\t  Selected");
 
         page.getChildren().add(drinksLabel);
