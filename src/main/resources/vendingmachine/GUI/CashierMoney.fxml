@@ -31,14 +31,14 @@
       <Label layoutX="288.0" layoutY="249.0" text="50" />
       <Label layoutX="285.0" layoutY="279.0" text="100" />
       <TextField fx:id="oneDollarAmount" layoutX="361.0" layoutY="106.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="twoDollarAmount" layoutX="361.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="fiveDollarAmount" layoutX="361.0" layoutY="160.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="tenDollarAmount" layoutX="361.0" layoutY="187.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="twentyDollarAmount" layoutX="361.0" layoutY="217.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="fiftyDollarAmount" layoutX="361.0" layoutY="245.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField fx:id="oneHundredDollarAmount" layoutX="361.0" layoutY="275.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="twoDollarsAmount" layoutX="361.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiveDollarsAmount" layoutX="361.0" layoutY="160.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="tenDollarsAmount" layoutX="361.0" layoutY="187.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="twentyDollarsAmount" layoutX="361.0" layoutY="217.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiftyDollarsAmount" layoutX="361.0" layoutY="245.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="hundredDollarsAmount" layoutX="361.0" layoutY="275.0" prefHeight="17.0" prefWidth="86.0" />
 
-      <Button fx:id="updateMoney" layoutX="219.0" layoutY="318.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="106.0" text="Update" />
+      <Button fx:id="updateMoney" layoutX="219.0" layoutY="318.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="106.0" text="Update" onAction="#updateCash" />
       <Button fx:id="back" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="back" onAction="#cashierMain" />
    </children>
 </AnchorPane>

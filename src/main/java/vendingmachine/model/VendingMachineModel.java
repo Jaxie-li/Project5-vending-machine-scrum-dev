@@ -24,6 +24,7 @@ public class VendingMachineModel {
     private ArrayList<Order> orders = new ArrayList<>();
 
     public VendingMachineModel() throws IOException, ParseException {
+
         // Read all the product from database
         User.setData(User.read(User.path));
 

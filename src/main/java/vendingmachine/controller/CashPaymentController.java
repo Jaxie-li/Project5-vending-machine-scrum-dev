@@ -138,10 +138,6 @@ public class CashPaymentController {
             } else {
                 // find sufficient changes >> check out successfully, user receives products and changes
                 checkOutSuccess(event);
-
-                // update the stock
-                updateProductStock();
-                updateCashStock();
             }
         }
     }
@@ -221,10 +217,17 @@ public class CashPaymentController {
         } else if (button.get() == ButtonType.OK) {
             System.out.println("Click OK >> Check out successfully");
 
-            //TBD : add successfully order
+            // add successfully order
+            model.setPaid(balance);
+            model.setExchange(exchange);
             model.setStatus("closed");
             model.setPaymentMethod("cash");
             model.addOrder();
+
+            // update the stock
+            updateProductStock();
+            updateCashStock();
+
             // go back to main page and log out
             App newApp = new App();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

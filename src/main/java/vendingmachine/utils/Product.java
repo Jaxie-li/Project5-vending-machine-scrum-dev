@@ -111,7 +111,7 @@ public class Product extends DBModel {
      * update the stock based on the pk value
      */
     public void updateStock() {
-        Product.update(Product.read(path), serialise(), path, "itemCode");
+        Product.update(read(Product.path), serialise(), path, "itemCode");
     }
 
     @Override

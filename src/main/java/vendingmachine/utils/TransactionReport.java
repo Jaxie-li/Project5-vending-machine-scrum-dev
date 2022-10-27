@@ -10,7 +10,7 @@ public class TransactionReport {
     public static String path = "./TransactionReport.txt";
 
     public TransactionReport(ArrayList<Order> orders) {
-        StringBuilder sb1 = new StringBuilder("Time, Product, Quantity, Total_paid, Total_change, Payment_method\n");
+        StringBuilder sb1 = new StringBuilder("Time, Products, Quantity, Total_paid, Total_change, Payment_method\n");
         orders.stream()
                 .filter(order -> order.getStatus().equals("closed"))
                 .forEach(order -> {
@@ -32,8 +32,8 @@ public class TransactionReport {
                     sb2
                             .append('[').append(itemInfo[0]).append(']').append(' ')
                             .append('[').append(itemInfo[1]).append(']').append(' ')
-                            .append(order.getPaid()).append(' ')
-                            .append(order.getExchange()).append(' ')
+                            .append((double) order.getPaid() / 100).append(' ')
+                            .append((double) order.getExchange() / 100).append(' ')
                             .append(order.getPaymentMethod());
 
 

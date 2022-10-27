@@ -137,6 +137,6 @@ public class Cash extends DBModel {
      * update cash quantity
      */
     public void updateQuantity() {
-        Cash.update(Cash.read(path), setSerialise(), path, "value");
+        Cash.update(read(Cash.path), setSerialise(), path, "value");
     }
 }

@@ -17,7 +17,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="70.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" text=" Currently available change" onAction="#generateCash"/>
+      <Button layoutX="70.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" onAction="#generateCash" text=" Currently available change" />
       <Button layoutX="293.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="189.0" onAction="#generateTransaction" text="Summary of transactions" />
       <Button layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#returnToMainPage" text="back" />
       <Label layoutX="199.0" layoutY="200.0" prefHeight="41.0" prefWidth="189.0" text="2 Reports below">

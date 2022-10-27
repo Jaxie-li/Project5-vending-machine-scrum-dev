@@ -43,7 +43,7 @@ public class CashierController {
         new TransactionReport(appController.getModel().getOrders()).write();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
-        alert.setHeaderText("Successfully generated!");
+        alert.setHeaderText("Generate Success!");
         alert.showAndWait();
     }
 
@@ -51,14 +51,14 @@ public class CashierController {
         new CashReport(appController.getModel().getCashes()).write();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
-        alert.setHeaderText("Successfully generated!");
+        alert.setHeaderText("Generate Success!");
         alert.showAndWait();
+
     }
 
     public void returnToMainPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
-        loader.setController(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -66,9 +66,10 @@ public class CashierController {
     }
 
     public void changeMoney(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/cashierMoney.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashierMoney.fxml"));
         root = loader.load();
-        loader.setController(appController);
+        CashModifierController cmc = loader.getController();
+        cmc.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -78,7 +79,6 @@ public class CashierController {
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
-        loader.setController(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

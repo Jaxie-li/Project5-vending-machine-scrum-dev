@@ -82,7 +82,7 @@ public class User extends DBModel {
         User u = new User(username, password, "customer");
 
         // create user in database
-        data = User.create(data, u.serialise(), path);
+        User.create(read(User.path), u.serialise(), path);
 
         // return created user for login
         return u;

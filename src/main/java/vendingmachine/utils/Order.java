@@ -124,21 +124,21 @@ public class Order extends DBModel {
 
     public void cancelByTimeOut() {
         status = "time out";
-        Order.create(data, serialise(), path);
+        Order.create(read(Order.path), serialise(), path);
     }
 
     public void cancelByUser() {
         status = "user cancel";
-        Order.create(data, serialise(), path);
+        Order.create(read(Order.path), serialise(), path);
     }
 
     public void cancelByNoExchange() {
         status = "no exchange";
-        Order.create(data, serialise(), path);
+        Order.create(read(Order.path), serialise(), path);
     }
 
     public void finalizeOrder() {
-        Order.create(data, serialise(), path);
+        Order.create(read(Order.path), serialise(), path);
     }
 
     @Override
@@ -148,8 +148,8 @@ public class Order extends DBModel {
         order.put("id", this.id);
         order.put("username", this.username);
         order.put("status", this.status);
-        order.put("payment_method", this.paymentMethod);
-        order.put("start_time", this.startTime.format(formatter));
+        order.put("paymentMethod", this.paymentMethod);
+        order.put("startTime", this.startTime.format(formatter));
         order.put("exchange", this.exchange);
         order.put("paid", this.paid);
 
