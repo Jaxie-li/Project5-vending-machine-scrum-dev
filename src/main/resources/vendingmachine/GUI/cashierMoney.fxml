@@ -18,10 +18,10 @@
       <Label layoutX="57.0" layoutY="139.0" prefHeight="17.0" prefWidth="27.0" text="10" />
       <Label layoutX="57.0" layoutY="172.0" prefHeight="17.0" prefWidth="27.0" text="20" />
       <Label layoutX="57.0" layoutY="207.0" prefHeight="17.0" prefWidth="27.0" text="50" />
-      <TextField layoutX="111.0" layoutY="106.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="111.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="111.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="111.0" layoutY="203.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiveCentsAmount" layoutX="111.0" layoutY="106.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="tenCentsAmount" layoutX="111.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="twentyCentsAmount" layoutX="111.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiftyCentsAmount" layoutX="111.0" layoutY="203.0" prefHeight="17.0" prefWidth="86.0" />
 
       <Label layoutX="293.0" layoutY="110.0" text="1" />
       <Label layoutX="292.0" layoutY="139.0" text="2" />
@@ -30,13 +30,13 @@
       <Label layoutX="288.0" layoutY="221.0" text="20" />
       <Label layoutX="288.0" layoutY="249.0" text="50" />
       <Label layoutX="285.0" layoutY="279.0" text="100" />
-      <TextField layoutX="361.0" layoutY="106.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="160.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="187.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="217.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="245.0" prefHeight="17.0" prefWidth="86.0" />
-      <TextField layoutX="361.0" layoutY="275.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="oneDollarAmount" layoutX="361.0" layoutY="106.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="twoDollarAmount" layoutX="361.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiveDollarAmount" layoutX="361.0" layoutY="160.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="tenDollarAmount" layoutX="361.0" layoutY="187.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="twentyDollarAmount" layoutX="361.0" layoutY="217.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="fiftyDollarAmount" layoutX="361.0" layoutY="245.0" prefHeight="17.0" prefWidth="86.0" />
+      <TextField fx:id="oneHundredDollarAmount" layoutX="361.0" layoutY="275.0" prefHeight="17.0" prefWidth="86.0" />
 
       <Button fx:id="updateMoney" layoutX="219.0" layoutY="318.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="106.0" text="Update" />
       <Button fx:id="back" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="back" onAction="#cashierMain" />
