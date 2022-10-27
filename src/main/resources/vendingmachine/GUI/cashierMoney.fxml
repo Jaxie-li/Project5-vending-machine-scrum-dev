@@ -6,13 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashierController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.CashModifierController">
    <children>
       <Label layoutX="197.0" layoutY="22.0" prefHeight="42.0" prefWidth="178.0" text="Modify Money" />
       <Label layoutX="47.0" layoutY="77.0" prefHeight="17.0" prefWidth="64.0" text="Cents" />
       <Label layoutX="280.0" layoutY="77.0" prefHeight="17.0" prefWidth="64.0" text="Dollars" />
       <Label layoutX="133.0" layoutY="77.0" prefHeight="17.0" prefWidth="51.0" text="Quatity" />
       <Label layoutX="389.0" layoutY="77.0" prefHeight="17.0" prefWidth="51.0" text="Quatity" />
+
       <Label layoutX="57.0" layoutY="110.0" prefHeight="17.0" prefWidth="27.0" text="5" />
       <Label layoutX="57.0" layoutY="139.0" prefHeight="17.0" prefWidth="27.0" text="10" />
       <Label layoutX="57.0" layoutY="172.0" prefHeight="17.0" prefWidth="27.0" text="20" />
@@ -21,6 +22,7 @@
       <TextField layoutX="111.0" layoutY="135.0" prefHeight="17.0" prefWidth="86.0" />
       <TextField layoutX="111.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" />
       <TextField layoutX="111.0" layoutY="203.0" prefHeight="17.0" prefWidth="86.0" />
+
       <Label layoutX="293.0" layoutY="110.0" text="1" />
       <Label layoutX="292.0" layoutY="139.0" text="2" />
       <Label layoutX="292.0" layoutY="164.0" text="5" />
@@ -35,6 +37,7 @@
       <TextField layoutX="361.0" layoutY="217.0" prefHeight="17.0" prefWidth="86.0" />
       <TextField layoutX="361.0" layoutY="245.0" prefHeight="17.0" prefWidth="86.0" />
       <TextField layoutX="361.0" layoutY="275.0" prefHeight="17.0" prefWidth="86.0" />
+
       <Button fx:id="updateMoney" layoutX="219.0" layoutY="318.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="106.0" text="Update" />
       <Button fx:id="back" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="back" onAction="#cashierMain" />
    </children>

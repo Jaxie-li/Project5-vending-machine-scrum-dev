@@ -47,8 +47,8 @@ public class User extends DBModel {
     public void createUser(String username, String password, String userType) {
         // if is owner
         if (this.userType.equals("owner")) {
-        User u = new User(username, password, userType);
-        data = User.create(data, u.serialise(), path);
+            User u = new User(username, password, userType);
+            data = User.create(data, u.serialise(), path);
         }
     }
 
@@ -89,7 +89,6 @@ public class User extends DBModel {
     }
 
     public static User isValidUser(String username, String password){
-        System.out.println(User.data);
         for (Object o : User.data){
             JSONObject each = (JSONObject) o;
             String realUsername = each.get("username").toString();

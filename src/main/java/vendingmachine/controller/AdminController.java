@@ -29,15 +29,20 @@ public class AdminController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void changeCashier(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
         root = loader.load();
-        loader.setController(appController);
+
+        CashierController cashierController = loader.getController();
+        cashierController.init(appController);
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public void changeSeller(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
         root = loader.load();

@@ -14,13 +14,16 @@ public class Order extends DBModel {
 
     public static final String path = "src/main/resources/vendingmachine/data/order_history.json";
 
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm:ss");
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private int id;
     private String username;
     private String status;
     private String paymentMethod;
     private final ArrayList<Product> products = new ArrayList<>();
     private LocalDateTime startTime;
+
+    private int exchange;
+    private int paid;
 
     public Order(User user) {
         id = getNextId();
@@ -34,19 +37,53 @@ public class Order extends DBModel {
         username = obj.get("username").toString();
         status = obj.get("status").toString();
         paymentMethod = obj.get("paymentMethod").toString();
-//
-//        System.out.println(obj.get("start_time").toString());
-//        System.out.println(obj.get("close_time").toString());
-        try {
-            startTime = LocalDateTime.parse(obj.get("startTime").toString(), formatter);
-        } catch (DateTimeException e) {
-            // FIXME: handle exception
-            startTime = null;
-        }
-        for (Object o: (JSONArray) obj.get("products")) {
+        startTime = LocalDateTime.parse(obj.get("startTime").toString(), formatter);
+        exchange = Integer.parseInt(obj.get("exchange").toString());
+        paid = Integer.parseInt(obj.get("paid").toString());
+        for (Object o : (JSONArray) obj.get("products")) {
             JSONObject each = (JSONObject) o;
             products.add(new Product(each));
         }
+    }
+
+    public void addOrder() {
+        data = Order.create(data, serialise(), path);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public int getPaid() {
+        return paid;
+    }
+
+    public void setPaid(int paid) {
+        this.paid = paid;
+    }
+
+    public int getExchange() {
+        return exchange;
+    }
+
+    public void setExchange(ArrayList<Cash> cashes) {
+        int exc = 0;
+        for (Cash c: cashes) {
+            exc += c.getQuantity() * c.getValue();
+        }
+        this.exchange = exc;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
     public ArrayList<Product> getProducts() {
@@ -69,17 +106,17 @@ public class Order extends DBModel {
         products.add(p);
     }
 
-    public void payByCash() {
-        paymentMethod = "cash";
+    public String getStatus() {
+        return status;
     }
 
-    public void payByCard() {
-        paymentMethod = "card";
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getOrderTotal() {
         int total = 0;
-        for(Product p: products) {
+        for (Product p : products) {
             total += p.getItemPrice() * p.getItemQuantity();
         }
         return total;
@@ -101,7 +138,7 @@ public class Order extends DBModel {
     }
 
     public void finalizeOrder() {
-        Order.create(Order.read(path), serialise(), path);
+        Order.create(data, serialise(), path);
     }
 
     @Override
@@ -111,46 +148,18 @@ public class Order extends DBModel {
         order.put("id", this.id);
         order.put("username", this.username);
         order.put("status", this.status);
-        order.put("paymentMethod", this.paymentMethod);
-        order.put("startTime", this.startTime.format(formatter));
-//        order.put("closeTime", this.closeTime.format(formatter));
+        order.put("payment_method", this.paymentMethod);
+        order.put("start_time", this.startTime.format(formatter));
+        order.put("exchange", this.exchange);
+        order.put("paid", this.paid);
 
         JSONArray prods = new JSONArray();
-        for (Product p: products) {
+        for (Product p : products) {
             prods.add(p.serialise());
         }
 
         order.put("products", prods);
 
         return order;
-    }
-
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void addOrder() {
-        Order.create(Order.read(path), serialise(), path);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
     }
 }
