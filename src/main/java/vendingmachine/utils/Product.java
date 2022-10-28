@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import vendingmachine.controller.ListProductController;
 import vendingmachine.utils.DBModel;
 
 /**
@@ -112,6 +113,22 @@ public class Product extends DBModel {
      */
     public void updateStock() {
         Product.update(read(Product.path), serialise(), path, "itemCode");
+    }
+
+    /**
+     * get the available products in the database
+     * @return JSONArray
+     */
+    public JSONArray getAvailable() {
+        JSONArray availableProducts = new JSONArray();
+        for (Object productInDatabase: read(Product.path)) {
+            Product product = new Product((JSONObject) productInDatabase);
+
+            if (product.itemQuantity > 0) {
+                availableProducts.add(productInDatabase);
+            }
+        }
+        return availableProducts;
     }
 
     @Override
