@@ -186,7 +186,7 @@ public class CashPaymentController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("");
             alert.setHeaderText("Insert Error :( ");
-            alert.setContentText("Check input :<");
+            alert.setContentText("Check input, money should be integer :<");
 
             alert.showAndWait();
         }

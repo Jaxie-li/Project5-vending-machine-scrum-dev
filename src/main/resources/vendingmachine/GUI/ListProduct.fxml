@@ -12,6 +12,6 @@
    <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="250.0" prefHeight="200.0" prefWidth="250.0" />
    <AnchorPane fx:id="candies" layoutX="350.0" layoutY="250.0" prefHeight="200.0" prefWidth="250.0" />
    <AnchorPane fx:id="chips" layoutX="350.0" layoutY="30.0" prefHeight="200.0" prefWidth="250.0" />
-   <Label fx:id="wrongMessage" layoutX="312.0" layoutY="450.0" prefHeight="32.0" prefWidth="308.0" />
+   <Label fx:id="wrongMessage" layoutX="312.0" layoutY="450.0" prefHeight="32.0" prefWidth="308.0" textFill="#d72323" />
 </children>
 </AnchorPane>
