@@ -22,6 +22,7 @@ public class VendingMachineModel {
     private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<Cash> cashes = new ArrayList<>();
     private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
 
     public VendingMachineModel() throws IOException, ParseException {
 
@@ -50,6 +51,11 @@ public class VendingMachineModel {
         for (Object o : Order.getData()) {
             JSONObject each = (JSONObject) o;
             orders.add(new Order(each));
+        }
+
+        for (Object o : User.getData()){
+            JSONObject each = (JSONObject) o;
+            users.add(new User(each));
         }
 
         ////TEST
@@ -96,4 +102,6 @@ public class VendingMachineModel {
     public ArrayList<Order> getOrders() {
         return orders;
     }
+
+    public ArrayList<User> getUsers() {return users;}
 }
