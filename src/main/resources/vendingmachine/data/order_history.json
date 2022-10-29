@@ -1,1 +1,232 @@
-[{"paid":200,"paymentMethod":"card","startTime":"19-10-2022 11:54:51","exchange":200,"id":1,"username":"testcustomer1","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":1,"itemCategory":"drinks","itemCode":1001,"itemPrice":1200},{"itemName":"Sprite","itemQuantity":3,"itemCategory":"drinks","itemCode":1002,"itemPrice":1200}]},{"paid":200,"paymentMethod":"cash","startTime":"19-10-2022 11:54:51","exchange":200,"id":2,"username":"","status":"time out","products":[{"itemName":"Mineral Water","itemQuantity":1,"itemCategory":"drinks","itemCode":1001,"itemPrice":1200},{"itemName":"Sprite","itemQuantity":3,"itemCategory":"drinks","itemCode":1002,"itemPrice":1200}]},{"paid":200,"paymentMethod":"cash","startTime":"27-10-2022 11:37:27","exchange":200,"id":3,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":2,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]},{"paid":2000,"paymentMethod":"cash","startTime":"27-10-2022 21:10:11","exchange":1750,"id":4,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":1,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]},{"paid":5000,"paymentMethod":"cash","startTime":"27-10-2022 21:18:39","exchange":4500,"id":5,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":2,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]},{"paid":2000,"paymentMethod":"cash","startTime":"27-10-2022 21:19:20","exchange":1400,"id":6,"username":"","status":"closed","products":[{"itemName":"Sprite","itemQuantity":2,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}]},{"paid":600,"paymentMethod":"cash","startTime":"27-10-2022 21:23:52","exchange":0,"id":7,"username":"","status":"closed","products":[{"itemName":"Sprite","itemQuantity":2,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}]},{"paid":600,"paymentMethod":"cash","startTime":"27-10-2022 21:25:57","exchange":0,"id":8,"username":"","status":"closed","products":[{"itemName":"Sprite","itemQuantity":2,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}]},{"paid":300,"paymentMethod":"cash","startTime":"27-10-2022 21:30:27","exchange":0,"id":9,"username":"","status":"closed","products":[{"itemName":"Sprite","itemQuantity":1,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}]},{"paid":2000,"paymentMethod":"cash","startTime":"28-10-2022 00:46:51","exchange":1750,"id":10,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":1,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]},{"paid":2020,"paymentMethod":"cash","startTime":"28-10-2022 01:05:23","exchange":1770,"id":11,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":1,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]},{"paid":5000,"paymentMethod":"cash","startTime":"30-10-2022 01:49:21","exchange":4500,"id":12,"username":"","status":"closed","products":[{"itemName":"Mineral Water","itemQuantity":2,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}]}]
+[
+  {
+    "paid": 200,
+    "paymentMethod": "card",
+    "startTime": "19-10-2022 11:54:51",
+    "exchange": 200,
+    "id": 1,
+    "username": "testcustomer1",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 1200
+      },
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 3,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 1200
+      }
+    ]
+  },
+  {
+    "paid": 200,
+    "paymentMethod": "cash",
+    "startTime": "19-10-2022 11:54:51",
+    "exchange": 200,
+    "id": 2,
+    "username": "",
+    "status": "time out",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 1200
+      },
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 3,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 1200
+      }
+    ]
+  },
+  {
+    "paid": 200,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 11:37:27",
+    "exchange": 200,
+    "id": 3,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  },
+  {
+    "paid": 2000,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:10:11",
+    "exchange": 1750,
+    "id": 4,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  },
+  {
+    "paid": 5000,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:18:39",
+    "exchange": 4500,
+    "id": 5,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  },
+  {
+    "paid": 2000,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:19:20",
+    "exchange": 1400,
+    "id": 6,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 300
+      }
+    ]
+  },
+  {
+    "paid": 600,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:23:52",
+    "exchange": 0,
+    "id": 7,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 300
+      }
+    ]
+  },
+  {
+    "paid": 600,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:25:57",
+    "exchange": 0,
+    "id": 8,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 300
+      }
+    ]
+  },
+  {
+    "paid": 300,
+    "paymentMethod": "cash",
+    "startTime": "27-10-2022 21:30:27",
+    "exchange": 0,
+    "id": 9,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Sprite",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1002,
+        "itemPrice": 300
+      }
+    ]
+  },
+  {
+    "paid": 2000,
+    "paymentMethod": "cash",
+    "startTime": "28-10-2022 00:46:51",
+    "exchange": 1750,
+    "id": 10,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  },
+  {
+    "paid": 2020,
+    "paymentMethod": "cash",
+    "startTime": "28-10-2022 01:05:23",
+    "exchange": 1770,
+    "id": 11,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 1,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  },
+  {
+    "paid": 5000,
+    "paymentMethod": "cash",
+    "startTime": "30-10-2022 01:49:21",
+    "exchange": 4500,
+    "id": 12,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
+  }
+]
