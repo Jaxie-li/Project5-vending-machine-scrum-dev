@@ -46,6 +46,8 @@ public class ListProductController {
     @FXML
     private AnchorPane page;
 
+    @FXML private Label wrongMessage;
+
     @FXML
     private Button cancelButton;
 
@@ -68,22 +70,30 @@ public class ListProductController {
 
         Order order = new Order(appController.getModel().getCurrentUser());
         for (ProductComponents pc : pcs) {
-            if (pc.getSpinner().getValue() > 0) {
+            //check product quantity if zero print the message
+           if (pc.getSpinner().getValue() == 0){
+                wrongMessage.setText("You cannot buy empty product, please buy something.");
+           }
+           //otherwise transfer to order page, when product more than 0
+            else if (pc.getSpinner().getValue() > 0) {
                 Product temp = pc.getProduct();
                 order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
                         temp.getItemCategory(), pc.getSpinner().getValue()));
+                //change to order page
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+               root = loader.load();
+               GenerateOrderController generateOrderControl = loader.getController();
+               generateOrderControl.setModel(order);
+               generateOrderControl.init(appController);
+               stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+               scene = new Scene(root);
+               stage.setScene(scene);
+               stage.show();
             }
+
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
-        root = loader.load();
-        GenerateOrderController generateOrderControl = loader.getController();
-        generateOrderControl.setModel(order);
-        generateOrderControl.init(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
     }
 
 
@@ -151,4 +161,6 @@ public class ListProductController {
     }
 
     // TODO: Every time when the product number updates, re-initialise this page
+
+
 }

@@ -12,9 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import vendingmachine.utils.CancelledOrder;
-import vendingmachine.utils.Json2Txt;
-import vendingmachine.utils.Product;
+import vendingmachine.utils.*;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -140,6 +138,14 @@ public class OwnerController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void generateUserInformation(ActionEvent actionEvent) throws IOException {
+        new UserReport(appController.getModel().getUsers()).write();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Generate Success!");
+        alert.showAndWait();
     }
 }
 
