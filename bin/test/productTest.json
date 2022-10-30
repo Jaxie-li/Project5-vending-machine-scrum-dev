@@ -1,0 +1,9 @@
+[
+  {
+    "itemCode": 1001,
+    "itemName": "Mineral Water",
+    "itemPrice": 2.5,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
+  }
+]

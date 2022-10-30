@@ -24,7 +24,7 @@ import java.io.IOException;
  * @date: Created in 5/10/2022 1:53 am
  * @description: This is the controller for the App class, and it will take the responsibility of GUI Action & Response
  */
-public class AppController{
+public class AppController {
     private VendingMachineModel model = new VendingMachineModel();
 
     private Stage stage;
@@ -51,8 +51,10 @@ public class AppController{
     private Button change_seller;
     @FXML
     private Button change_cashier;
-    @FXML private Button money;
-    @FXML private Button manage_add_delete;
+    @FXML
+    private Button money;
+    @FXML
+    private Button manage_add_delete;
 
 
 //    public void setPasswordSkin() {
@@ -63,29 +65,28 @@ public class AppController{
     }
 
 
-
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
         listProductController.init(this);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public String getUserType() {
         return userType;
     }
+
     public void setUserType(String userType) {
         this.userType = userType;
     }
 
     public void signInCheck(ActionEvent event) throws IOException {
-//        password.setSkin(new PasswordFieldSkin(password));
         User user = User.isValidUser(username.getText(), password.getText());
 
-        // if the user is valid
         if (user != null) {
             // set current user
             this.model.setCurrentUser(user);
@@ -97,37 +98,40 @@ public class AppController{
                 root = loader.load();
                 SellerPageController sellerPageController = loader.getController();
                 sellerPageController.init(this);
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             } else if (user.getUserType().equals("cashier")) {
-                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
                 root = loader.load();
                 CashierController cashierController = loader.getController();
                 cashierController.init(this);
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             } else if (user.getUserType().equals("owner")) {
-                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Owner.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Owner.fxml"));
                 root = loader.load();
                 OwnerController ownerController = loader.getController();
                 ownerController.init(this);
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             } else if (user.getUserType().equals("admin")) {
-                FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Admin.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Admin.fxml"));
                 root = loader.load();
                 AdminController adminController = loader.getController();
                 adminController.init(this);
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+            } else if (user.getUserType().equals("customer")) {
+                System.out.println("cus");
+                userComponent.setVisible(false);
             }
             // alert the user their login was successful
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -147,23 +151,27 @@ public class AppController{
         }
     }
 
-    public void register() {
+    public void register() throws ParseException, IOException {
         try {
             User newUser = User.register(username.getText(), password.getText());
+
+
+            model = new VendingMachineModel();
             this.model.setCurrentUser(newUser);
             userComponent.setVisible(false);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register");
             alert.setContentText("Registration Successful!");
             alert.showAndWait();
-        } catch (UserNameExistException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("User exists!");
-            alert.setContentText("Change another username and try again!");
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Register");
+            alert.setContentText("Name Already Exists!");
             alert.showAndWait();
-            username.setText("");
-            password.setText("");
+        } catch (UserNameExistException e) {
+            throw new RuntimeException(e);
         }
+
     }
 
     public VendingMachineModel getModel() {
@@ -172,6 +180,8 @@ public class AppController{
 
     //logout and re-login
     public void Logout(ActionEvent event) throws IOException {
+        username.setText("");
+        password.setText("");
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
     }
