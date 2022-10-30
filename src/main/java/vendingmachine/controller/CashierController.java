@@ -79,7 +79,9 @@ public class CashierController {
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ListProductController listProductController = loader.getController();
+        listProductController.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
