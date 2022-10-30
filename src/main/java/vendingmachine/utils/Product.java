@@ -115,6 +115,7 @@ public class Product extends DBModel {
         Product.update(read(Product.path), serialise(), path, "itemCode");
     }
 
+
     /**
      * get the available products in the database
      * @return JSONArray
@@ -133,6 +134,8 @@ public class Product extends DBModel {
 
     @Override
     public String toString() {
-        return String.format("%s\t\t$%s", itemName, itemPrice);
+        return String.valueOf(itemCode);
+//        return String.format("%s\t\t$%s", itemName, itemPrice);
     }
+
 }

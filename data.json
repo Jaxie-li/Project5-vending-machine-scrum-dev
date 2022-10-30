@@ -1,0 +1,114 @@
+[
+  {
+    "itemCode": 1002,
+    "itemName": "Sprite",
+    "itemPrice": 300,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1003,
+    "itemName": "Coca cola",
+    "itemPrice": 300,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1004,
+    "itemName": "Pepsi",
+    "itemPrice": 350,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1005,
+    "itemName": "Juice",
+    "itemPrice": 500,
+    "itemCategory": "drinks",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1006,
+    "itemName": "Mars",
+    "itemPrice": 800,
+    "itemCategory": "chocolates",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1007,
+    "itemName": "M\u0026M",
+    "itemPrice": 1200,
+    "itemCategory": "chocolates",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1008,
+    "itemName": "Bounty",
+    "itemPrice": 1200,
+    "itemCategory": "chocolates",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1009,
+    "itemName": "Snickers",
+    "itemPrice": 1200,
+    "itemCategory": "chocolates",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1010,
+    "itemName": "Smiths",
+    "itemPrice": 1200,
+    "itemCategory": "chips",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1011,
+    "itemName": "Pringles",
+    "itemPrice": 1200,
+    "itemCategory": "chips",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1012,
+    "itemName": "Kettle",
+    "itemPrice": 1200,
+    "itemCategory": "chips",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1013,
+    "itemName": "Thins",
+    "itemPrice": 1200,
+    "itemCategory": "chips",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1014,
+    "itemName": "Mentos",
+    "itemPrice": 1200,
+    "itemCategory": "candies",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1015,
+    "itemName": "Sour Patch",
+    "itemPrice": 1200,
+    "itemCategory": "candies",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1016,
+    "itemName": "Skittles",
+    "itemPrice": 1200,
+    "itemCategory": "candies",
+    "itemQuantity": 7
+  },
+  {
+    "itemCode": 1001,
+    "itemName": "Water",
+    "itemPrice": 2500,
+    "itemCategory": "drinks",
+    "itemQuantity": 8
+  }
+]

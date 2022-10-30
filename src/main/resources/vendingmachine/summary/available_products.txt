@@ -1,4 +1,4 @@
-{"itemName":"Mineral Water","itemQuantity":5,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}
+{"itemName":"Mineral Water","itemQuantity":7,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}
 {"itemName":"Sprite","itemQuantity":7,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}
 {"itemName":"Coca cola","itemQuantity":7,"itemCategory":"drinks","itemCode":1003,"itemPrice":300}
 {"itemName":"Pepsi","itemQuantity":7,"itemCategory":"drinks","itemCode":1004,"itemPrice":350}

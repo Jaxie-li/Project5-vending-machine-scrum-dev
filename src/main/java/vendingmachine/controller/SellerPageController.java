@@ -39,20 +39,11 @@ public class SellerPageController {
         stage.show();
     }
 
-    public void sellerMain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
-        root = loader.load();
-        loader.setController(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void sellerModify(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerModify.fxml"));
         root = loader.load();
-        loader.setController(appController);
+        SellModifyController sellModifyController= loader.getController();
+        sellModifyController.init(appController);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -87,8 +78,8 @@ public class SellerPageController {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
-        alert.setHeaderText("Successfully ! ");
-        alert.setContentText("Generate summary of available products successfully !");
+        alert.setHeaderText("Successful");
+        alert.setContentText("Generate summary of available products successfully!");
 
         Optional<ButtonType> button = alert.showAndWait();
         if (button.isEmpty()) {
@@ -104,5 +95,15 @@ public class SellerPageController {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void modifyProductInfo(ActionEvent event) throws IOException {
+        // change to seller modify page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerModify.fxml"));
+        root = loader.load();
+        SellModifyController sellModifyController = loader.getController();
+        sellModifyController.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

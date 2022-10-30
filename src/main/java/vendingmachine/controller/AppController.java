@@ -85,12 +85,14 @@ public class AppController{
 //        password.setSkin(new PasswordFieldSkin(password));
         User user = User.isValidUser(username.getText(), password.getText());
 
-
+        // if the user is valid
         if (user != null) {
-            //check the username and password,
+            // set current user
             this.model.setCurrentUser(user);
 
-            if(user.getUserType().equals("seller")){
+            // change to different pages according to different user types
+
+            if (user.getUserType().equals("seller")) {
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
                 root = loader.load();
                 SellerPageController sellerPageController = loader.getController();
@@ -99,8 +101,7 @@ public class AppController{
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }
-            else if(user.getUserType().equals("cashier")){
+            } else if (user.getUserType().equals("cashier")) {
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
                 root = loader.load();
                 CashierController cashierController = loader.getController();
@@ -109,8 +110,7 @@ public class AppController{
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }
-            else if(user.getUserType().equals("owner")){
+            } else if (user.getUserType().equals("owner")) {
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Owner.fxml"));
                 root = loader.load();
                 OwnerController ownerController = loader.getController();
@@ -119,7 +119,7 @@ public class AppController{
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }else if(user.getUserType().equals("admin")){
+            } else if (user.getUserType().equals("admin")) {
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Admin.fxml"));
                 root = loader.load();
                 AdminController adminController = loader.getController();
@@ -129,8 +129,15 @@ public class AppController{
                 stage.setScene(scene);
                 stage.show();
             }
-
-        } else {
+            // alert the user their login was successful
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Log In Success!");
+            alert.setContentText(String.format("Welcome %s",user.getUsername()));
+            alert.showAndWait();
+            userComponent.setVisible(false);
+        }
+        // otherwise the login check failed, prompt the user to enter again
+        else {
             username.setText("");
             password.setText("");
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -138,11 +145,6 @@ public class AppController{
             alert.setContentText("Incorrect Username or password");
             alert.showAndWait();
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Log In Success!");
-        alert.setContentText(String.format("Welcome %s",user.getUsername()));
-        alert.showAndWait();
-        userComponent.setVisible(false);
     }
 
     public void register() {
