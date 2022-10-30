@@ -5,17 +5,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class UserReport{
+public class UserReport {
     private final String content;
     public static String path = "./UserReport.txt";
 
     public UserReport(ArrayList<User> users) {
         StringBuilder sb1 = new StringBuilder("User_name, Role\n");
-        users.stream()
+        users
                 .forEach(user -> {
                     sb1.append("{");
                     StringBuilder sb2 = new StringBuilder();
-
                     sb2
                             .append(user.getUsername())
                             .append(' ');

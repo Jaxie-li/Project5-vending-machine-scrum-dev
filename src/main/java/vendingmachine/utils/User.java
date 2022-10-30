@@ -14,9 +14,9 @@ import vendingmachine.controller.AppController;
 public class User extends DBModel {
     private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/user.json";
-    private static String username;
+    private String username;
     private String userType;
-    private static String password;
+    private String password;
     private Card savedCard;
 
     public static JSONArray getData() {
@@ -73,9 +73,9 @@ public class User extends DBModel {
             JSONObject each = (JSONObject) o;
             String realUserName = each.get("username").toString();
 
-            // if username exist throw UserNameExistException
+            // if username exist throw RuntimeException
             if (realUserName.equals(username)) {
-                //throw new UserNameExistException();
+                throw new RuntimeException();
             }
         }
         // construct new user
@@ -113,8 +113,8 @@ public class User extends DBModel {
 
     public User(String username, String password, String userType) {
         this.username = username;
-        this.userType = password;
-        this.password = userType;
+        this.password = password;
+        this.userType = userType;
     }
 
     public String getUsername() {
