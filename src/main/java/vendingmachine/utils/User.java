@@ -77,11 +77,7 @@ public class User extends DBModel {
 
             // if username exist throw RuntimeException
             if (realUserName.equals(username)) {
-<<<<<<< HEAD
-                    throw new UserNameExistException();
-=======
                 throw new RuntimeException();
->>>>>>> Louis
             }
         }
         // construct new user

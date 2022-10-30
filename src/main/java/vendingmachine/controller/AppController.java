@@ -142,42 +142,27 @@ public class AppController {
         //don't write things here unless u know what u r doing!
     }
 
-<<<<<<< HEAD
-    public void register() {
-        try {
-            User newUser = User.register(username.getText(), password.getText());
-=======
     public void register() throws ParseException, IOException {
         try {
             User newUser = User.register(username.getText(), password.getText());
 
 
             model = new VendingMachineModel();
->>>>>>> Louis
             this.model.setCurrentUser(newUser);
             userComponent.setVisible(false);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register");
             alert.setContentText("Registration Successful!");
             alert.showAndWait();
-<<<<<<< HEAD
-        } catch (UserNameExistException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("User exists!");
-            alert.setContentText("Change another username and try again!");
-            alert.showAndWait();
-            username.setText("");
-            password.setText("");
-        }
-=======
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register");
             alert.setContentText("Name Already Exists!");
             alert.showAndWait();
+        } catch (UserNameExistException e) {
+            throw new RuntimeException(e);
         }
 
->>>>>>> Louis
     }
 
     public VendingMachineModel getModel() {

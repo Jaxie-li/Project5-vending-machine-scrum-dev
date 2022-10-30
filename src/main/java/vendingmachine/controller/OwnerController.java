@@ -63,15 +63,9 @@ public class OwnerController {
     public void changeSeller(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
         root = loader.load();
-<<<<<<< HEAD
-        SellerPageController sellerPageController = loader.getController();
-        sellerPageController.init(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-=======
         SellerPageController spc = loader.getController();
         spc.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
->>>>>>> Louis
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -100,15 +94,9 @@ public class OwnerController {
     public void changeManagement(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerAddDelete.fxml"));
         root = loader.load();
-<<<<<<< HEAD
-        OwnerController ownerController = loader.getController();
-        ownerController.init(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-=======
         OwnerController oc = loader.getController();
         oc.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
->>>>>>> Louis
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -117,15 +105,9 @@ public class OwnerController {
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
-<<<<<<< HEAD
-        ListProductController listProductController = loader.getController();
-        listProductController.init(appController);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-=======
         ListProductController lpc = loader.getController();
         lpc.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
->>>>>>> Louis
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
