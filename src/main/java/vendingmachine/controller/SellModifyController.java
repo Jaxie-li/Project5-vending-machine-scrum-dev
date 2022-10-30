@@ -96,10 +96,12 @@ public class SellModifyController {
             appController.getModel().getProducts().remove(itemNameBox.getSelectionModel().getSelectedItem());
             appController.getModel().getProducts().add(newProduct);
 
+
             ArrayList<Product> products = appController.getModel().getProducts();
+            products.sort((o1,o2)-> o1.getItemCode()-o2.getItemCode()>0?1:-1);
 
 
-            FileWriter writer = new FileWriter(new File("./data.json"));
+            FileWriter writer = new FileWriter("src/main/resources/vendingmachine/data/product.json");
             writer.write(new Gson().toJson(products));
             writer.close();
 

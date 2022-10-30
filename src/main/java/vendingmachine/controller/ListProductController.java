@@ -102,16 +102,21 @@ public class ListProductController {
             Product product = model.getProducts().get(i);
             ProductComponents pc;
             if (product.getItemCategory().equals("drinks")) {
-                pc = new ProductComponents(product, DRINKS_X, DRINKS_Y + i * 40);
+                pc = new ProductComponents(product, DRINKS_X, DRINKS_Y +
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("drinks")).count() * 40);
             } else if (product.getItemCategory().equals("chocolates")) {
                 pc = new ProductComponents(product, CHOCOLATES_X, CHOCOLATES_Y +
-                        (i - 5) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("chocolates")).count()* 40);
             } else if (product.getItemCategory().equals("chips")) {
                 pc = new ProductComponents(product, CHIPS_X,  CHIPS_Y+
-                        (i % 9) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("chips")).count() * 40);
             } else {
                 pc = new ProductComponents(product, CANDIES_X, CANDIES_Y +
-                        (i - 13) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("candies")).count() * 40);
             }
 
             for (int j = 0; j < pc.getElements().size(); j++) {

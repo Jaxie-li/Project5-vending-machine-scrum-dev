@@ -155,7 +155,6 @@ public class AppController {
         try {
             User newUser = User.register(username.getText(), password.getText());
 
-
             model = new VendingMachineModel();
             this.model.setCurrentUser(newUser);
             userComponent.setVisible(false);
@@ -164,7 +163,7 @@ public class AppController {
             alert.setContentText("Registration Successful!");
             alert.showAndWait();
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Register");
             alert.setContentText("Name Already Exists!");
             alert.showAndWait();

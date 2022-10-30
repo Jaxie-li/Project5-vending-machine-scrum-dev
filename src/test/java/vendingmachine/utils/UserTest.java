@@ -40,7 +40,7 @@ class UserTest {
     public void uniqueUsernameTest() {
         assertDoesNotThrow(()->User.setData(data));
 
-        assertThrows(UserNameExistException.class,()-> User.register("testcustomer1", "123456"));
+        assertThrows(RuntimeException.class,()-> User.register("testcustomer1", "123456"));
     }
 
     @Test
