@@ -1,6 +1,8 @@
 package vendingmachine.controller;
 
 import com.google.gson.Gson;
+import exceptions.CodeExistException;
+import exceptions.ExcessQuantityException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,18 +82,28 @@ public class SellModifyController {
         stage.show();
     }
 
-    public void modify(ActionEvent event) throws IOException {
+    public void modify(ActionEvent event) {
         /*
         Type Check
          */
-        try{
+        try {
             int code = Integer.parseInt(newCode.getText());
             String name = newName.getText();
-            int price = (int)Double.parseDouble(newPrice.getText())*100;
+            int price = (int)Double.parseDouble(newPrice.getText()) * 100;
             String category = newCategory.getSelectionModel().getSelectedItem();
             int quantity = Integer.parseInt(newQuantity.getText());
 
-            Product newProduct = new Product(code,name,price,category,quantity);
+            if (quantity > 15) {
+                throw new ExcessQuantityException();
+            }
+
+            for (Product product : appController.getModel().getProducts()) {
+                if (code == product.getItemCode()) {
+                    throw new CodeExistException();
+                }
+            }
+
+            Product newProduct = new Product(code, name, price, category, quantity);
 
             appController.getModel().getProducts().remove(itemNameBox.getSelectionModel().getSelectedItem());
             appController.getModel().getProducts().add(newProduct);
@@ -111,7 +123,17 @@ public class SellModifyController {
             alert.setContentText("Done");
             alert.showAndWait();
             back(event);
-        }catch (Exception e) {
+        } catch (CodeExistException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Modify Failed!");
+            alert.setContentText("Please check your input. Item code already exists.");
+            alert.showAndWait();
+        } catch (ExcessQuantityException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Modify Failed!");
+            alert.setContentText("Please check your input. Quantity needs to be smaller than 15.");
+            alert.showAndWait();
+        } catch (Exception e) {
            Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle("Modify Failed!");
            alert.setContentText("Please check your input.");

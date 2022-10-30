@@ -4,14 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="page" prefHeight="536.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.ListProductController">
+<AnchorPane fx:id="page" prefHeight="715.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vendingmachine.controller.ListProductController">
 <children>
-   <Button fx:id="cancelButton" layoutX="30.0" layoutY="491.0" mnemonicParsing="false" onAction="#cancelTransaction" prefHeight="26.0" prefWidth="138.0" text="Cancel Transaction" />
-   <Button fx:id="checkOut" layoutX="436.0" layoutY="491.0" mnemonicParsing="false" onAction="#generateOrder" prefHeight="26.0" prefWidth="138.0" text="Check Out" />
-   <AnchorPane fx:id="drinks" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="250.0" />
-   <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="250.0" prefHeight="200.0" prefWidth="250.0" />
-   <AnchorPane fx:id="candies" layoutX="350.0" layoutY="250.0" prefHeight="200.0" prefWidth="250.0" />
-   <AnchorPane fx:id="chips" layoutX="350.0" layoutY="30.0" prefHeight="200.0" prefWidth="250.0" />
-   <Label fx:id="wrongMessage" layoutX="312.0" layoutY="450.0" prefHeight="32.0" prefWidth="308.0" textFill="#d72323" />
+   <Button fx:id="cancelButton" layoutX="30.0" layoutY="675.0" mnemonicParsing="false" onAction="#cancelTransaction" prefHeight="26.0" prefWidth="138.0" text="Cancel Transaction" />
+   <Button fx:id="checkOut" layoutX="462.0" layoutY="675.0" mnemonicParsing="false" onAction="#generateOrder" prefHeight="26.0" prefWidth="138.0" text="Check Out" />
+   <AnchorPane fx:id="drinks" layoutX="30.0" layoutY="30.0" prefHeight="300.0" prefWidth="250.0" />
+   <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="349.0" prefHeight="300.0" prefWidth="250.0" />
+   <AnchorPane fx:id="candies" layoutX="350.0" layoutY="349.0" prefHeight="300.0" prefWidth="250.0" />
+   <AnchorPane fx:id="chips" layoutX="350.0" layoutY="30.0" prefHeight="300.0" prefWidth="250.0" />
+   <Label fx:id="wrongMessage" layoutX="172.0" layoutY="675.0" prefHeight="26.0" prefWidth="286.0" textFill="#d72323" />
 </children>
 </AnchorPane>
