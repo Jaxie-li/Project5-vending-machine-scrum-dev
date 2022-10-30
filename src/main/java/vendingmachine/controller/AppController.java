@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import exceptions.UserNameExistException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -144,14 +145,23 @@ public class AppController{
         userComponent.setVisible(false);
     }
 
-    public void register(){
-        User newUser = User.register(username.getText(), password.getText());
-        this.model.setCurrentUser(newUser);
-        userComponent.setVisible(false);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Register");
-        alert.setContentText("Registration Successful!");
-        alert.showAndWait();
+    public void register() {
+        try {
+            User newUser = User.register(username.getText(), password.getText());
+            this.model.setCurrentUser(newUser);
+            userComponent.setVisible(false);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Register");
+            alert.setContentText("Registration Successful!");
+            alert.showAndWait();
+        } catch (UserNameExistException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("User exists!");
+            alert.setContentText("Change another username and try again!");
+            alert.showAndWait();
+            username.setText("");
+            password.setText("");
+        }
     }
 
     public VendingMachineModel getModel() {

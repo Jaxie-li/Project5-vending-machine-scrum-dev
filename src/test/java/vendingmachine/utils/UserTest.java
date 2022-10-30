@@ -1,5 +1,6 @@
 package vendingmachine.utils;
 
+import exceptions.UserNameExistException;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -21,16 +22,25 @@ class UserTest {
     private User cashier;
 
     private String path = "src/test/resources/userTest.json";
+    private JSONArray data;
 
 
     @BeforeEach
     public void init() throws IOException, ParseException {
+        // TODO: you might need to save these information into userTest.json database
         this.admin = new User("Katherine", "katherine", "owner");
         this.user = new User("Jaxie", "jaxie", "customer");
         this.seller = new User("Leo", "leo", "seller");
         this.cashier = new User("Louis", "louis", "cashier");
         // Get User info from database
-        JSONArray data = (JSONArray) new JSONParser().parse(new FileReader(path));
+        this.data = (JSONArray) new JSONParser().parse(new FileReader(path));
+    }
+    
+    @Test
+    public void uniqueUsernameTest() {
+        assertDoesNotThrow(()->User.setData(data));
+
+        assertThrows(UserNameExistException.class,()-> User.register("testcustomer1", "123456"));
     }
 
     @Test

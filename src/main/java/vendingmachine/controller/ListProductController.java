@@ -90,10 +90,7 @@ public class ListProductController {
                stage.setScene(scene);
                stage.show();
             }
-
         }
-
-
     }
 
 
@@ -159,8 +156,4 @@ public class ListProductController {
             }
         }, 120000);
     }
-
-    // TODO: Every time when the product number updates, re-initialise this page
-
-
 }
