@@ -65,8 +65,9 @@ public class OwnerController {
     public void changeSeller(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
         root = loader.load();
-        loader.setController(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SellerPageController sellerPageController = loader.getController();
+        sellerPageController.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -75,21 +76,29 @@ public class OwnerController {
     public void changeCashier(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Cashier.fxml"));
         root = loader.load();
-
         CashierController cashierController = loader.getController();
         cashierController.init(appController);
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
+//    public void changeManagement(ActionEvent event) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerAddDelete.fxml"));
+//        root = loader.load();
+//        loader.setController(appController);
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     public void changeManagement(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerAddDelete.fxml"));
         root = loader.load();
-        loader.setController(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        OwnerController ownerController = loader.getController();
+        ownerController.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -98,8 +107,9 @@ public class OwnerController {
     public void listProduct(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
-        loader.setController(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ListProductController listProductController = loader.getController();
+        listProductController.init(appController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
