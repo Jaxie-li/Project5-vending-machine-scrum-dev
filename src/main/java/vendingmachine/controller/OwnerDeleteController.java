@@ -75,6 +75,14 @@ public class OwnerDeleteController {
                 System.out.println("User not found ! ");
                 userNotFound(event);
             }
+        } else {
+            System.out.println("No input");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setHeaderText("Please input a user name :) ");
+            alert.setContentText("Enter a name !!!!!!!!!!! ");
+            alert.showAndWait();
         }
     }
 
@@ -82,26 +90,12 @@ public class OwnerDeleteController {
 
         System.out.println("Can not find " + removedUserName.getText());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(removedUserName.getText() + " NOT FOUND 404");
+        alert.setTitle("Username: " + removedUserName.getText() + " NOT FOUND 404");
         alert.setHeaderText("Checking User Name :) ");
         alert.setContentText("Can't find the user ! ");
 
-        Optional<ButtonType> button = alert.showAndWait();
+        alert.showAndWait();
 
-        if (button.isEmpty()) {
-            System.out.println("Close the pop up window");
-
-        } else if (button.get() == ButtonType.OK) {
-            System.out.println("Click OK ");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerDelete.fxml"));
-            root = loader.load();
-            OwnerDeleteController ownerDeleteController = loader.getController();
-            ownerDeleteController.init(appController);
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
     }
 
     private void deleteSuccessful(ActionEvent event) throws IOException {
