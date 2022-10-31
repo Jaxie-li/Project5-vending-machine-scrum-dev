@@ -87,6 +87,7 @@ public class GenerateOrderController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
         root = loader.load();
         CashPaymentController cashPaymentController = loader.getController();
+        model.setPaymentMethod("cash");
         cashPaymentController.setModel(model);
         cashPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -100,6 +101,7 @@ public class GenerateOrderController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CardPayment.fxml"));
         root = loader.load();
         CardPaymentController cardPaymentController = loader.getController();
+        model.setPaymentMethod("card");
         cardPaymentController.setModel(model);
         cardPaymentController.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

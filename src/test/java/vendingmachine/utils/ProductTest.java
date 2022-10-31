@@ -81,7 +81,7 @@ class ProductTest {
 
     @Test
     public void toStringTest(){
-        assertEquals("Mineral Water\t\t$12", this.product.toString());
+        assertEquals("1001", this.product.toString());
     }
 
     @Test

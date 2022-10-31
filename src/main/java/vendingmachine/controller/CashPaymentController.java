@@ -138,10 +138,6 @@ public class CashPaymentController {
             } else {
                 // find sufficient changes >> check out successfully, user receives products and changes
                 checkOutSuccess(event);
-
-                // update the stock
-                updateProductStock();
-                updateCashStock();
             }
         }
     }
@@ -190,7 +186,7 @@ public class CashPaymentController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("");
             alert.setHeaderText("Insert Error :( ");
-            alert.setContentText("Check input :<");
+            alert.setContentText("Check input, money should be integer :<");
 
             alert.showAndWait();
         }
@@ -221,20 +217,25 @@ public class CashPaymentController {
         } else if (button.get() == ButtonType.OK) {
             System.out.println("Click OK >> Check out successfully");
 
-            //TBD : add successfully order
+            // add successfully order
+            model.setPaid(balance);
+            model.setExchange(exchange);
             model.setStatus("closed");
             model.setPaymentMethod("cash");
             model.addOrder();
-            // go back to main page and log out
-            App newApp = new App();
+
+            // update the stock
+            updateProductStock();
+            updateCashStock();
+
+            //Go back to main page
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+            Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            newApp.start(stage);
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-//            Parent root = loader.load();
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

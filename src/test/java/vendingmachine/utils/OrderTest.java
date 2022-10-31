@@ -55,12 +55,6 @@ class OrderTest {
     }
 
     @Test
-    void payByCashTest() {
-        order.payByCash();
-
-    }
-
-    @Test
     void payByCard() {
     }
 

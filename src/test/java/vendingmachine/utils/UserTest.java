@@ -1,9 +1,13 @@
 package vendingmachine.utils;
 
+import exceptions.UserNameExistException;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,17 +18,29 @@ class UserTest {
     private User customer;
     private User seller;
     private User cashier;
-
     private User realCustomer;
+
+    private String path = "src/test/resources/vendingmachine/data/userTest.json";
+    private JSONArray data;
 
 
     @BeforeEach
-    public void init() {
+    public void init() throws IOException, ParseException {
+        // TODO: you might need to save these information into userTest.json database
         this.owner = new User("Katherine", "katherine", "owner");
         this.customer = new User("Jaxie", "jaxie", "customer");
-        this.cashier = new User("Louis", "louis", "cashier");
         this.seller = new User("Leo", "leo", "seller");
+        this.cashier = new User("Louis", "louis", "cashier");
         this.realCustomer = new User("testcustomer1", "123456", "customer");
+        // Get User info from database
+        this.data = (JSONArray) new JSONParser().parse(new FileReader(path));
+    }
+
+    @Test
+    public void uniqueUsernameTest() {
+        assertDoesNotThrow(()->User.setData(data));
+
+        assertThrows(RuntimeException.class,()-> User.register("testcustomer1", "123456"));
     }
 
 //    @Test
@@ -37,10 +53,10 @@ class UserTest {
 //        customer.createUser("Joyce", "joyce", "customer");
 //        seller.createUser("AAAA", "aaaa", "owner");
 //
-//        // Only owner could create user, so when owner creates user it will not be null
+//        // Only owner could create customer, so when owner creates customer it will not be null
 //        assertNotNull(User.isValidUser("Yitong", "yitong"));
 //
-//        // When customer/ seller creates user they will be null
+//        // When customer/ seller creates customer they will be null
 //        assertNull(User.isValidUser("Joyce", "joyce"));
 //        assertNull(User.isValidUser("AAAA", "aaaa"));
 //    }
@@ -60,22 +76,23 @@ class UserTest {
     @Test
     public void registerTest() {
         User.setData(User.read(User.path));
-        assertNotNull(User.register("Jaxie","jaxie"));
         // TODO: shouldn't have this because cannot register the same username, when customer is already in database
-//        assertEquals(customer.toString(), User.register("Jaxie","jaxie").toString());
+
+        // assertNotNull(User.register("Jaxie","jaxie"));
+        // assertEquals(customer.toString(), User.register("Jaxie","jaxie").toString());
     }
 
     @Test
     public void isValidUserTest() {
         // Fetch User information from database
-        User.setData(User.read(User.path));
+        User.setData(this.data);
 
-        // Should be null if the user is not valid
+        // Should be null if the customer is not valid
         assertNull(User.isValidUser("AAA", "aaaaa"));
 
-        // Should not be null if the user exists. Test for customer, owner & seller
+        // Should not be null if the customer exists. Test for customer, owner & seller
         assertNotNull(User.isValidUser("testcustomer1", "123456"));
-        assertNotNull(User.isValidUser("testowner1", "123456"));
+        assertNotNull(User.isValidUser("testadmin1", "123456"));
         assertNotNull(User.isValidUser("testseller1", "123456"));
     }
 

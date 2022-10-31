@@ -46,26 +46,19 @@ public class ListProductController {
     @FXML
     private AnchorPane page;
 
+    @FXML private Label wrongMessage;
+
     @FXML
     private Button cancelButton;
 
-    //    @FXML
-    //    private Label mineralWaterLabel, spriteLabel, cocacolaLabel, pepsiLabel, juiceLabel,
-    //            marsLabel, mmLabel, bountyLabel, snickersLabel,
-    ////            smithsLabel, pringlesLabel, kettleLabel, thinsLabel,
-    ////            mentosLabel, sourPatchLabel, skittlesLabel;
-    //    @FXML
-    //    private Spinner<Integer> mineralWater;
-
-
+    // TODO: Cancel transaction record
     public void cancelTransaction(ActionEvent event) throws IOException {
-        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 29");
+        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 54");
         /*
-Below should record this cancel and record it in model
-*/
+        Below should record this cancel and record it in model
+        */
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
-        loader.setController(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -76,22 +69,27 @@ Below should record this cancel and record it in model
 
         Order order = new Order(appController.getModel().getCurrentUser());
         for (ProductComponents pc : pcs) {
-            if (pc.getSpinner().getValue() > 0) {
+            //check product quantity if zero print the message
+            if (pc.getSpinner().getValue() == 0){
+                wrongMessage.setText("You cannot buy empty product, please buy something.");
+            }
+            //otherwise transfer to order page, when product more than 0
+            else if (pc.getSpinner().getValue() > 0) {
                 Product temp = pc.getProduct();
                 order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
                         temp.getItemCategory(), pc.getSpinner().getValue()));
+                //change to order page
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+                root = loader.load();
+                GenerateOrderController generateOrderControl = loader.getController();
+                generateOrderControl.setModel(order);
+                generateOrderControl.init(appController);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
-        root = loader.load();
-        GenerateOrderController generateOrderControl = loader.getController();
-        generateOrderControl.setModel(order);
-        generateOrderControl.init(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
 
@@ -99,21 +97,26 @@ Below should record this cancel and record it in model
         this.appController = appController;
         this.model = appController.getModel();
 
-
+        // list all products
         for (int i = 0; i < model.getProducts().size(); i++) {
             Product product = model.getProducts().get(i);
             ProductComponents pc;
             if (product.getItemCategory().equals("drinks")) {
-                pc = new ProductComponents(product, DRINKS_X, DRINKS_Y + i * 40);
+                pc = new ProductComponents(product, DRINKS_X, DRINKS_Y +
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("drinks")).count() * 40);
             } else if (product.getItemCategory().equals("chocolates")) {
                 pc = new ProductComponents(product, CHOCOLATES_X, CHOCOLATES_Y +
-                        (i - 5) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("chocolates")).count()* 40);
             } else if (product.getItemCategory().equals("chips")) {
                 pc = new ProductComponents(product, CHIPS_X,  CHIPS_Y+
-                        (i % 9) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("chips")).count() * 40);
             } else {
                 pc = new ProductComponents(product, CANDIES_X, CANDIES_Y +
-                        (i - 13) * 40);
+                        (int)pcs.stream().filter(each->each.getProduct().
+                                getItemCategory().equals("candies")).count() * 40);
             }
 
             for (int j = 0; j < pc.getElements().size(); j++) {
@@ -122,17 +125,12 @@ Below should record this cancel and record it in model
             pcs.add(pc);
         }
 
+        // Add all category name labels
         Label drinksLabel = new Label();
-//        Label drinksTitleLabel = new Label();
         drinksLabel.setLayoutX(DRINKS_X);
-//        drinksTitleLabel.setLayoutX(DRINKS_X);
         drinksLabel.setLayoutY(DRINKS_Y-40);
-//        drinksTitleLabel.setLayoutY(DRINKS_Y-20);
-//        drinksLabel.setText("Drinks");
-//        drinksTitleLabel.setText("Name \t\t\t\tPrice \t Quality\t  Selected");
-
+        drinksLabel.setText("Drinks");
         page.getChildren().add(drinksLabel);
-//        page.getChildren().add(drinksTitleLabel);
 
         Label chocolatesLabel = new Label();
         chocolatesLabel.setLayoutX(CHOCOLATES_X);
@@ -161,42 +159,5 @@ Below should record this cancel and record it in model
                 });
             }
         }, 120000);
-
-
-
-//        // set the value of quantity of items to be 0~15 inclusive
-//        SpinnerValueFactory<Integer> valueFactory =
-//                new SpinnerValueFactory.IntegerSpinnerValueFactory(0,15);
-//        valueFactory.setValue(0);
-//
-
-//
-//        ArrayList<Product> products = model.getProducts();
-//
-//        for (int i = 0; i < products.size(); i++) {
-//            Label label = new Label(products.get(i).toString());
-//            label.setLayoutX(20);
-//            label.setLayoutY(100+i*20);
-//            Spinner<Integer> spinner = new Spinner<Integer>();
-//            spinner.setValueFactory(valueFactory);
-//
-//
-//        }
-//
-////        mineralWaterLabel.setText();
-//
-//        mineralWater.setValueFactory(valueFactory);
-
     }
-    /*
-    public void checkOut(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CashPayment.fxml"));
-        root = loader.load();
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
 }

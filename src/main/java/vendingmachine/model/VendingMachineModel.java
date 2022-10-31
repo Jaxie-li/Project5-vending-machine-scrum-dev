@@ -22,8 +22,10 @@ public class VendingMachineModel {
     private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<Cash> cashes = new ArrayList<>();
     private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
 
     public VendingMachineModel() throws IOException, ParseException {
+
         // Read all the product from database
         User.setData(User.read(User.path));
 
@@ -51,19 +53,24 @@ public class VendingMachineModel {
             orders.add(new Order(each));
         }
 
-        //TEST
-        int price = 250;
-        int paid = 505;
-        if (Cash.isSufficient(price, paid)) {
-            ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
-            if (exchange == null) {
-                System.out.println("not enough change in vm");
-            } else {
-                System.out.println(exchange);
-            }
-        } else {
-            System.out.println("insufficient amount");
+        for (Object o : User.getData()){
+            JSONObject each = (JSONObject) o;
+            users.add(new User(each));
         }
+
+        ////TEST
+        //int price = 250;
+        //int paid = 505;
+        //if (Cash.isSufficient(price, paid)) {
+        //    ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
+        //    if (exchange == null) {
+        //        System.out.println("not enough change in vm");
+        //    } else {
+        //        System.out.println(exchange);
+        //    }
+        //} else {
+        //    System.out.println("insufficient amount");
+        //}
 
 
     }
@@ -91,4 +98,10 @@ public class VendingMachineModel {
     public void setCashes(ArrayList<Cash> cashes) {
         this.cashes = cashes;
     }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public ArrayList<User> getUsers() {return users;}
 }

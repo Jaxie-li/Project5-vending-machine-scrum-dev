@@ -1,5 +1,7 @@
 package vendingmachine.utils;
 
+import exceptions.UserNameExistException;
+import javafx.scene.control.Alert;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import vendingmachine.controller.AppController;
@@ -67,29 +69,28 @@ public class User extends DBModel {
 //        }
 //    }
 
-    public static User register(String username, String password) throws RuntimeException {
+    public static User register(String username, String password) throws RuntimeException, UserNameExistException {
 
         for (Object o : data){
             JSONObject each = (JSONObject) o;
             String realUserName = each.get("username").toString();
 
-            // if username exist throw UserNameExistException
+            // if username exist throw RuntimeException
             if (realUserName.equals(username)) {
-                //throw new UserNameExistException();
+                throw new RuntimeException();
             }
         }
         // construct new user
         User u = new User(username, password, "customer");
 
         // create user in database
-        data = User.create(data, u.serialise(), path);
+        User.create(read(User.path), u.serialise(), path);
 
         // return created user for login
         return u;
     }
 
     public static User isValidUser(String username, String password){
-        System.out.println(User.data);
         for (Object o : User.data){
             JSONObject each = (JSONObject) o;
             String realUsername = each.get("username").toString();

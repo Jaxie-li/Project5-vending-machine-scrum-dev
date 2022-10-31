@@ -26,14 +26,6 @@ public class CancelledOrder extends DBModel {
 
     private LocalDateTime time;
 
-//    public static JSONArray getData() {
-//        return data;
-//    }
-//
-//    public static void setData(JSONArray data) {
-//        CancelledOrder.data = data;
-//    }
-
     public static JSONArray getData() {
         CancelledOrder.data = CancelledOrder.read(cancelledOrderPath);
         return data;
@@ -67,13 +59,16 @@ public class CancelledOrder extends DBModel {
         return CancelledOrder.getData().size() + 1;
     }
 
+    /**
+     * get all information of cancelled order
+     * @return JSONObject of order
+     */
     @Override
     public JSONObject serialise() {
         JSONObject order = new JSONObject();
 
         Date date = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
-//        System.out.println(dateFormat.format(date));
 
         order.put("id", this.id);
         order.put("username", this.username);
@@ -83,6 +78,9 @@ public class CancelledOrder extends DBModel {
         return order;
     }
 
+    /**
+     * add the cancel order into cancanlled_transactions.json file
+     */
     public void addCancelOrder() {
         CancelledOrder.create(CancelledOrder.getData(), serialise(), cancelledOrderPath);
     }

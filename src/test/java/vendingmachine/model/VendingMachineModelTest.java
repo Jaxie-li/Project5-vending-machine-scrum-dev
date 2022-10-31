@@ -46,7 +46,7 @@ class VendingMachineModelTest {
         ArrayList<Product> productListTest = new ArrayList<>();
         productListTest.add(minerWater);
         model.setProducts(productListTest);
-        assertEquals("[Mineral Water\t\t$250]", model.getProducts().toString());
+        assertEquals("[1001]", model.getProducts().toString());
     }
 
     @Test
