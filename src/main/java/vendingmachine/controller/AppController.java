@@ -99,6 +99,7 @@ public class AppController {
             this.model.setCurrentUser(user);
             Order currentUserOrder = new Order(user);
             lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(user));
+            lastFiveOrderText.setVisible(true);
             anonymousUserOrderText.setVisible(false);
 
 

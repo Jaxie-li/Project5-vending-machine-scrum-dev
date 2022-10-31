@@ -101,18 +101,19 @@ public class ListProductController {
                 Product temp = pc.getProduct();
                 order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
                         temp.getItemCategory(), pc.getSpinner().getValue()));
-                //change to order page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
-                root = loader.load();
-                GenerateOrderController generateOrderControl = loader.getController();
-                generateOrderControl.setModel(order);
-                generateOrderControl.init(appController);
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
             }
         }
+
+        //change to order page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+        root = loader.load();
+        GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.setModel(order);
+        generateOrderControl.init(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
