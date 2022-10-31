@@ -1,9 +1,12 @@
 package vendingmachine.utils;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import vendingmachine.model.VendingMachineModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,61 +15,86 @@ class OrderTest {
 
     private Order order;
 
-    private static final String path = "src/test/resources/orderHistoryTest.json";
-    private User user;
+    private User customer;
 
-    private final ArrayList<Product> products = new ArrayList<>();
+    private User seller;
+
+    private ArrayList<Product> products = new ArrayList<>();
+
 
 
     @BeforeEach
-    public void init() {
-        this.user = new User("Tester", "123", "owner");
-        this.order = new Order(user);
+    public void init() throws IOException, ParseException {
+        this.customer = new User("testCustomer1", "123456", "customer");
+        this.seller = new User("testSeller", "testseller","seller");
+        this.order = new Order(customer);
+        products.add(new Product(1001, "Mineral Water", 250, "drinks", 4));
     }
 
-//    @Test
-//    void getData() {
-//    }
-//
-//    @Test
-//    void setData() {
-//    }
-//
-//    @Test
-//    void addProduct() {
-//
-//    }
-//
-//    @Test
-//    void payByCash() {
-//    }
-//
-//    @Test
-//    void payByCard() {
-//    }
-//
-//    @Test
-//    void getOrderTotal() {
-//
-//    }
-//
-//    @Test
-//    void cancelByTimeOut() {
-//    }
-//
-//    @Test
-//    void cancelByUser() {
-//    }
-//
-//    @Test
-//    void cancelByNoExchange() {
-//    }
-//
-//    @Test
-//    void finalizeOrder() {
-//    }
-//
-//    @Test
-//    void serialize() {
-//    }
+    @Test
+    public void constructorTest() {
+        assertNotNull(order);
+    }
+
+    @Test
+    public void getUsernameTest(){
+        assertEquals("testCustomer1", customer.getUsername());
+        assertNotEquals("testCustomer1",seller.getUsername());
+    }
+
+    @Test
+    public void serialiseTest(){
+        assertNotNull(order.serialise());
+    }
+
+
+    @Test
+    void addProductTest() {
+        products.add(new Product(1002, "Sprite", 300, "drinks", 7));
+        assertNotNull(order.getProducts());
+    }
+
+    @Test
+    void payByCard() {
+    }
+
+    @Test
+    void getOrderTotalTest() {
+        // Fetch data form database
+//        Order.setData(Order.read(Order.path));
+//        Order.getData();
+//        Order sellerOrder = new Order(seller);
+//        assertNull(sellerOrder.getOrderTotal());
+        assertNotNull(order.getOrderTotal());
+    }
+
+    @Test
+    public void cancelByTimeOutTest() {
+        order.cancelByTimeOut();
+        assertEquals("time out", order.getStatus());
+    }
+
+    @Test
+    public void cancelByUserTest() {
+        order.cancelByUser();
+        assertEquals("user cancel", order.getStatus());
+    }
+
+    @Test
+    public void cancelByNoExchangeText() {
+        order.cancelByNoExchange();
+        assertEquals("no exchange", order.getStatus());
+    }
+
+
+    @Test
+    public void getIdTest(){
+        assertNotNull(order.getId());
+    }
+
+    @Test
+    public void getLastFiveOrderTest() {
+//        Order.setData(Order.read(Order.path));
+        assertNotNull(order.getLastFiveOrder(customer));
+    }
 }

@@ -9,11 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
-import vendingmachine.utils.PasswordFieldSkin;
+import vendingmachine.utils.Order;
 import vendingmachine.utils.User;
 
 import java.io.IOException;
@@ -51,10 +51,10 @@ public class AppController {
     private Button change_seller;
     @FXML
     private Button change_cashier;
+    @FXML private Button money;
+    @FXML private Button manage_add_delete;
     @FXML
-    private Button money;
-    @FXML
-    private Button manage_add_delete;
+    private Text lastFiveOrderText;
 
 
 //    public void setPasswordSkin() {
@@ -168,7 +168,10 @@ public class AppController {
             alert.setContentText("Name Already Exists!");
             alert.showAndWait();
         } catch (UserNameExistException e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Register");
+            alert.setContentText("Name Already Exists!");
+            alert.showAndWait();
         }
 
     }
@@ -184,4 +187,11 @@ public class AppController {
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
     }
+
+//    public void listLastFivePurchase(ActionEvent actionEvent) {
+//        User currentUser = model.getCurrentUser();
+//        Order currentUserOrder = new Order(currentUser);
+//        lastFivePurchaseText.setText(currentUserOrder.getLastFiveOrder(currentUser));
+//    }
+
 }

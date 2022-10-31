@@ -7,6 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Order extends DBModel {
 
@@ -46,21 +47,21 @@ public class Order extends DBModel {
         }
     }
 
-    public void addOrder() {
-        data = Order.create(data, serialise(), path);
-    }
+    // public void addOrder() {
+    //     data = Order.create(data, serialise(), path);
+    // }
 
-    public String getUsername() {
-        return username;
-    }
+    // public String getUsername() {
+    //     return username;
+    // }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+    // public void setPaymentMethod(String paymentMethod) {
+    //     this.paymentMethod = paymentMethod;
+    // }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+    // public String getPaymentMethod() {
+    //     return paymentMethod;
+    // }
 
     public int getPaid() {
         return paid;
@@ -106,13 +107,13 @@ public class Order extends DBModel {
         products.add(p);
     }
 
-    public String getStatus() {
-        return status;
-    }
+    // public String getStatus() {
+    //     return status;
+    // }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    // public void setStatus(String status) {
+    //     this.status = status;
+    // }
 
     public int getOrderTotal() {
         int total = 0;
@@ -162,4 +163,64 @@ public class Order extends DBModel {
 
         return order;
     }
+
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void addOrder() {
+        Order.create(Order.read(path), serialise(), path);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public String getLastFiveOrder(User user){
+        ArrayList<ArrayList<String>> transactions = new ArrayList<>();
+//        ArrayList<ArrayList<String>> item = new ArrayList<ArrayList<String>>();
+//        ArrayList<ArrayList<String>> quantity = new ArrayList<ArrayList<String>>();
+        String userName = user.getUsername();
+
+        for(Object each:data){
+            JSONObject temp = (JSONObject) each;
+            String name = (String) temp.get("username");
+            if(name.equals(userName)) {
+                JSONArray productList = (JSONArray) ((JSONObject) each).get("products");
+                ArrayList<String> transaction = new ArrayList<>();
+                for(Object o:productList){
+                    JSONObject eachItem = (JSONObject) o;
+                    transaction.add(eachItem.get("itemName").toString() + " ,"+ eachItem.get("itemQuantity").toString());
+                }
+                transactions.add(transaction);
+            }
+        }
+        String transactionsString ="";
+        transactionsString += "Order history:\n";
+        for (int i = transactions.size()-1; i > transactions.size()-6 && i >=0; i--){
+            transactionsString += String.join(",", transactions.get(i));
+            transactionsString += "\n";
+        }
+        System.out.print(transactionsString);
+        return transactionsString;
+
+    }
+
 }
