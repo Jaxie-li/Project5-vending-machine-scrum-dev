@@ -44,9 +44,9 @@ public class CardTest {
 
     @Test
     public void checkCreditCardValidTwoTest(){
-        assertFalse(Card.checkCreditCardValid("admin","asdhgsdj",new User("admin","admin","customer")));
-        assertFalse(Card.checkCreditCardValid("Charles","asdhgsdj",new User("Charles","admin","customer")));
-        assertTrue(Card.checkCreditCardValid("Charles","40691",new User("Charles","40691","customer")));
+        assertFalse(Card.checkCreditCardValid("admin","asdhgsdj",new User("admin","admin","customer"),true));
+        assertFalse(Card.checkCreditCardValid("Charles","asdhgsdj",new User("Charles","admin","customer"),true));
+        assertTrue(Card.checkCreditCardValid("Charles","40691",new User("Charles","40691","customer"),true));
     }
 
     @Test
