@@ -19,6 +19,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         Parent root = loader.load();
         AppController mainController = loader.getController();
+        mainController.init();
 
         Scene scene = new Scene(root);
 

@@ -228,5 +228,23 @@
         "itemPrice": 250
       }
     ]
+  },
+  {
+    "paid": 5000,
+    "paymentMethod": "cash",
+    "startTime": "30-10-2022 01:49:21",
+    "exchange": 4500,
+    "id": 12,
+    "username": "",
+    "status": "closed",
+    "products": [
+      {
+        "itemName": "Mineral Water",
+        "itemQuantity": 2,
+        "itemCategory": "drinks",
+        "itemCode": 1001,
+        "itemPrice": 250
+      }
+    ]
   }
 ]
