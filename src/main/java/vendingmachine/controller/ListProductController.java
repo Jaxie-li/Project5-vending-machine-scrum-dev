@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -91,17 +88,32 @@ public class ListProductController {
     public void generateOrder(ActionEvent event) throws IOException {
 
         Order order = new Order(appController.getModel().getCurrentUser());
+        boolean noItem = true;
         for (ProductComponents pc : pcs) {
             //check product quantity if zero print the message
-            if (pc.getSpinner().getValue() == 0){
-                wrongMessage.setText("You cannot buy empty product, please buy something.");
-            }
-            //otherwise transfer to order page, when product more than 0
-            else if (pc.getSpinner().getValue() > 0) {
+            if (pc.getProduct().getItemQuantity() - pc.getSpinner().getValue() < 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Request");
+                alert.setContentText("Sorry, we do not have enough item to sell! Please check your quantity and try again!");
+                alert.showAndWait();
+                return;
+            }else if(pc.getSpinner().getValue() == 0){
+                continue;
+            } else{
                 Product temp = pc.getProduct();
                 order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
                         temp.getItemCategory(), pc.getSpinner().getValue()));
+                noItem = false;
             }
+
+        }
+
+        if(noItem){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Empty Selection");
+            alert.setContentText("Have you selected the item you want to buy?");
+            alert.showAndWait();
+            return;
         }
 
         //change to order page
