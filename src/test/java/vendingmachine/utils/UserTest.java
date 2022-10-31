@@ -74,12 +74,10 @@ class UserTest {
 //    }
 
     @Test
-    public void registerTest() {
-        User.setData(User.read(User.path));
-        // TODO: shouldn't have this because cannot register the same username, when customer is already in database
-
-        // assertNotNull(User.register("Jaxie","jaxie"));
-        // assertEquals(customer.toString(), User.register("Jaxie","jaxie").toString());
+    public void registerTest() throws UserNameExistException {
+        User.setData(this.data);
+        assertNotNull(User.register("King","king"));
+        assertEquals(customer.toString(), User.register("Spade","spade").toString());
     }
 
     @Test

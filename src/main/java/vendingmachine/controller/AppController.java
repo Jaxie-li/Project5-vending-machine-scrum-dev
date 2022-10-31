@@ -60,12 +60,22 @@ public class AppController {
     @FXML
     private Text lastFiveOrderText;
 
+    @FXML
+    private Text anonymousUserOrderText;
+
+
 
 //    public void setPasswordSkin() {
 //        password.setSkin(new PasswordFieldSkin(password));
 //    }
 
     public AppController() throws IOException, ParseException {
+    }
+
+    public void init(){
+        User anonymousUser = new User("","","customer");
+        Order anonymousOrder = new Order(anonymousUser);
+        anonymousUserOrderText.setText(anonymousOrder.getLastFiveOrder(anonymousUser));
     }
 
 
@@ -94,6 +104,10 @@ public class AppController {
         if (user != null) {
             // set current user
             this.model.setCurrentUser(user);
+            Order currentUserOrder = new Order(user);
+            lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(user));
+            anonymousUserOrderText.setVisible(false);
+
 
             // change to different pages according to different user types
 
@@ -197,7 +211,7 @@ public class AppController {
 //    public void listLastFivePurchase(ActionEvent actionEvent) {
 //        User currentUser = model.getCurrentUser();
 //        Order currentUserOrder = new Order(currentUser);
-//        lastFivePurchaseText.setText(currentUserOrder.getLastFiveOrder(currentUser));
+//        lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(currentUser));
 //    }
 
 }

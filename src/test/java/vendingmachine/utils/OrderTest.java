@@ -97,4 +97,29 @@ class OrderTest {
 //        Order.setData(Order.read(Order.path));
         assertNotNull(order.getLastFiveOrder(customer));
     }
+
+    @Test
+    public void getPaidTest(){
+        assertNotNull(order.getPaid());
+        order.setPaid(99);
+        assertEquals(99, order.getPaid());
+    }
+
+    @Test
+    public void getExchangeTest(){
+        assertNotNull(order.getExchange());
+        ArrayList<Cash> cashList = new ArrayList<>();
+        Cash fiftyDollar = new Cash(50, 2);
+        Cash tenDollar = new Cash(10, 2);
+        cashList.add(fiftyDollar);
+        cashList.add(tenDollar);
+        order.setExchange(cashList);
+        assertEquals(120, order.getExchange());
+    }
+
+    @Test
+    public void getStartTimeTest(){
+        assertNotNull(order.getStartTime());
+    }
+
 }
