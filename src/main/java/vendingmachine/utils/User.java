@@ -44,28 +44,28 @@ public class User extends DBModel {
         return user;
     }
 
-    public void createUser(String username, String password, String userType) {
-        // if is owner
-        if (this.userType.equals("owner")) {
-        User u = new User(username, password, userType);
-        data = User.create(data, u.serialise(), path);
-        }
-    }
-
-    public void deleteUser(String username) {
-        // if is owner
-        if (this.userType.equals("owner")) {
-            for (Object o : data){
-                JSONObject each = (JSONObject) o;
-                String realUserName = each.get("username").toString();
-
-                if (realUserName.equals(username)) {
-                    data = User.delete(data, each, path, "username");
-                    return;
-                }
-            }
-        }
-    }
+//    public void createUser(String username, String password, String userType) {
+//        // if is owner
+//        if (this.userType.equals("owner")) {
+//        User u = new User(username, password, userType);
+//        data = User.create(data, u.serialise(), path);
+//        }
+//    }
+//
+//    public void deleteUser(String username) {
+//        // if is owner
+//        if (this.userType.equals("owner")) {
+//            for (Object o : data){
+//                JSONObject each = (JSONObject) o;
+//                String realUserName = each.get("username").toString();
+//
+//                if (realUserName.equals(username)) {
+//                    data = User.delete(data, each, path, "username");
+//                    return;
+//                }
+//            }
+//        }
+//    }
 
     public static User register(String username, String password) throws RuntimeException {
 

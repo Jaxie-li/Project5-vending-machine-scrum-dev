@@ -1,21 +1,16 @@
 package vendingmachine.utils;
 
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    private User admin;
+    private User owner;
     private User customer;
     private User seller;
     private User cashier;
@@ -24,8 +19,8 @@ class UserTest {
 
 
     @BeforeEach
-    public void init() throws IOException, ParseException {
-        this.admin = new User("Katherine", "katherine", "owner");
+    public void init() {
+        this.owner = new User("Katherine", "katherine", "owner");
         this.customer = new User("Jaxie", "jaxie", "customer");
         this.cashier = new User("Louis", "louis", "cashier");
         this.seller = new User("Leo", "leo", "seller");
@@ -36,59 +31,57 @@ class UserTest {
 //    void createUserTest() {
 //        // Fetch User information from database
 //        User.setData(User.read(User.path));
-//        // Only owner could create user?
-//        admin.createUser("Yitong", "yitong", "customer");
-////        customer.createUser("Joyce", "joyce", "customer");
-////        seller.createUser("AAAA", "aaaa", "owner");
+//
+//        // Creates users
+//        owner.createUser("Yitong", "yitong", "customer");
+//        customer.createUser("Joyce", "joyce", "customer");
+//        seller.createUser("AAAA", "aaaa", "owner");
+//
+//        // Only owner could create user, so when owner creates user it will not be null
 //        assertNotNull(User.isValidUser("Yitong", "yitong"));
-////        assertNull(User.isValidUser("Joyce", "joyce"));
-////        assertNull(User.isValidUser("AAAA", "aaaa"));
+//
+//        // When customer/ seller creates user they will be null
+//        assertNull(User.isValidUser("Joyce", "joyce"));
+//        assertNull(User.isValidUser("AAAA", "aaaa"));
 //    }
 
     @Test
     public void serialiseTest() {
-        assertNotNull(admin.serialise());
+        assertNotNull(owner.serialise());
         assertNotNull(customer.serialise());
         assertNotNull(seller.serialise());
         assertNotNull(cashier.serialise());
     }
 
+//    @Test
+//    void deleteUser() {
+//    }
+
     @Test
-    void deleteUser() {
+    public void registerTest() {
+        User.setData(User.read(User.path));
+        assertNotNull(User.register("Jaxie","jaxie"));
+        // TODO: shouldn't have this because cannot register the same username, when customer is already in database
+//        assertEquals(customer.toString(), User.register("Jaxie","jaxie").toString());
     }
 
-//    @Test
-//    void registerThrowsUserNameExistException() {
-//        assertThrows(UserNameExistException, new Executable() {
-//            @Override
-//            public void execute() throws Throwable {
-//                User.register("testcustomer1","123456");
-//            }
-//        });
-//    }
+    @Test
+    public void isValidUserTest() {
+        // Fetch User information from database
+        User.setData(User.read(User.path));
 
-//    @Test
-//    public void register() {
-//        User.setData(User.read(User.path));
-//        assertNotNull(User.register("Jaxie","jaxie"));
-//        assertEquals(customer.toString(), User.register("Jaxie","jaxie").toString());
-//    }
+        // Should be null if the user is not valid
+        assertNull(User.isValidUser("AAA", "aaaaa"));
 
-//    @Test
-//    public void isValidUserTest() {
-//        // Fetch User information from database
-//        User.setData(User.read(User.path));
-////        User tempUser = new User("AAA", "aaaaa", "customer");
-////        tempUser.serialise();
-//        assertNull(User.isValidUser("AAA", "aaaaa"));
-//        assertNotNull(User.isValidUser("testcustomer1", "123456"));
-//        // expected: <User{userType='customer', savedCard=null}> but was: <User{userType='customer', savedCard=vendingmachine.utils.Card@2ca65ce4}>
-//        //assertEquals(realCustomer, User.isValidUser("testcustomer1", "123456"));
-//    }
+        // Should not be null if the user exists. Test for customer, owner & seller
+        assertNotNull(User.isValidUser("testcustomer1", "123456"));
+        assertNotNull(User.isValidUser("testowner1", "123456"));
+        assertNotNull(User.isValidUser("testseller1", "123456"));
+    }
 
     @Test
     public void getUsernameTest() {
-        assertEquals("Katherine", admin.getUsername());
+        assertEquals("Katherine", owner.getUsername());
         assertEquals("Jaxie", customer.getUsername());
         assertEquals("Louis", cashier.getUsername());
         assertEquals("Leo", seller.getUsername());
@@ -96,7 +89,7 @@ class UserTest {
 
     @Test
     public void getUserTypeTest() {
-        assertEquals("owner", admin.getUserType());
+        assertEquals("owner", owner.getUserType());
         assertEquals("customer", customer.getUserType());
         assertEquals("seller", seller.getUserType());
         assertEquals("cashier", cashier.getUserType());
@@ -106,7 +99,7 @@ class UserTest {
     public void getSavedCard() {
         // Fetch User information from database
         User.setData(User.read(User.path));
-        assertNull(admin.getSavedCard());
+        assertNull(owner.getSavedCard());
         assertNull(customer.getSavedCard());
         assertNull(seller.getSavedCard());
         assertNull(cashier.getSavedCard());
@@ -118,10 +111,10 @@ class UserTest {
     public void setSavedCard() {
         Card testCardAdmin = new Card("CBA", "5102000000000000");
         Card testCardCustomer = new Card("CBA", "5102111111111111");
-        admin.setSavedCard(testCardAdmin);
+        owner.setSavedCard(testCardAdmin);
         customer.setSavedCard(testCardCustomer);
-        assertEquals(testCardAdmin, admin.getSavedCard());
-        assertNotEquals(testCardCustomer, admin.getSavedCard());
+        assertEquals(testCardAdmin, owner.getSavedCard());
+        assertNotEquals(testCardCustomer, owner.getSavedCard());
         assertEquals(testCardCustomer, customer.getSavedCard());
     }
 }
