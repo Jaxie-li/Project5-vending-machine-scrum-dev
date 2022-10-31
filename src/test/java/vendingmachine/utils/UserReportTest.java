@@ -23,22 +23,22 @@ class UserReportTest {
 
     @BeforeEach
     public void init(){
-        testUser = new ArrayList<>();
-        user1 = new User("Karen", "karen", "customer");
-        user2 = new User("Phone","phone", "customer");
-        testUser.add(user1);
-        testUser.add(user2);
-        report = new UserReport(testUser);
+        this.testUser = new ArrayList<>();
+        this.user1 = new User("Karen", "karen", "customer");
+        this.user2 = new User("Phone","phone", "customer");
+        this.testUser.add(user1);
+        this.testUser.add(user2);
+        this.report = new UserReport(testUser);
     }
 
     @Test
     public void getContentTest() {
-        assertNotNull(report.getContent());
+        assertNotNull(this.report.getContent());
     }
 
     @Test
     public void writeTest() throws IOException {
-        report.write();
+        this.report.write();
         File f = new File(UserReport.path);
         Scanner sc = new Scanner(f);
         ArrayList<String> outcome = new ArrayList<>();

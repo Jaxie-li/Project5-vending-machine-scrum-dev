@@ -11,7 +11,7 @@ class CancelledOrderTest {
 
     @BeforeEach
     public void init() {
-        cancelledOrderTest = new CancelledOrder();
+        this.cancelledOrderTest = new CancelledOrder();
     }
 
     @Test
@@ -21,44 +21,44 @@ class CancelledOrderTest {
 
     @Test
     public void constructorTest() {
-        assertNotNull(cancelledOrderTest.serialise());
+        assertNotNull(this.cancelledOrderTest.serialise());
     }
 
     @Test
     public void getUsernameTest() {
-        assertNull(cancelledOrderTest.getUsername());
-        cancelledOrderTest.setUsername("Joyce");
-        assertEquals("Joyce", cancelledOrderTest.getUsername());
+        assertNull(this.cancelledOrderTest.getUsername());
+        this.cancelledOrderTest.setUsername("Joyce");
+        assertEquals("Joyce", this.cancelledOrderTest.getUsername());
     }
 
     @Test
     public void getReasonTest() {
-        assertNull(cancelledOrderTest.getReason());
-        cancelledOrderTest.setReason("user cancelled");
-        assertEquals("user cancelled", cancelledOrderTest.getReason());
+        assertNull(this.cancelledOrderTest.getReason());
+        this.cancelledOrderTest.setReason("user cancelled");
+        assertEquals("user cancelled", this.cancelledOrderTest.getReason());
     }
 
     @Test
     public void getIdTest() {
         // id was not null, but 0 after initialising but not parsing anything
-        assertNotNull(cancelledOrderTest.getId());
-        cancelledOrderTest.setId(1);
-        assertNotNull( cancelledOrderTest.getId());
-        assertEquals(1, cancelledOrderTest.getId());
-        assertNotEquals(2, cancelledOrderTest.getId());
+        assertNotNull(this.cancelledOrderTest.getId());
+        this.cancelledOrderTest.setId(1);
+        assertNotNull( this.cancelledOrderTest.getId());
+        assertEquals(1, this.cancelledOrderTest.getId());
+        assertNotEquals(2, this.cancelledOrderTest.getId());
     }
 
     @Test
     public void getNextIdTest() {
         int size = CancelledOrder.getData().size();
-        assertEquals(size + 1, cancelledOrderTest.getNextId());
-        assertNotEquals(size, cancelledOrderTest.getNextId());
+        assertEquals(size + 1, this.cancelledOrderTest.getNextId());
+        assertNotEquals(size, this.cancelledOrderTest.getNextId());
     }
 
 
     @Test
     public void addCancelOrderTest() {
-        cancelledOrderTest.addCancelOrder();
+        this.cancelledOrderTest.addCancelOrder();
         assertNotNull(CancelledOrder.getData().size());
     }
 }
