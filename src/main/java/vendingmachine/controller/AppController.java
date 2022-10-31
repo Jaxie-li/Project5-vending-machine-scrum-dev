@@ -48,11 +48,15 @@ public class AppController {
     @FXML
     private Button login;
     @FXML
+    private Button logout;
+    @FXML
     private Button change_seller;
     @FXML
     private Button change_cashier;
-    @FXML private Button money;
-    @FXML private Button manage_add_delete;
+    @FXML
+    private Button money;
+    @FXML
+    private Button manage_add_delete;
     @FXML
     private Text lastFiveOrderText;
 
@@ -132,13 +136,13 @@ public class AppController {
             } else if (user.getUserType().equals("customer")) {
                 System.out.println("cus");
                 userComponent.setVisible(false);
+                logout.setVisible(true);
             }
             // alert the user their login was successful
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
-            userComponent.setVisible(false);
         }
         // otherwise the login check failed, prompt the user to enter again
         else {
@@ -158,6 +162,7 @@ public class AppController {
             model = new VendingMachineModel();
             this.model.setCurrentUser(newUser);
             userComponent.setVisible(false);
+            logout.setVisible(true);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register");
             alert.setContentText("Registration Successful!");
@@ -186,6 +191,7 @@ public class AppController {
         password.setText("");
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
+        logout.setVisible(false);
     }
 
 //    public void listLastFivePurchase(ActionEvent actionEvent) {
