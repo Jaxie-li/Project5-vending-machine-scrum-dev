@@ -12,6 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import vendingmachine.controller.OwnerDeleteController;
 import vendingmachine.utils.*;
 
 import java.io.IOException;
@@ -22,8 +23,13 @@ import static vendingmachine.utils.DBModel.read;
 public class OwnerController {
     @FXML
     private Button back;
+
     @FXML
-    private Button add;
+    private Button manageAdd;
+
+    @FXML
+    private Button manageDelete;
+
     @FXML
     private Button delete;
 
@@ -37,18 +43,6 @@ public class OwnerController {
 
     public void init(AppController appController) {
         this.appController = appController;
-    }
-
-    //sub function want to go back owner main page.
-    public void ownerMain(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/Owner.fxml"));
-        root = loader.load();
-        OwnerController oc = loader.getController();
-        oc.init(appController);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void returnToMainPage(ActionEvent event) throws IOException {
@@ -92,9 +86,9 @@ public class OwnerController {
 //        stage.show();
 //    }
     public void changeManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerAddDelete.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerAdd.fxml"));
         root = loader.load();
-        OwnerController oc = loader.getController();
+        OwnerAddController oc = loader.getController();
         oc.init(appController);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -146,6 +140,20 @@ public class OwnerController {
         alert.setTitle("");
         alert.setHeaderText("Generate Success!");
         alert.showAndWait();
+    }
+
+    /**
+     * delete account
+     */
+    public void deleteAccount(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerDelete.fxml"));
+        root = loader.load();
+        OwnerDeleteController ownerDeleteController = loader.getController();
+        ownerDeleteController.init(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
