@@ -45,7 +45,7 @@ jacocoTestReport {
 
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['vendingmachine/controller/*','vendingmachine/App*'])
+            fileTree(dir: it, exclude: ['vendingmachine/controller/*','vendingmachine/App*','vendingmachine/utils/DBModel*','vendingmachine/components/ProductComponents*'])
         }))
     }
 }
