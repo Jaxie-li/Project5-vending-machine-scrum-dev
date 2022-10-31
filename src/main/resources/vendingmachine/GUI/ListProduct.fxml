@@ -9,8 +9,8 @@
    <Button fx:id="cancelButton" layoutX="30.0" layoutY="675.0" mnemonicParsing="false" onAction="#cancelTransaction" prefHeight="26.0" prefWidth="138.0" text="Cancel Transaction" />
    <Button fx:id="checkOut" layoutX="462.0" layoutY="675.0" mnemonicParsing="false" onAction="#generateOrder" prefHeight="26.0" prefWidth="138.0" text="Check Out" />
    <AnchorPane fx:id="drinks" layoutX="30.0" layoutY="30.0" prefHeight="300.0" prefWidth="250.0" />
-   <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="349.0" prefHeight="269.0" prefWidth="250.0" />
-   <AnchorPane fx:id="candies" layoutX="350.0" layoutY="349.0" prefHeight="269.0" prefWidth="250.0" />
+   <AnchorPane fx:id="chocolates" layoutX="30.0" layoutY="349.0" prefHeight="300.0" prefWidth="250.0" />
+   <AnchorPane fx:id="candies" layoutX="350.0" layoutY="349.0" prefHeight="300.0" prefWidth="250.0" />
    <AnchorPane fx:id="chips" layoutX="350.0" layoutY="30.0" prefHeight="300.0" prefWidth="250.0" />
    <Label fx:id="wrongMessage" layoutX="290.0" layoutY="649.0" prefHeight="26.0" prefWidth="323.0" textFill="#d72323" />
 </children>
