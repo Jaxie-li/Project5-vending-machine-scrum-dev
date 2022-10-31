@@ -38,8 +38,6 @@ public class AppController {
     @FXML
     private PasswordField password;
 
-//    @FXML
-//    private PasswordFieldSkin skin;
 
     @FXML
     private AnchorPane userComponent;
@@ -63,11 +61,6 @@ public class AppController {
     @FXML
     private Text anonymousUserOrderText;
 
-
-
-//    public void setPasswordSkin() {
-//        password.setSkin(new PasswordFieldSkin(password));
-//    }
 
     public AppController() throws IOException, ParseException {
     }
@@ -206,6 +199,9 @@ public class AppController {
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
         logout.setVisible(false);
+        lastFiveOrderText.setVisible(false);
+        anonymousUserOrderText.setVisible(true);
+
     }
 
 //    public void listLastFivePurchase(ActionEvent actionEvent) {
