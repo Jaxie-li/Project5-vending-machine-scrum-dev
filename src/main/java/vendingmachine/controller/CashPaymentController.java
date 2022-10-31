@@ -386,7 +386,7 @@ public class CashPaymentController {
         for (Cash cashes : exchange) {
             for (Cash machineCash : appController.getModel().getCashes()) {
                 if (machineCash.getValue() == cashes.getValue()) {
-                    machineCash.setQuantity(machineCash.getQuantity() + cashes.getQuantity());
+                    machineCash.setQuantity(machineCash.getQuantity() - cashes.getQuantity());
                     machineCash.updateQuantity();
                 }
             }
@@ -396,7 +396,7 @@ public class CashPaymentController {
             for (Cash machineCash : appController.getModel().getCashes()) {
                 if (machineCash.getValue() == paidCash.getValue()
                         && paidCash.getQuantity() != 0) {
-                    machineCash.setQuantity(machineCash.getQuantity() - paidCash.getQuantity());
+                    machineCash.setQuantity(machineCash.getQuantity() + paidCash.getQuantity());
                     machineCash.updateQuantity();
                 }
             }
