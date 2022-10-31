@@ -14,9 +14,9 @@ import static org.mockito.Mockito.*;
 
 class CashTest {
 
-    private static final String path = "src/test/resources/cashTest.json";
+//    private static final String path = "src/test/resources/cashTest.json";
 
-    private static JSONArray data;
+//    private static JSONArray data;
 //    private static DBModel dbModel = mock(DBModel.class);
 
 

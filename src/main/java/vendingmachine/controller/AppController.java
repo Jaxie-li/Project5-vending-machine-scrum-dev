@@ -8,11 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import vendingmachine.model.VendingMachineModel;
-import vendingmachine.utils.PasswordFieldSkin;
+import vendingmachine.utils.Order;
 import vendingmachine.utils.User;
 
 import java.io.IOException;
@@ -52,6 +52,8 @@ public class AppController{
     private Button change_cashier;
     @FXML private Button money;
     @FXML private Button manage_add_delete;
+    @FXML
+    private Text lastFiveOrderText;
 
 
 //    public void setPasswordSkin() {
@@ -94,6 +96,8 @@ public class AppController{
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
 //            userComponent.setVisible(false);
+            Order currentUserOrder = new Order(user);
+            lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(user));
 
             if(user.getUserType().equals("seller")){
                 FXMLLoader loader =new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
@@ -164,4 +168,11 @@ public class AppController{
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
     }
+
+//    public void listLastFivePurchase(ActionEvent actionEvent) {
+//        User currentUser = model.getCurrentUser();
+//        Order currentUserOrder = new Order(currentUser);
+//        lastFivePurchaseText.setText(currentUserOrder.getLastFiveOrder(currentUser));
+//    }
+
 }

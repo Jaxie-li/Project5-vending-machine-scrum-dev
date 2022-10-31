@@ -17,40 +17,10 @@ class ProductTest {
 
     private Product product;
 
-    private Product productJSON;
-
-    private static JSONArray data;
-
-    private String path = "src/test/resources/productTest.json";
 
     @BeforeEach
     public void init() {
         this.product = new Product(1001, "Mineral Water", 12, "drinks", 7);
-    }
-
-    @BeforeEach
-    public void initJSON() throws IOException, ParseException {
-        JSONArray result = (JSONArray) new JSONParser().parse(new FileReader(path));
-
-
-    }
-    @Test
-    void getData() {
-        JSONObject tempObj = new JSONObject();
-        tempObj.put("item_code", 1001);
-        tempObj.put("item_name", "Mineral Water");
-        tempObj.put("item_price", 2.5);
-        tempObj.put("item_category", "drinks");
-        tempObj.put("item_quantity", 7);
-        JSONArray tempArr = new JSONArray();
-        tempArr.add(tempObj);
-        Product.setData(tempArr);
-//        Product tempProduct = new Product(tempObj);
-        assertEquals(tempArr, Product.getData());
-    }
-
-    @Test
-    void setData() {
     }
 
 
@@ -107,6 +77,17 @@ class ProductTest {
     void setItemQuantity() {
         this.product.setItemQuantity(6);
         assertEquals(6, this.product.getItemQuantity());
+    }
+
+    @Test
+    public void toStringTest(){
+        assertEquals("Mineral Water\t\t$12", this.product.toString());
+    }
+
+    @Test
+    public void updateStockTest(){
+        product.updateStock();
+        assertEquals(7, product.getItemQuantity());
     }
 
 }

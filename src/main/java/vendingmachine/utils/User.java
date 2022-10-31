@@ -14,9 +14,9 @@ import vendingmachine.controller.AppController;
 public class User extends DBModel {
     private static JSONArray data;
     public static final String path = "src/main/resources/vendingmachine/data/user.json";
-    private static String username;
+    private String username;
     private String userType;
-    private static String password;
+    private String password;
     private Card savedCard;
 
     public static JSONArray getData() {
@@ -114,8 +114,8 @@ public class User extends DBModel {
 
     public User(String username, String password, String userType) {
         this.username = username;
-        this.userType = password;
-        this.password = userType;
+        this.userType = userType;
+        this.password = password;
     }
 
     public String getUsername() {
