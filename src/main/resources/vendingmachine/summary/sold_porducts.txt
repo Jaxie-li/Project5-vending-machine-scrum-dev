@@ -1,15 +1,15 @@
-{"itemName":"Mineral Water","itemQuantity":0,"itemCategory":"drinks","itemCode":1001,"itemPrice":250}
-{"itemName":"Sprite","itemQuantity":6,"itemCategory":"drinks","itemCode":1002,"itemPrice":300}
-{"itemName":"Coca cola","itemQuantity":6,"itemCategory":"drinks","itemCode":1003,"itemPrice":300}
-{"itemName":"Pepsi","itemQuantity":6,"itemCategory":"drinks","itemCode":1004,"itemPrice":350}
-{"itemName":"Juice","itemQuantity":6,"itemCategory":"drinks","itemCode":1005,"itemPrice":500}
-{"itemName":"Mars","itemQuantity":2,"itemCategory":"chocolates","itemCode":1006,"itemPrice":800}
-{"itemName":"M&M","itemQuantity":2,"itemCategory":"chocolates","itemCode":1007,"itemPrice":1200}
-{"itemName":"Bounty","itemQuantity":2,"itemCategory":"chocolates","itemCode":1008,"itemPrice":1200}
-{"itemName":"Snickers","itemQuantity":3,"itemCategory":"chocolates","itemCode":1009,"itemPrice":1200}
-{"itemName":"Pringles","itemQuantity":6,"itemCategory":"chips","itemCode":1011,"itemPrice":1200}
-{"itemName":"Kettle","itemQuantity":6,"itemCategory":"chips","itemCode":1012,"itemPrice":1200}
-{"itemName":"Thins","itemQuantity":6,"itemCategory":"chips","itemCode":1013,"itemPrice":1200}
-{"itemName":"Mentos","itemQuantity":1,"itemCategory":"candies","itemCode":1014,"itemPrice":1200}
-{"itemName":"Sour Patch","itemQuantity":2,"itemCategory":"candies","itemCode":1015,"itemPrice":1200}
-{"itemName":"Skittles","itemQuantity":2,"itemCategory":"candies","itemCode":1016,"itemPrice":1200}
+{"itemName":"Mineral Water","itemCategory":"drinks","itemCode":1001,"soldQuantity":7}
+{"itemName":"Sprite","itemCategory":"drinks","itemCode":1002,"soldQuantity":1}
+{"itemName":"Pepsi","itemCategory":"drinks","itemCode":1004,"soldQuantity":1}
+{"itemName":"Juice","itemCategory":"drinks","itemCode":1005,"soldQuantity":1}
+{"itemName":"Mars","itemCategory":"chocolates","itemCode":1006,"soldQuantity":5}
+{"itemName":"M&M","itemCategory":"chocolates","itemCode":1007,"soldQuantity":5}
+{"itemName":"Bounty","itemCategory":"chocolates","itemCode":1008,"soldQuantity":5}
+{"itemName":"Snickers","itemCategory":"chocolates","itemCode":1009,"soldQuantity":4}
+{"itemName":"Pringles","itemCategory":"chips","itemCode":1011,"soldQuantity":1}
+{"itemName":"Kettle","itemCategory":"chips","itemCode":1012,"soldQuantity":1}
+{"itemName":"Thins","itemCategory":"chips","itemCode":1013,"soldQuantity":1}
+{"itemName":"Mentos","itemCategory":"candies","itemCode":1014,"soldQuantity":6}
+{"itemName":"Sour Patch","itemCategory":"candies","itemCode":1015,"soldQuantity":5}
+{"itemName":"Skittles","itemCategory":"candies","itemCode":1016,"soldQuantity":5}
+{"itemName":"KK","itemCategory":"drinks","itemCode":1020,"soldQuantity":6}

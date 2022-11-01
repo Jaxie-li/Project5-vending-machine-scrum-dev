@@ -113,13 +113,19 @@ public class SellerPageController {
             Product product = new Product((JSONObject) productInDatabase);
             if (product.getItemQuantity() < 7) {
 
-                Product tmpPro = product;
-                tmpPro.setItemQuantity(7 - product.getItemQuantity());
-                tmpPro.setItemCode(product.getItemCode());
-                tmpPro.setItemCategory(product.getItemCategory());
-                tmpPro.setItemName(product.getItemName());
+//                Product tmpPro = product;
+//                tmpPro.setItemQuantity(7 - product.getItemQuantity());
+//                tmpPro.setItemCode(product.getItemCode());
+//                tmpPro.setItemCategory(product.getItemCategory());
+//                tmpPro.setItemName(product.getItemName());
 
-                soldProducts.add(productInDatabase);
+                JSONObject prod = new JSONObject();
+                prod.put("itemCode", product.getItemCode());
+                prod.put("itemName", product.getItemName());
+                prod.put("itemCategory", product.getItemCategory());
+                prod.put("soldQuantity", 7 - product.getItemQuantity());
+
+                soldProducts.add(prod);
             }
         }
 
