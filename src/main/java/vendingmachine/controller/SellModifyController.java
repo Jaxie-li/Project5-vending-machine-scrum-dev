@@ -3,6 +3,7 @@ package vendingmachine.controller;
 import com.google.gson.Gson;
 import exceptions.CodeExistException;
 import exceptions.ExcessQuantityException;
+import exceptions.ProductNameExistException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +102,9 @@ public class SellModifyController {
                 if (code == product.getItemCode()) {
                     throw new CodeExistException();
                 }
+                if (name.equals(product.getItemName())) {
+                    throw new ProductNameExistException();
+                }
             }
 
             Product newProduct = new Product(code, name, price, category, quantity);
@@ -132,6 +136,11 @@ public class SellModifyController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify Failed!");
             alert.setContentText("Please check your input. Quantity needs to be smaller than 15.");
+            alert.showAndWait();
+        } catch (ProductNameExistException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Modify Failed!");
+            alert.setContentText("Product name already exists. Please check and try again.");
             alert.showAndWait();
         } catch (Exception e) {
            Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -90,6 +90,31 @@ public class User extends DBModel {
         return u;
     }
 
+    public static User register(String username, String password,String userType) throws RuntimeException, UserNameExistException {
+
+        for (Object o : data){
+            JSONObject each = (JSONObject) o;
+            String realUserName = each.get("username").toString();
+
+            // if username exist throw RuntimeException
+            if (realUserName.equals(username)) {
+                throw new RuntimeException();
+            }
+        }
+        // construct new user
+        User u = new User(username, password, userType);
+
+        // create user in database
+        User.create(read(User.path), u.serialise(), path);
+
+        // return created user for login
+        return u;
+    }
+
+
+
+
+
     public static User isValidUser(String username, String password){
         for (Object o : User.data){
             JSONObject each = (JSONObject) o;
