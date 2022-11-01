@@ -1,1 +1,114 @@
-[{"itemCode":1001,"itemName":"Mineral Water","itemPrice":250,"itemCategory":"drinks","itemQuantity":0},{"itemCode":1002,"itemName":"Sprite","itemPrice":300,"itemCategory":"drinks","itemQuantity":6},{"itemCode":1004,"itemName":"Pepsi","itemPrice":350,"itemCategory":"drinks","itemQuantity":6},{"itemCode":1005,"itemName":"Juice","itemPrice":500,"itemCategory":"drinks","itemQuantity":6},{"itemCode":1006,"itemName":"Mars","itemPrice":800,"itemCategory":"chocolates","itemQuantity":2},{"itemCode":1007,"itemName":"M\u0026M","itemPrice":1200,"itemCategory":"chocolates","itemQuantity":2},{"itemCode":1008,"itemName":"Bounty","itemPrice":1200,"itemCategory":"chocolates","itemQuantity":2},{"itemCode":1009,"itemName":"Snickers","itemPrice":1200,"itemCategory":"chocolates","itemQuantity":3},{"itemCode":1010,"itemName":"Smiths","itemPrice":1200,"itemCategory":"chips","itemQuantity":7},{"itemCode":1011,"itemName":"Pringles","itemPrice":1200,"itemCategory":"chips","itemQuantity":6},{"itemCode":1012,"itemName":"Kettle","itemPrice":1200,"itemCategory":"chips","itemQuantity":6},{"itemCode":1013,"itemName":"Thins","itemPrice":1200,"itemCategory":"chips","itemQuantity":6},{"itemCode":1014,"itemName":"Mentos","itemPrice":1200,"itemCategory":"candies","itemQuantity":1},{"itemCode":1015,"itemName":"Sour Patch","itemPrice":1200,"itemCategory":"candies","itemQuantity":2},{"itemCode":1016,"itemName":"Skittles","itemPrice":1200,"itemCategory":"candies","itemQuantity":2},{"itemCode":1020,"itemName":"KK","itemPrice":10000,"itemCategory":"drinks","itemQuantity":1}]
+[
+  {
+    "itemName": "Mineral Water",
+    "itemQuantity": 7,
+    "itemCategory": "drinks",
+    "itemCode": 1001,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Sprite",
+    "itemQuantity": 7,
+    "itemCategory": "drinks",
+    "itemCode": 1002,
+    "itemPrice": 250
+  },
+  {
+    "itemName": "Coca cola",
+    "itemQuantity": 7,
+    "itemCategory": "drinks",
+    "itemCode": 1003,
+    "itemPrice": 250
+  },
+  {
+    "itemName": "Pepsi",
+    "itemQuantity": 7,
+    "itemCategory": "drinks",
+    "itemCode": 1004,
+    "itemPrice": 250
+  },
+  {
+    "itemName": "Juice",
+    "itemQuantity": 7,
+    "itemCategory": "drinks",
+    "itemCode": 1005,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Mars",
+    "itemQuantity": 7,
+    "itemCategory": "chocolates",
+    "itemCode": 1006,
+    "itemPrice": 250
+  },
+  {
+    "itemName": "M&M",
+    "itemQuantity": 7,
+    "itemCategory": "chocolates",
+    "itemCode": 1007,
+    "itemPrice": 600
+  },
+  {
+    "itemName": "Bounty",
+    "itemQuantity": 7,
+    "itemCategory": "chocolates",
+    "itemCode": 1008,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Snickers",
+    "itemQuantity": 7,
+    "itemCategory": "chocolates",
+    "itemCode": 1009,
+    "itemPrice": 250
+  },
+  {
+    "itemName": "Smiths",
+    "itemQuantity": 7,
+    "itemCategory": "chips",
+    "itemCode": 1010,
+    "itemPrice": 500
+  },
+  {
+    "itemName": "Pringles",
+    "itemQuantity": 7,
+    "itemCategory": "chips",
+    "itemCode": 1011,
+    "itemPrice": 500
+  },
+  {
+    "itemName": "Kettle",
+    "itemQuantity": 7,
+    "itemCategory": "chips",
+    "itemCode": 1012,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Thins",
+    "itemQuantity": 7,
+    "itemCategory": "chips",
+    "itemCode": 1013,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Mentos",
+    "itemQuantity": 7,
+    "itemCategory": "candies",
+    "itemCode": 1014,
+    "itemPrice": 200
+  },
+  {
+    "itemName": "Sour Patch",
+    "itemQuantity": 7,
+    "itemCategory": "candies",
+    "itemCode": 1015,
+    "itemPrice": 300
+  },
+  {
+    "itemName": "Skittles",
+    "itemQuantity": 7,
+    "itemCategory": "candies",
+    "itemCode": 1016,
+    "itemPrice": 500
+  }
+]

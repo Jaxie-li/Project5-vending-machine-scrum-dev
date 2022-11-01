@@ -1,1 +1,2 @@
-[{"reason":"change not available","id":1,"time":"2022-11-01 :03:22:04","username":"anonymous"},{"reason":"timeout","id":2,"time":"2022-11-01 :03:30:09","username":"anonymous"},{"reason":"user cancelled transaction","id":3,"time":"2022-11-01 :03:31:35","username":"anonymous"},{"reason":"user cancelled transaction","id":4,"time":"2022-11-01 :03:59:58","username":"User{userType='owner', savedCard=vendingmachine.utils.Card@25483655}"}]
+[
+]

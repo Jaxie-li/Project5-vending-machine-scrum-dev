@@ -205,6 +205,6 @@ public class ListProductController {
                     cancelOrder();
                 });
             }
-        },2,SECONDS);
+        },2,MINUTES);
     }
 }

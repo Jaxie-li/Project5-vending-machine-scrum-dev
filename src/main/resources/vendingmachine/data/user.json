@@ -69,26 +69,5 @@
     "savedCardNumber": "",
     "userType": "owner",
     "username": "testowner1"
-  },
-  {
-    "password": "123456",
-    "savedCardAccount": "",
-    "savedCardNumber": "",
-    "userType": "customer",
-    "username": "katherine"
-  },
-  {
-    "password": "123456",
-    "savedCardAccount": "",
-    "savedCardNumber": "",
-    "userType": "customer",
-    "username": "test"
-  },
-  {
-    "password": "123456",
-    "savedCardAccount": "",
-    "savedCardNumber": "",
-    "userType": "seller",
-    "username": "admin"
   }
 ]
