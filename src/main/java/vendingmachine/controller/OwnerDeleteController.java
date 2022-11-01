@@ -114,6 +114,14 @@ public class OwnerDeleteController {
             System.out.println("Click OK >> Remove successfully");
 
             removeAccount(removedUserName.getText());
+            int removedUserNameIndex = 0;
+            for (User user: appController.getModel().getUsers()) {
+                removedUserNameIndex ++;
+                if (user.getUsername().equals(removedUserName.getText())) {
+                    break;
+                }
+            }
+            appController.getModel().getUsers().remove(removedUserNameIndex - 1);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/OwnerDelete.fxml"));
             root = loader.load();

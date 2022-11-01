@@ -1,3 +1,12 @@
 User_name, Role
-{Karen [customer] }
-{Phone [customer] }
+{testcustomer1 [customer] }
+{testcustomer2 [customer] }
+{testseller1 [seller] }
+{testseller2 [seller] }
+{testcashier1 [cashier] }
+{testcashier2 [cashier] }
+{testadmin1 [admin] }
+{testadmin2 [admin] }
+{testowner1 [owner] }
+{katherine [customer] }
+{admin [seller] }
