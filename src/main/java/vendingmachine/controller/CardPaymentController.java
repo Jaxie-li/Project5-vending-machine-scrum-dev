@@ -43,7 +43,7 @@ public class CardPaymentController {
 
         this.appController = appController;
         User user = appController.getModel().getCurrentUser();
-        if(user!=null){
+        if(user != null && user.getSavedCard() != null){
             cardNumber.setText(user.getSavedCard().getNumber()!=null?user.getSavedCard().getNumber():"");
             cardName.setText(user.getSavedCard().getName()!=null?user.getSavedCard().getName():"");
         }else{
