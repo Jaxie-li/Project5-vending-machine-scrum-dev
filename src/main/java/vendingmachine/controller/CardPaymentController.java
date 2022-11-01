@@ -97,9 +97,10 @@ public class CardPaymentController {
 
 
         if (isValid) {
+            model.setStatus("closed");
+            model.setPaymentMethod("card");
             updateProductStock();
             model.addOrder();
-
 
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
