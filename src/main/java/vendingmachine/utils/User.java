@@ -127,6 +127,10 @@ public class User extends DBModel {
         return userType;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public Card getSavedCard() {
         return savedCard;
     }

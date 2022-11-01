@@ -229,15 +229,17 @@ public class CashPaymentController {
             updateCashStock();
 
             //Go back to main page
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
+            root = loader.load();
+            appController.init();
+            loader.setController(appController);
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
     }
+
 
     /**
      * check out unsuccessfully, user will not get the products and changes
@@ -384,7 +386,7 @@ public class CashPaymentController {
         for (Cash cashes : exchange) {
             for (Cash machineCash : appController.getModel().getCashes()) {
                 if (machineCash.getValue() == cashes.getValue()) {
-                    machineCash.setQuantity(machineCash.getQuantity() + cashes.getQuantity());
+                    machineCash.setQuantity(machineCash.getQuantity() - cashes.getQuantity());
                     machineCash.updateQuantity();
                 }
             }
@@ -394,7 +396,7 @@ public class CashPaymentController {
             for (Cash machineCash : appController.getModel().getCashes()) {
                 if (machineCash.getValue() == paidCash.getValue()
                         && paidCash.getQuantity() != 0) {
-                    machineCash.setQuantity(machineCash.getQuantity() - paidCash.getQuantity());
+                    machineCash.setQuantity(machineCash.getQuantity() + paidCash.getQuantity());
                     machineCash.updateQuantity();
                 }
             }

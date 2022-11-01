@@ -38,8 +38,6 @@ public class AppController {
     @FXML
     private PasswordField password;
 
-//    @FXML
-//    private PasswordFieldSkin skin;
 
     @FXML
     private AnchorPane userComponent;
@@ -48,22 +46,21 @@ public class AppController {
     @FXML
     private Button login;
     @FXML
+    private Button logout;
+    @FXML
     private Button change_seller;
     @FXML
     private Button change_cashier;
-    @FXML private Button money;
-    @FXML private Button manage_add_delete;
+    @FXML
+    private Button money;
+    @FXML
+    private Button manage_add_delete;
     @FXML
     private Text lastFiveOrderText;
 
     @FXML
     private Text anonymousUserOrderText;
 
-
-
-//    public void setPasswordSkin() {
-//        password.setSkin(new PasswordFieldSkin(password));
-//    }
 
     public AppController() throws IOException, ParseException {
     }
@@ -72,10 +69,15 @@ public class AppController {
         User anonymousUser = new User("","","customer");
         Order anonymousOrder = new Order(anonymousUser);
         anonymousUserOrderText.setText(anonymousOrder.getLastFiveOrder(anonymousUser));
+        anonymousUserOrderText.setVisible(true);
+        lastFiveOrderText.setVisible(false);
     }
 
 
     public void listProduct(ActionEvent event) throws IOException {
+        lastFiveOrderText.setVisible(false);
+        anonymousUserOrderText.setVisible(true);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/ListProduct.fxml"));
         root = loader.load();
         ListProductController listProductController = loader.getController();
@@ -101,8 +103,10 @@ public class AppController {
             // set current user
             this.model.setCurrentUser(user);
             Order currentUserOrder = new Order(user);
-            lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(user));
-            anonymousUserOrderText.setVisible(false);
+
+
+            lastFiveOrderText.setVisible(false);
+            anonymousUserOrderText.setVisible(true);
 
 
             // change to different pages according to different user types
@@ -146,13 +150,16 @@ public class AppController {
             } else if (user.getUserType().equals("customer")) {
                 System.out.println("cus");
                 userComponent.setVisible(false);
+                logout.setVisible(true);
+                lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(user));
+                lastFiveOrderText.setVisible(true);
+                anonymousUserOrderText.setVisible(false);
             }
             // alert the user their login was successful
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Log In Success!");
             alert.setContentText(String.format("Welcome %s",user.getUsername()));
             alert.showAndWait();
-            userComponent.setVisible(false);
         }
         // otherwise the login check failed, prompt the user to enter again
         else {
@@ -172,6 +179,12 @@ public class AppController {
             model = new VendingMachineModel();
             this.model.setCurrentUser(newUser);
             userComponent.setVisible(false);
+            logout.setVisible(true);
+            Order currentUserOrder = new Order(newUser);
+            anonymousUserOrderText.setVisible(false);
+            lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(newUser));
+            lastFiveOrderText.setVisible(true);
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register");
             alert.setContentText("Registration Successful!");
@@ -200,6 +213,10 @@ public class AppController {
         password.setText("");
         this.model.setCurrentUser(null);
         userComponent.setVisible(true);
+        logout.setVisible(false);
+        lastFiveOrderText.setVisible(false);
+        anonymousUserOrderText.setVisible(true);
+
     }
 
 //    public void listLastFivePurchase(ActionEvent actionEvent) {
@@ -207,5 +224,10 @@ public class AppController {
 //        Order currentUserOrder = new Order(currentUser);
 //        lastFiveOrderText.setText(currentUserOrder.getLastFiveOrder(currentUser));
 //    }
+
+    public void test(){
+        System.out.println(String.format("anoy: %s\t data:%s",anonymousUserOrderText.isVisible(),anonymousUserOrderText.getText()));
+        System.out.println(String.format("anoy: %s\t data:%s",lastFiveOrderText.isVisible(),lastFiveOrderText.getText()));
+    }
 
 }

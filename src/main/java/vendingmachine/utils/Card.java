@@ -56,11 +56,13 @@ public class Card extends DBModel {
         return false;
     }
 
-    public static boolean checkCreditCardValid(String name,String number,User currentUser) {
+    public static boolean checkCreditCardValid(String name,String number,User currentUser,boolean isSave) {
         for (Object each: data) {
             JSONObject obj = (JSONObject)each;
             if (obj.get("name").toString().equals(name) && obj.get("number").toString().equals(number)) {
-                currentUser.setSavedCard(new Card(name,number));
+                if(isSave){
+                    currentUser.setSavedCard(new Card(name,number));
+                }
                 return true;
             }
         }

@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -19,11 +16,15 @@ import vendingmachine.model.VendingMachineModel;
 import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 
+import javax.print.attribute.standard.RequestingUserName;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import static java.util.concurrent.TimeUnit.*;
 
 public class ListProductController {
 
@@ -42,6 +43,8 @@ public class ListProductController {
     private final int CANDIES_X = 350;
     private final int CANDIES_Y = 330;
 
+    private ScheduledExecutorService timer;
+
 
     @FXML
     private AnchorPane page;
@@ -52,14 +55,31 @@ public class ListProductController {
     private Button cancelButton;
 
     // TODO: Cancel transaction record
+//    public void cancelTransaction(ActionEvent event) throws IOException {
+//        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 54");
+//        /*
+//        Below should record this cancel and record it in model
+//        */
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
+//        root = loader.load();
+//        loader.setController(appController);
+//
+//        appController.init();
+//
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+
     public void cancelTransaction(ActionEvent event) throws IOException {
-        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 54");
-        /*
-        Below should record this cancel and record it in model
-        */
+        timer.shutdownNow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        AppController appControl = loader.getController();
+        appControl.init();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -68,28 +88,44 @@ public class ListProductController {
     public void generateOrder(ActionEvent event) throws IOException {
 
         Order order = new Order(appController.getModel().getCurrentUser());
+        boolean noItem = true;
         for (ProductComponents pc : pcs) {
             //check product quantity if zero print the message
-            if (pc.getSpinner().getValue() == 0){
-                wrongMessage.setText("You cannot buy empty product, please buy something.");
-            }
-            //otherwise transfer to order page, when product more than 0
-            else if (pc.getSpinner().getValue() > 0) {
+            if (pc.getProduct().getItemQuantity() - pc.getSpinner().getValue() < 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Request");
+                alert.setContentText("Sorry, we do not have enough item to sell! Please check your quantity and try again!");
+                alert.showAndWait();
+                return;
+            }else if(pc.getSpinner().getValue() == 0){
+                continue;
+            } else{
                 Product temp = pc.getProduct();
                 order.addProduct(new Product(temp.getItemCode(), temp.getItemName(), temp.getItemPrice(),
                         temp.getItemCategory(), pc.getSpinner().getValue()));
-                //change to order page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
-                root = loader.load();
-                GenerateOrderController generateOrderControl = loader.getController();
-                generateOrderControl.setModel(order);
-                generateOrderControl.init(appController);
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                noItem = false;
             }
+
         }
+
+        if(noItem){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Empty Selection");
+            alert.setContentText("Have you selected the item you want to buy?");
+            alert.showAndWait();
+            return;
+        }
+
+        //change to order page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/CheckOrder.fxml"));
+        root = loader.load();
+        GenerateOrderController generateOrderControl = loader.getController();
+        generateOrderControl.setModel(order);
+        generateOrderControl.init(appController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
@@ -151,13 +187,15 @@ public class ListProductController {
         page.getChildren().add(candiesLabel);
 
         // Timer for 2 minutes
-        new Timer().schedule(new TimerTask(){
+        timer = new ScheduledThreadPoolExecutor(1);
+
+        timer.schedule(new TimerTask(){
             @Override
             public void run() {
                 Platform.runLater(()->{
                     cancelButton.fire();
                 });
             }
-        }, 120000);
+        },2,MINUTES);
     }
 }
