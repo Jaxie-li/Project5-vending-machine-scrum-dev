@@ -105,4 +105,44 @@ public class SellerPageController {
         stage.setScene(scene);
         stage.show();
     }
+    
+    public void generateSoldProducts(ActionEvent event) throws IOException {
+        Json2Txt json2Txt = new Json2Txt();
+        JSONArray soldProducts = new JSONArray();
+        for (Object productInDatabase : read(Product.path)) {
+            Product product = new Product((JSONObject) productInDatabase);
+            if (product.getItemQuantity() < 7) {
+
+                Product tmpPro = product;
+                tmpPro.setItemQuantity(7 - product.getItemQuantity());
+                tmpPro.setItemCode(product.getItemCode());
+                tmpPro.setItemCategory(product.getItemCategory());
+                tmpPro.setItemName(product.getItemName());
+
+                soldProducts.add(productInDatabase);
+            }
+        }
+
+        json2Txt.generateTXT("src/main/resources/vendingmachine/summary/sold_porducts.txt",
+                soldProducts);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("Successful");
+        alert.setContentText("Generate summary of sold products successfully!");
+
+        Optional<ButtonType> button = alert.showAndWait();
+        if (button.isEmpty()) {
+            System.out.println("Click close");
+        } else if (button.get() == ButtonType.OK) {
+            System.out.println("Click OK button");
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/SellerPage.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

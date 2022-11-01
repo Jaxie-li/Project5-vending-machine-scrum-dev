@@ -16,6 +16,6 @@
       <Button fx:id="modify_product" layoutX="111.0" layoutY="118.0" mnemonicParsing="false" onAction="#sellerModify" prefHeight="49.0" prefWidth="164.0" text="modify product " />
       <Button fx:id="report1" layoutX="111.0" layoutY="212.0" mnemonicParsing="false" onAction="#summaryAvailableProducts" prefHeight="49.0" prefWidth="392.0" text="Report for currently avaiable items" />
       <Button fx:id="listProduct" layoutX="331.0" layoutY="118.0" mnemonicParsing="false" onAction="#listProduct" prefHeight="49.0" prefWidth="172.0" text="List Product " />
-      <Button fx:id="report2" layoutX="111.0" layoutY="276.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="392.0" text="Report for summary sold products" />
+      <Button fx:id="report2" layoutX="111.0" layoutY="276.0" mnemonicParsing="false" onAction="#generateSoldProducts" prefHeight="49.0" prefWidth="392.0" text="Report for summary sold products" />
    </children>
 </AnchorPane>
