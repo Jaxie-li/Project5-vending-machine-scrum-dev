@@ -37,9 +37,24 @@ class OrderTest {
     }
 
     @Test
+    public void constructorTest2(){
+        JSONObject order = new JSONObject();
+        order.put("id",1);
+        order.put("username",1);
+        order.put("status",1);
+        order.put("paymentMethod",1);
+        order.put("startTime","06-03-2007 13:29:45");
+        order.put("exchange",1);
+        order.put("paid",1);
+        assertThrows(NullPointerException.class,()->new Order(order));
+    }
+
+
+    @Test
     public void getUsernameTest(){
         assertEquals("testCustomer1", customer.getUsername());
         assertNotEquals("testCustomer1",seller.getUsername());
+        assertEquals("testCustomer1",order.getUsername());
     }
 
     @Test
@@ -53,6 +68,19 @@ class OrderTest {
         products.add(new Product(1002, "Sprite", 300, "drinks", 7));
         assertNotNull(order.getProducts());
     }
+    
+    @Test
+    public void addOrderTest(){
+        assertDoesNotThrow(()->{order.addOrder();});
+    }
+    
+    @Test
+    public void setPaymentTest(){
+        assertDoesNotThrow(()->{order.setPaymentMethod("1");});
+        assertEquals("1",order.getPaymentMethod());
+    }
+
+    
 
     @Test
     void payByCard() {
