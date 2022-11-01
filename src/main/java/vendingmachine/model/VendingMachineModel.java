@@ -57,22 +57,6 @@ public class VendingMachineModel {
             JSONObject each = (JSONObject) o;
             users.add(new User(each));
         }
-
-        ////TEST
-        //int price = 250;
-        //int paid = 505;
-        //if (Cash.isSufficient(price, paid)) {
-        //    ArrayList<Cash> exchange = Cash.payCash(price, paid, cashes);
-        //    if (exchange == null) {
-        //        System.out.println("not enough change in vm");
-        //    } else {
-        //        System.out.println(exchange);
-        //    }
-        //} else {
-        //    System.out.println("insufficient amount");
-        //}
-
-
     }
 
     public User getCurrentUser() {

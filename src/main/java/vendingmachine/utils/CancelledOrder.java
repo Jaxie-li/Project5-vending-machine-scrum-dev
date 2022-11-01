@@ -79,7 +79,7 @@ public class CancelledOrder extends DBModel {
     }
 
     /**
-     * add the cancel order into cancanlled_transactions.json file
+     * add the cancel order into cancelled_transactions.json file
      */
     public void addCancelOrder() {
         CancelledOrder.create(CancelledOrder.getData(), serialise(), cancelledOrderPath);

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import vendingmachine.components.ProductComponents;
 import vendingmachine.model.VendingMachineModel;
+import vendingmachine.utils.CancelledOrder;
 import vendingmachine.utils.Order;
 import vendingmachine.utils.Product;
 
@@ -55,25 +56,20 @@ public class ListProductController {
     private Button cancelButton;
 
     // TODO: Cancel transaction record
-//    public void cancelTransaction(ActionEvent event) throws IOException {
-//        System.out.println("You need to record this event!!! Edit /controller/ListProductController Line 54");
-//        /*
-//        Below should record this cancel and record it in model
-//        */
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
-//        root = loader.load();
-//        loader.setController(appController);
-//
-//        appController.init();
-//
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     public void cancelTransaction(ActionEvent event) throws IOException {
         timer.shutdownNow();
+
+        CancelledOrder cancelledOrder = new CancelledOrder();
+        cancelledOrder.setId(cancelledOrder.getNextId());
+
+        if (model.getCurrentUser() == null) {
+            cancelledOrder.setUsername("anonymous");
+        } else {
+            cancelledOrder.setUsername(model.getCurrentUser().toString());
+        }
+        cancelledOrder.setReason("user cancelled transaction");
+        cancelledOrder.addCancelOrder();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vendingmachine/GUI/App.fxml"));
         root = loader.load();
 
@@ -84,9 +80,21 @@ public class ListProductController {
         stage.setScene(scene);
         stage.show();
     }
+    public void cancelOrder() {
+        CancelledOrder cancelledOrder = new CancelledOrder();
+        cancelledOrder.setId(cancelledOrder.getNextId());
+
+        if (model.getCurrentUser() == null) {
+            cancelledOrder.setUsername("anonymous");
+        } else {
+            cancelledOrder.setUsername(model.getCurrentUser().toString());
+        }
+        cancelledOrder.setReason("timeout");
+        cancelledOrder.addCancelOrder();
+    }
 
     public void generateOrder(ActionEvent event) throws IOException {
-
+        timer.shutdownNow();
         Order order = new Order(appController.getModel().getCurrentUser());
         boolean noItem = true;
         for (ProductComponents pc : pcs) {
@@ -194,8 +202,9 @@ public class ListProductController {
             public void run() {
                 Platform.runLater(()->{
                     cancelButton.fire();
+                    cancelOrder();
                 });
             }
-        },2,MINUTES);
+        },2,SECONDS);
     }
 }
