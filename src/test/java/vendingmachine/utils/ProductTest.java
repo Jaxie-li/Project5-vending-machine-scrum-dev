@@ -86,8 +86,8 @@ class ProductTest {
 
     @Test
     public void updateStockTest(){
-        product.updateStock();
-        assertEquals(7, product.getItemQuantity());
+        this.product.updateStock();
+        assertEquals(7, this.product.getItemQuantity());
     }
 
 }
