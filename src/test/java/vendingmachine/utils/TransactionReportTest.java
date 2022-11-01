@@ -30,7 +30,6 @@ class TransactionReportTest {
 
     @Test
     public void getContentTest() {
-        Order.setData(Order.getData());
         assertNotNull(this.report.getContent());
     }
 
@@ -44,6 +43,5 @@ class TransactionReportTest {
             outcome.add(sc.nextLine());
         }
         assertNotNull(outcome.toString());
-
     }
 }

@@ -25,56 +25,56 @@ class ProductTest {
 
 
     @Test
-    void getItemCode() {
+    public void getItemCodeTest() {
         assertEquals(1001, this.product.getItemCode());
     }
 
     @Test
-    void setItemCode() {
+    public void setItemCodeTest() {
         this.product.setItemCode(1100);
         assertEquals(1100, this.product.getItemCode());
     }
 
     @Test
-    void getItemName() {
+    public void getItemNameTest() {
         assertEquals("Mineral Water", this.product.getItemName());
     }
 
     @Test
-    void setItemName() {
+    public void setItemNameTest() {
         this.product.setItemName("Mineral Juice");
         assertEquals("Mineral Juice", this.product.getItemName());
     }
 
     @Test
-    void getItemPrice() {
+    public void getItemPriceTest() {
         assertEquals(12, this.product.getItemPrice());
     }
 
     @Test
-    void setItemPrice() {
+    public void setItemPriceTest() {
         this.product.setItemPrice(13);
         assertEquals(13, this.product.getItemPrice());
     }
 
     @Test
-    void getItemCategory() {
+    public void getItemCategoryTest() {
         assertEquals("drinks", this.product.getItemCategory());
     }
 
     @Test
-    void setItemCategory() {
+    public void setItemCategoryTest() {
         this.product.setItemCategory("candies");
         assertEquals("candies", this.product.getItemCategory());
     }
 
     @Test
-    void getItemQuantity() {
+    public void getItemQuantityTest() {
         assertEquals(7, this.product.getItemQuantity());
     }
 
     @Test
-    void setItemQuantity() {
+    public void setItemQuantityTest() {
         this.product.setItemQuantity(6);
         assertEquals(6, this.product.getItemQuantity());
     }

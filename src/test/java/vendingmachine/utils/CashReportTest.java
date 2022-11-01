@@ -23,17 +23,17 @@ class CashReportTest {
 
     @BeforeEach
     public void init(){
-        cashList = new ArrayList<>();
-        cash1 = new Cash(50, 2);
-        cash2 = new Cash(10, 2);
-        cashList.add(cash1);
-        cashList.add(cash2);
-        report = new CashReport(cashList);
+        this.cashList = new ArrayList<>();
+        this.cash1 = new Cash(50, 2);
+        this.cash2 = new Cash(10, 2);
+        this.cashList.add(cash1);
+        this.cashList.add(cash2);
+        this.report = new CashReport(cashList);
     }
 
     @Test
     public void getContentTest() {
-        assertNotNull(report.getContent());
+        assertNotNull(this.report.getContent());
     }
 
     @Test
