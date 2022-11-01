@@ -15,7 +15,7 @@ class CancelledOrderTest {
     }
 
     @Test
-    public void getData() {
+    public void getDataTest() {
         assertNotNull(CancelledOrder.getData());
     }
 
@@ -41,9 +41,8 @@ class CancelledOrderTest {
     @Test
     public void getIdTest() {
         // id was not null, but 0 after initialising but not parsing anything
-        assertNotNull(this.cancelledOrderTest.getId());
+        assertEquals(0, this.cancelledOrderTest.getId());
         this.cancelledOrderTest.setId(1);
-        assertNotNull( this.cancelledOrderTest.getId());
         assertEquals(1, this.cancelledOrderTest.getId());
         assertNotEquals(2, this.cancelledOrderTest.getId());
     }
